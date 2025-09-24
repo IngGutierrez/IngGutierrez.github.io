@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portafolio | Daniel Gutiérrez</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- AOS Animations -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+  <!-- Google Fonts & Material Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  
+  <meta name="description" content="Portafolio de Ing. Daniel Gutiérrez - Soluciones de Operaciones y Sistemas (SOS). Desarrollo web, redes y venta de equipo de cómputo.">
+
+  <style>
+    :root{
+      --brand-1: #1e7be7;
+      --brand-2: #00a86b;
+      --bg-dark: #0f1720;
+      --glass: rgba(255,255,255,0.06);
+	  
+	  --main-color: hsl(232, 47%, 56%);
+	  --main-color-accent: hsl(230, 58%, 30%);
+	  --background-color: hsl(220, 38%, 97%);
+	  --line-color: hsl(249, 20%, 86%);
+	  
+	  --text-color-orange: #6D6D6D;
+	  --text-color-accent-orange: #9E9E9E;
+	  --orange-content: #F9F9F9;
+	  --orange-primary: #F69100;
+	  --orange-secondary: #F7A83A;
+	  --orange-accent: #917B5C;
+	  --orange-gray: #9D9D9D;
+	  --orange-dark: #332E27;
+	  --orange-yellow: #F5BD36;
+	  --orange-accentdark: #5E584E;
+	  --orange-muted: #DDDDDD;
+	  --orange-light: #FFFFFF;
+
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #0f1720;
+      background: linear-gradient(180deg, #f7fbff 0%, #f3f6f9 100%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      scroll-behavior: smooth;
+    }
+	
+	.cardComponentes { border-radius: 1.5rem; }
+    .card { border-radius: 1.5rem; }
+    .steps .btn {
+		width: 42px; 
+		height: 42px;
+		display: flex; 
+		align-items: center;
+		justify-content: center;
+    }
+    .table thead th {
+      background: #2e2924;
+      color: white;
+    }
+	.table thead th:first-child {
+	  border-top-left-radius: 12px;
+	}
+	.table thead th:last-child {
+	  border-top-right-radius: 12px;
+	}
+    .table td { vertical-align: middle; }
+    .table .actions .btn {
+      border-radius: 50%;
+      width: 36px; height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+	/* Fila alterna con naranja tenue */
+	.alter-row, .alter-row td {
+	  background-color: #fff7f2 !important;
+	}
+    .custom-select {
+      position: relative;
+    }
+    .custom-select select {
+      padding-left: 2.5rem;
+      border-radius: 1rem;
+    }
+    .custom-select .icon {
+      position: absolute;
+      top: 50%; left: 12px;
+      transform: translateY(-50%);
+      font-size: 20px; color: #888;
+    }
+
+    /* NAV */
+    .navbar {
+      background: transparent;
+      padding: 1rem 0;
+      transition: background 300ms ease, backdrop-filter 300ms ease, box-shadow 300ms ease;
+    }
+    .navbar.scrolled {
+      background: rgba(15,23,32,0.92);
+      box-shadow: 0 8px 24px rgba(15,23,32,0.18);
+      backdrop-filter: blur(6px);
+    }
+    .navbar .navbar-brand { color: #fff; font-weight:700; display:flex; align-items:center; gap:.5rem; }
+    .navbar .navbar-brand img { height:44px; }
+	
+	/* FOOTER */
+    footer { 
+		padding:28px 0; 
+		margin-top:30px; 
+		color:#fff; 
+		background:linear-gradient(90deg,#0b1220,#0b1325);
+		font-size:0.95rem; 
+		text-align:center; 
+	}
+	.contTab{
+		padding-left:50px;
+		padding-right:50px;
+	}
+	.text-primary {
+		color: var(--text-color-orange) !important;
+	}
+	.text-secundary {
+		color: var(--text-color-accent-orange) !important;
+	}
+    .text-Oswald {
+		font-family: "Oswald", sans-serif;
+		font-optical-sizing: auto;
+		font-style: normal;
+	}
+	.text-Roboto {
+		font-family: "Roboto", sans-serif;
+		font-optical-sizing: auto;
+		font-style: normal;
+	}
+	.text-tipogrfia .text-Oswald, .text-tipogrfia .text-Roboto{
+		font-size:30px
+	}
+	.bg-Colores div{
+		height: 40px;
+	}
+	.bg-Colores .bg1{
+		height: 80px;
+	}
+	/*  Checkoptions */
+	 /* Bloque de opciones */
+    .option-item {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      gap: 8px;
+      font-weight: 500;
+    }
+    .option-item input {
+      display: none;
+    }
+    .checkmark {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
+    }
+    .option-item input:checked + .checkmark {
+      background: var(--orange-primary);
+      color: #fff;
+    }
+    .option-item input:checked + .checkmark::before {
+      content: "✓";
+      font-size: 16px;
+      font-weight: bold;
+    }
+	
+	
+	
+	
+	
+	.contTaborange{
+		background-color: var(--orange-content);
+	}
+	.text-primary-orange{
+		color:var(--orange-primary);
+		font-size: 20px;
+	}
+	.bg-orange-1{
+		background-color: var(--orange-primary);
+	}
+	.bg-orange-2{
+		background-color: var(--orange-secondary);
+	}
+	.bg-orange-3{
+		background-color: var(--orange-accent);
+	}
+	.bg-orange-4{
+		background-color: var(--orange-gray);
+	}
+	.bg-orange-5{
+		background-color: var(--orange-dark);
+	}
+	.bg-orange-6{
+		background-color: var(--orange-yellow);
+	}
+	.bg-orange-7{
+		background-color: var(--orange-accentdark);
+	}
+	.bg-orange-8{
+		background-color: var(--orange-muted);
+	}
+	.bg-orange-9{
+		background-color: var(--orange-light);
+	}
+	
+	.cont-botones button{
+		font-family: Roboto;
+		box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+	}
+	.btn-orange-1, .steps .btn.active {
+		border: 0px none;
+		box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+		background-color: var(--orange-primary);
+		color:#FFF;
+		
+	}
+	.btn-orange-1:hover, .steps .btn.active:hover {
+		background-color: var(--orange-secondary);
+		color:#FFF;
+	}
+	.btn-orange-1-hover {
+		background-color: var(--orange-secondary) !important;
+		color:#FFF  !important;
+	}
+	.btn-orange-2 {
+		background-color: var(--orange-accent);
+		color:#FFF;
+	}
+	.btn-orange-2:hover {
+		background-color: var(--orange-accentdark);
+		color:#FFF;
+	}
+	.btn-orange-2-hover {
+		background-color: var(--orange-accentdark) !important;
+		color:#FFF  !important;
+	}
+	.btn-orange-3 {
+		background-color: var(--orange-dark);
+		color:#FFF;
+	}
+	.btn-orange-3:hover {
+		background-color: var(--orange-yellow);
+		color:var(--orange-dark);
+	}
+	.btn-orange-3-hover {
+		background-color: var(--orange-yellow) !important;
+		color:var(--orange-dark)  !important;
+	}
+	.btn-orange-4, .steps .btn:not(.active) {
+		border: 0px none;
+		box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+		background-color: var(--orange-light);
+		color:var(--orange-primary);
+	}
+	.btn-orange-4:hover, .steps .btn:not(.active):hover {
+		background-color: var(--orange-primary);
+		color:var(--orange-light);
+	}
+	.btn-orange-4-hover {
+		background-color: var(--orange-primary) !important;
+		color:var(--orange-light)  !important;
+	}
+	.btn-orange-5 {
+		background-color: var(--orange-light);
+		color: var(--orange-gray);
+	}
+	.btn-orange-5:hover {
+		background-color: var(--orange-muted);
+		color: var(--orange-gray);
+	}
+	.btn-orange-5-hover {
+		background-color: var(--orange-muted) !important;
+		color:var(--orange-gray) !important;
+	}
+	
+	#nav-home-tab.active{
+		background-color: var(--orange-content);
+	}
+	#nav-home-tab {
+		background-image: url("assets/img/OrangeBlack.svg");
+		background-position:center;
+		background-repeat:no-repeat;
+		background-size: 90%;
+		width:80px;
+		height:80px;
+	}
+	#nav-home-tab.active {
+		background-image: url("assets/img/Orange.svg");
+		border-bottom: 0px none transparent;
+	}
+	
+	
+	
+	/* Menú lateral - orange */
+	.menu-orange .menu-title {
+		font-weight: 600;
+		padding: 1rem 1.5rem;
+		background-color: var(--orange-dark);
+		color: var(--orange-light);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.menu-orange .menu-item {
+		padding: 1rem 1.5rem;
+		padding-left:50px;
+		cursor: pointer;
+		color: var(--orange-light);
+		background-color: var(--orange-accentdark);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		transition: background-color 0.2s ease-in-out;
+	}
+	.menu-orange a{
+		text-decoration: none;
+	}
+	.menu-orange .menu-title{
+		cursor: pointer !important;
+	}
+	.menu-orange .menu-item:hover {
+		background-color: var(--orange-accent);
+		cursor: pointer !important;
+	}
+	.menu-orange .menu-item.active {
+		background-color: var(--orange-content);
+		color: var(--orange-dark);
+		position: relative;
+		font-weight: 600;
+	}
+	.menu-orange .menu-item.active::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 8px;
+		background-color: var(--orange-primary);
+	}
+	.menu-orange .submenu {
+		background-color: var(--orange-dark);
+	}
+	.menu-orange .submenu .menu-item {
+		padding-left: 2.5rem;
+	}
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="assets/img/Logo_SOS.svg" alt="Logo SOS" height="50"/>
+        Ing. Daniel Gutiérrez
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navCollapse">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link text-white" href="#about">Sobre mí</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#projects">Proyectos</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#contact">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+	<div class="container mt-5 pt-5">
+		<h1 class="text-center mb-4 fw-bold" data-aos="fade-down">Portafolio</h1>
+		
+		<div class="row">
+			<div class="col align-self-cente card px-0">
+				<nav>
+				  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+					<button class="nav-link ms-5 active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true"></button>
+					<button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Green</button>
+					<button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Purple</button>
+				  </div>
+				</nav>
+				<div class="tab-content" id="nav-tabContent">
+				  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+					<div class="container contTab contTaborange">
+					  <div class="row justify-content-end">
+						<div class="col-12 col-md-4 my-5 text-primary">
+							<h3>
+								<b>GUíA DE ESTILO UI/UX</b>
+							</h3>
+						</div>
+					  </div>
+					  <div class="row justify-content-center">
+						<div class="col-12 col-md-6 my-4 text-center text-primary">
+							<h4>
+							DEPARTAMENTO DE TI (Desarrollo)
+							</h4>
+						</div>
+					  </div>
+					  <div class="row justify-content-start">
+						<div class="col-12 col-md-4 my-4 text-primary-orange">
+						  Tipografía
+						</div>
+					  </div>
+					  <div class="row justify-content-start text-tipogrfia">
+						<div class="col-12 col-md-4 my-4 text-primary">
+							<span class="text-Oswald">
+								OSWALD
+							</span>
+							<br />
+							<span class="fst-italic">
+								Títulos
+							</span>
+						</div>
+						<div class="col-12 col-md-8 my-4 text-primary">
+						  
+							<span class="fst-italic">
+								Regular
+							</span>
+							<br />
+							<div class="text-Oswald">
+								Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn <br/>
+								Ññ Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz
+							</div>
+						</div>
+					  </div>
+					  <div class="row justify-content-start text-tipogrfia">
+						<div class="col-12 col-md-4 my-4 text-primary">
+							<span class="text-Roboto">
+								ROBOTO
+							</span>
+							<br />
+							<span class="fst-italic">
+								Títulos
+							</span>
+							<br />
+							<span class="fst-italic mt-3">
+								Botones
+							</span>
+						</div>
+						<div class="col-12 col-md-8 my-4 text-primary">
+							<span class="fst-italic">
+								Regular
+							</span>
+							<br />
+							<div class="text-Roboto">
+								Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn <br/>
+								Ññ Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz
+							</div>
+							<br />
+							<span class="fst-italic">
+								Bold
+							</span>
+							<div class="text-Roboto fw-bold">
+								Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn <br/>
+								Ññ Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz
+							</div>
+						</div>
+					  </div>
+					  <div class="row justify-content-start">
+						<div class="col-12 col-md-4 mt-5 mb-4 text-primary-orange">
+						  Paleta de Colores
+						</div>
+					  </div>
+					  <div class="row justify-content-start bg-Colores">
+						<div class="col-12 col-sm-4 bg-orange-1 float-start bg1 ">
+							#F69100
+						</div>
+						<div class="col-12 col-sm-2 px-0 float-start">
+							<div class="bg-orange-2">
+								#F7A83A
+							</div>
+							<div class="bg-orange-6">
+								#F5BD36
+							</div>
+						</div>
+						<div class="col-12 col-sm-2 px-0 float-start">
+							<div class="bg-orange-3">
+								#917B5C
+							</div>
+							<div class="bg-orange-7">
+								#5E584E
+							</div>
+						</div>
+						<div class="col-12 col-sm-2 px-0 float-start">
+							<div class="bg-orange-4">
+								#9D9D9D
+							</div>
+							<div class="bg-orange-8">
+								#DDDDDD
+							</div>
+						</div>
+						<div class="col-12 col-sm-2 px-0 float-start">
+							<div class="bg-orange-5">
+								#332E27
+							</div>
+							<div class="bg-orange-9">
+								#FFFFFF
+							</div>
+						</div>
+						
+					  </div>
+					  <div class="row justify-content-start">
+						<div class="col-12 col-md-4 mt-5 mb-3 text-primary-orange">
+						  Botones
+						</div>
+					  </div>
+					  <div class="row justify-content-start cont-botones">
+						<div class="col-12 col-sm-2">
+							<div class="fst-italic mt-sm-5"> 
+								<br/>
+							</div>
+							
+							<div class="fst-italic"> 
+								Default
+							</div>
+							<div class="fst-italic mt-3"> 
+								Hover
+							</div>
+						</div>
+						<div class="col-12 col-sm-2 text-center">
+							<div class="fst-italic  mt-3"> 
+								Primary
+							</div>
+							<button class="btn btn-orange-1 mt-3">
+								Boton 1
+							</button>
+							<br/>
+							<button class="btn btn-orange-1-hover mt-3">
+								Boton 1
+							</button>
+						</div>
+						<div class="col-12 col-sm-2 text-center">
+							<div class="fst-italic  mt-3"> 
+								Secundary
+							</div>
+							<button class="btn btn-orange-2 mt-3">
+								Boton 2
+							</button>
+							<br/>
+							<button class="btn btn-orange-2-hover mt-3">
+								Boton 2
+							</button> 
+						</div>
+						<div class="col-12 col-sm-2 text-center">
+							<div class="fst-italic  mt-3"> 
+								Dark
+							</div>
+							<button class="btn btn-orange-3 mt-3">
+								Boton 3
+							</button>
+							<br/>
+							<button class="btn btn-orange-3-hover mt-3">
+								Boton 3
+							</button>  
+						</div>
+						<div class="col-12 col-sm-2 text-center">
+							<div class="fst-italic  mt-3"> 
+								Light
+							</div>
+							<button class="btn btn-orange-4 mt-3">
+								Boton 4
+							</button>
+							<br/>
+							<button class="btn btn-orange-4-hover mt-3">
+								Boton 4
+							</button> 
+						</div>
+						<div class="col-12 col-sm-2 text-center">
+							<div class="fst-italic  mt-3"> 
+								Disabled
+							</div>
+							<button class="btn btn-orange-5 mt-3">
+								Boton 5
+							</button>
+							<br/>
+							<button class="btn btn-orange-5-hover my-3">
+								Boton 5
+							</button> 
+						</div>
+						
+						<div class="col-12 mt-4">
+							<div class="fw-bold">
+								Texto en Botón
+							</div>
+						</div>
+						<div class="col-12 text-center">
+							<button class="btn btn-orange-1 mt-5">
+								Boton 1
+							</button>
+							<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+									 width="19.333px" height="19.167px" viewBox="0 0 19.333 19.167" enable-background="new 0 0 19.333 19.167" xml:space="preserve">
+								<path fill-rule="evenodd" clip-rule="evenodd" fill="#9E9E9E" d="M14.458,17.392c-1.204,0.068-2.356,0.288-2.576-1.543
+									c-0.588-4.885-3.672-7.707-8.268-8.508C0.797,6.851,1.925,5.125,2.237,4.073c0.524-1.77,1.021-1.811,2.298-1.696
+									c5.917,0.531,12.172,6.997,12.593,13.021C17.253,17.177,17.051,17.33,14.458,17.392z"/>
+								</svg>
+							<span>
+							Vértice: 5px
+							</span>
+						</div>
+						<div class="col-12 col-sm-3 mt-4 text-secundary">
+							Tipografía: <span class="fst-italic">Roboto</span>
+						</div>
+						<div class="col-12 col-sm-3 mt-4 text-secundary">
+							Peso: <span class="fst-italic">Regular</span> <br/>
+						</div>
+						<div class="col-12 col-sm-3 mt-4 text-secundary">
+							Padding: <span class="fst-italic">0px 17px</span> <br/>
+						</div>
+						<div class="col-12 col-sm-3 mt-4 text-secundary">
+							Color: <span class="fst-italic">#FFFFFF, #F69100, #9D9D9D  </span> 
+						</div>
+							
+						<div class="col-12 mt-5">
+							<div class="fw-bold">
+								Ícono en Botón
+							</div>
+							
+						</div>
+						<div class="col-12 text-center">
+							<button class="btn btn-orange-1 mt-5" style="font-size:24px; line-height: 21px; padding-top: 10px;">
+								*
+							</button>
+							<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+									 width="19.333px" height="19.167px" viewBox="0 0 19.333 19.167" enable-background="new 0 0 19.333 19.167" xml:space="preserve">
+								<path fill-rule="evenodd" clip-rule="evenodd" fill="#9E9E9E" d="M14.458,17.392c-1.204,0.068-2.356,0.288-2.576-1.543
+									c-0.588-4.885-3.672-7.707-8.268-8.508C0.797,6.851,1.925,5.125,2.237,4.073c0.524-1.77,1.021-1.811,2.298-1.696
+									c5.917,0.531,12.172,6.997,12.593,13.021C17.253,17.177,17.051,17.33,14.458,17.392z"/>
+								</svg>
+							<span>
+							Vértice: 5px
+							</span>
+						</div>
+						
+						<div class="col-12  mt-4 text-center text-secundary mb-3">
+							Color: <span class="fst-italic">#FFFFFF, #F69100, #9D9D9D </span>
+						</div>
+					  </div>
+					  
+					  <div class="row justify-content-start">
+						<div class="col-12 col-md-4 my-4 text-primary-orange">
+						  Componentes
+						</div>
+					  </div>
+					  <div class="row justify-content-start cont-Components my-4">
+						<!-- Columna izquierda -->
+						<div class="col-12 col-lg-7 mt-1">
+						  <div class="card p-4 shadow-sm">
+							<!-- Pasos -->
+							<div class="d-flex gap-2 mb-4 steps">
+							  <button class="btn active">1</button>
+							  <button class="btn">2</button>
+							  <button class="btn">3</button>
+							</div>
+
+							<!-- Tabla -->
+							<div class="table-responsive">
+							  <table class="table align-middle">
+								<thead>
+								  <tr>
+									<th style="width:120px">Acciones</th>
+									<th>Módulo</th>
+									<th>Tipo de lista</th>
+								  </tr>
+								</thead>
+								<tbody>
+								  <tr>
+									<td class="actions">
+									  <button class="btn-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
+										<span class="material-icons">edit</span>
+									  </button>
+									  <button class="btn-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
+										<span class="material-icons">delete</span>
+									  </button>
+									</td>
+									<td>Checklist</td>
+									<td>Opción 1</td>
+								  </tr>
+								  <tr class="alter-row">
+									<td class="actions">
+									  <button class="btn-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
+										<span class="material-icons">edit</span>
+									  </button>
+									  <button class="btn-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
+										<span class="material-icons">delete</span>
+									  </button>
+									</td>
+									<td>Checklist</td>
+									<td>Opción 2</td>
+								  </tr>
+								  <tr>
+									<td class="actions">
+									  <button class="btn-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
+										<span class="material-icons">edit</span>
+									  </button>
+									  <button class="btn-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
+										<span class="material-icons">delete</span>
+									  </button>
+									</td>
+									<td>Checklist</td>
+									<td>Opción 2</td>
+								  </tr>
+								</tbody>
+							  </table>
+							</div>
+						  </div>
+						</div>
+
+						<!-- Columna derecha -->
+						<div class="col-12 col-md-5 mt-1">
+						  <div class="card p-4 shadow-sm d-flex flex-column gap-3">
+							<!-- Select 1 -->
+							<div class="custom-select">
+							  <span class="icon material-icons">person</span>
+							  <select class="form-select">
+								<option selected>Ejecutivo</option>
+								<option>Cuenta</option>
+								<option>Administrador</option>
+							  </select>
+							</div>
+							<!-- Select 2 -->
+							<div class="custom-select">
+							  <span class="icon material-icons">manage_accounts</span>
+							  <select class="form-select">
+								<option>Ejecutivo</option>
+								<option selected>Cuenta</option>
+								<option>Administrador</option>
+							  </select>
+							</div>
+						  </div>
+						  
+						  <div class="card shadow-sm p-4 mt-1">
+							  <div class="d-flex justify-content-between align-items-center gap-4 custom-options">
+								<label class="option-item">
+								  <input type="radio" name="opciones" checked>
+								  <span class="checkmark"></span>
+								  <span class="option-text">Opción 1</span>
+								</label>
+								<label class="option-item">
+								  <input type="radio" name="opciones">
+								  <span class="checkmark"></span>
+								  <span class="option-text">Opción 2</span>
+								</label>
+								<label class="option-item">
+								  <input type="radio" name="opciones">
+								  <span class="checkmark"></span>
+								  <span class="option-text">Opción 3</span>
+								</label>
+							  </div>
+						  </div>
+						  <div class="card shadow-sm p-4 mt-1">
+							  <div class="d-flex justify-content-between align-items-center gap-2">
+								<button class="btn btn-orange-2 d-flex align-items-center gap-2 px-4 py-2">
+								  <span class="material-icons">assignment</span> Tarea
+								</button>
+								<button class="btn btn-orange-1 d-flex align-items-center gap-2 px-4 py-2">
+								  <span class="material-icons">event</span> Cita
+								</button>
+								<button class="btn btn-orange-3 d-flex align-items-center gap-2 px-4 py-2">
+								  <span class="material-icons">call</span> Llamada
+								</button>
+							  </div>
+							  
+						  </div>
+							
+						</div>
+						
+						<div class="col-12 col-md-5 mt-1">
+						  <div class="card p-4 shadow-sm">
+							<div class="card p-0 overflow-hidden menu-orange">
+								<div class="menu-title" data-bs-toggle="collapse" href="#collapseAdministracion" aria-expanded="true">
+									Administración
+									<span class="material-icons">keyboard_arrow_up</span>
+								</div>
+								<div class="collapse show" id="collapseAdministracion">
+									<a href="#" class="menu-item active">
+										Lista de Valores
+									</a>
+									<a href="#" class="menu-item">
+										Reasignación de Cuenta
+									</a>
+								</div>
+								<a href="#" class="menu-title">
+									Prospecto
+								</a>
+								<div class="menu-title" data-bs-toggle="collapse" href="#collapseCliente" aria-expanded="false">
+									Cliente
+									<span class="material-icons">keyboard_arrow_down</span>
+								</div>
+								<div class="collapse" id="collapseCliente">
+									<a href="#" class="menu-item">
+										Actividades
+									</a>
+								</div>
+								<div class="menu-title" data-bs-toggle="collapse" href="#collapseConfiguraciones" aria-expanded="false">
+									Configuraciones
+									<span class="material-icons">keyboard_arrow_down</span>
+								</div>
+								<div class="collapse" id="collapseConfiguraciones">
+									<a href="#" class="menu-item">
+										Settings
+									</a>
+									<a href="#" class="menu-item">
+										Icons
+									</a>
+								</div>
+							</div>
+						  </div>
+						</div>
+						
+						<div class="col-12 col-md-7 mt-1">
+							<div class="my-4 text-primary-orange">
+							  Iconos
+							</div>
+							<div class="card p-4 shadow-sm">
+								<span class="material-icons">person</span>
+								<span class="material-icons">manage_accounts</span>
+								<span class="material-icons">assignment</span>
+								<span class="material-icons">event</span>
+								<span class="material-icons">call</span>
+							</div>
+							<div class="my-4 text-primary-orange">
+							  Menú
+							</div>
+							<div class="row">
+								<div class="col-12 col-sm-3 mt-4 text-secundary">
+									Tipografía: <span class="fst-italic">Roboto</span>
+								</div>
+								<div class="col-12 col-sm-3 mt-4 text-secundary">
+									Peso: <span class="fst-italic">Regular</span> <br/>
+								</div>
+								<div class="col-12 col-sm-3 mt-4 text-secundary">
+									Padding: <span class="fst-italic">1rem 1.5rem</span> <br/>
+								</div>
+								<div class="col-12 col-sm-3 mt-4 text-secundary">
+									Color: <span class="fst-italic">#FFFFFF, #332E27  </span> 
+								</div>
+							</div>
+						</div>
+					  </div>
+					  
+					  
+					</div>
+				  </div>
+				  
+				  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+				  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+  <!-- FOOTER -->
+  <footer class="mt-5">
+    <div class="container">
+      <p class="mb-1">© 2025 Daniel Gutiérrez | SOS</p>
+      <p class="mb-0">Ilustraciones: <a href="https://www.freepik.com" target="_blank" style="color: #cfe7ff;">Freepik</a> · Logos y assets propiedad de SOS</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+
+  <script>
+    $(function(){
+      
+      // navbar scrolled effect
+      $('.navbar').addClass('scrolled');
+
+      AOS.init({ duration:900, once:true, easing:'ease-in-out' });
+	  
+	  
+	  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+		[...tooltipTriggerList].map(el => new bootstrap.Tooltip(el));
+		
+		$('.menu-orange .menu-item').on('click', function(e) {
+			e.preventDefault();
+		});
+		
+		// Cambiar la flecha de los menús
+        $('.menu-title').on('click', function() {
+            const arrow = $(this).find('span');
+            if (arrow.text() === 'keyboard_arrow_down') {
+                arrow.text('keyboard_arrow_up');
+            } else {
+                arrow.text('keyboard_arrow_down');
+            }
+        });
+    });
+  </script>
+</body>
+</html>
