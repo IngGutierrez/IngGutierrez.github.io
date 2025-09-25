@@ -21,24 +21,15 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   
-  <meta name="description" content="Portafolio de Ing. Daniel Gutiérrez - Soluciones de Operaciones y Sistemas (SOS). Desarrollo web, redes y venta de equipo de cómputo.">
+  <meta name="description" content="Portafolio de Ing. Daniel Gutiérrez - Soluciones de Sistemas (SOS). Desarrollo web, redes y venta de equipo de cómputo.">
 
   <style>
     :root{
-      --brand-1: #1e7be7;
-      --brand-2: #00a86b;
-      --bg-dark: #0f1720;
-      --glass: rgba(255,255,255,0.06);
-	  
-	  --main-color: hsl(232, 47%, 56%);
-	  --main-color-accent: hsl(230, 58%, 30%);
-	  --background-color: hsl(220, 38%, 97%);
-	  --line-color: hsl(249, 20%, 86%);
-	  
 	  --text-color-orange: #6D6D6D;
 	  --text-color-accent-orange: #9E9E9E;
 	  --orange-content: #F9F9F9;
 	  --orange-primary: #F69100;
+	  --Orange-primary-light: #fff7f2;
 	  --orange-secondary: #F7A83A;
 	  --orange-accent: #917B5C;
 	  --orange-gray: #9D9D9D;
@@ -47,7 +38,6 @@
 	  --orange-accentdark: #5E584E;
 	  --orange-muted: #DDDDDD;
 	  --orange-light: #FFFFFF;
-
     }
     body {
       font-family: 'Poppins', sans-serif;
@@ -57,317 +47,10 @@
       -moz-osx-font-smoothing:grayscale;
       scroll-behavior: smooth;
     }
-	
-	.cardComponentes { border-radius: 1.5rem; }
-    .card { border-radius: 1.5rem; }
-    .steps .btn {
-		width: 42px; 
-		height: 42px;
-		display: flex; 
-		align-items: center;
-		justify-content: center;
-    }
-    .table thead th {
-      background: #2e2924;
-      color: white;
-    }
-	.table thead th:first-child {
-	  border-top-left-radius: 12px;
-	}
-	.table thead th:last-child {
-	  border-top-right-radius: 12px;
-	}
-    .table td { vertical-align: middle; }
-    .table .actions .btn {
-      border-radius: 50%;
-      width: 36px; height: 36px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-	/* Fila alterna con naranja tenue */
-	.alter-row, .alter-row td {
-	  background-color: #fff7f2 !important;
-	}
-    .custom-select {
-      position: relative;
-    }
-    .custom-select select {
-      padding-left: 2.5rem;
-      border-radius: 1rem;
-    }
-    .custom-select .icon {
-      position: absolute;
-      top: 50%; left: 12px;
-      transform: translateY(-50%);
-      font-size: 20px; color: #888;
-    }
-
-    /* NAV */
-    .navbar {
-      background: transparent;
-      padding: 1rem 0;
-      transition: background 300ms ease, backdrop-filter 300ms ease, box-shadow 300ms ease;
-    }
-    .navbar.scrolled {
-      background: rgba(15,23,32,0.92);
-      box-shadow: 0 8px 24px rgba(15,23,32,0.18);
-      backdrop-filter: blur(6px);
-    }
-    .navbar .navbar-brand { color: #fff; font-weight:700; display:flex; align-items:center; gap:.5rem; }
-    .navbar .navbar-brand img { height:44px; }
-	
-	/* FOOTER */
-    footer { 
-		padding:28px 0; 
-		margin-top:30px; 
-		color:#fff; 
-		background:linear-gradient(90deg,#0b1220,#0b1325);
-		font-size:0.95rem; 
-		text-align:center; 
-	}
-	.contTab{
-		padding-left:50px;
-		padding-right:50px;
-	}
-	.text-primary {
-		color: var(--text-color-orange) !important;
-	}
-	.text-secundary {
-		color: var(--text-color-accent-orange) !important;
-	}
-    .text-Oswald {
-		font-family: "Oswald", sans-serif;
-		font-optical-sizing: auto;
-		font-style: normal;
-	}
-	.text-Roboto {
-		font-family: "Roboto", sans-serif;
-		font-optical-sizing: auto;
-		font-style: normal;
-	}
-	.text-tipogrfia .text-Oswald, .text-tipogrfia .text-Roboto{
-		font-size:30px
-	}
-	.bg-Colores div{
-		height: 40px;
-	}
-	.bg-Colores .bg1{
-		height: 80px;
-	}
-	/*  Checkoptions */
-	 /* Bloque de opciones */
-    .option-item {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      gap: 8px;
-      font-weight: 500;
-    }
-    .option-item input {
-      display: none;
-    }
-    .checkmark {
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      background: #fff;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 16px;
-    }
-    .option-item input:checked + .checkmark {
-      background: var(--orange-primary);
-      color: #fff;
-    }
-    .option-item input:checked + .checkmark::before {
-      content: "✓";
-      font-size: 16px;
-      font-weight: bold;
-    }
-	
-	
-	
-	
-	
-	.contTaborange{
-		background-color: var(--orange-content);
-	}
-	.text-primary-orange{
-		color:var(--orange-primary);
-		font-size: 20px;
-	}
-	.bg-orange-1{
-		background-color: var(--orange-primary);
-	}
-	.bg-orange-2{
-		background-color: var(--orange-secondary);
-	}
-	.bg-orange-3{
-		background-color: var(--orange-accent);
-	}
-	.bg-orange-4{
-		background-color: var(--orange-gray);
-	}
-	.bg-orange-5{
-		background-color: var(--orange-dark);
-	}
-	.bg-orange-6{
-		background-color: var(--orange-yellow);
-	}
-	.bg-orange-7{
-		background-color: var(--orange-accentdark);
-	}
-	.bg-orange-8{
-		background-color: var(--orange-muted);
-	}
-	.bg-orange-9{
-		background-color: var(--orange-light);
-	}
-	
-	.cont-botones button{
-		font-family: Roboto;
-		box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-	}
-	.btn-orange-1, .steps .btn.active {
-		border: 0px none;
-		box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-		background-color: var(--orange-primary);
-		color:#FFF;
-		
-	}
-	.btn-orange-1:hover, .steps .btn.active:hover {
-		background-color: var(--orange-secondary);
-		color:#FFF;
-	}
-	.btn-orange-1-hover {
-		background-color: var(--orange-secondary) !important;
-		color:#FFF  !important;
-	}
-	.btn-orange-2 {
-		background-color: var(--orange-accent);
-		color:#FFF;
-	}
-	.btn-orange-2:hover {
-		background-color: var(--orange-accentdark);
-		color:#FFF;
-	}
-	.btn-orange-2-hover {
-		background-color: var(--orange-accentdark) !important;
-		color:#FFF  !important;
-	}
-	.btn-orange-3 {
-		background-color: var(--orange-dark);
-		color:#FFF;
-	}
-	.btn-orange-3:hover {
-		background-color: var(--orange-yellow);
-		color:var(--orange-dark);
-	}
-	.btn-orange-3-hover {
-		background-color: var(--orange-yellow) !important;
-		color:var(--orange-dark)  !important;
-	}
-	.btn-orange-4, .steps .btn:not(.active) {
-		border: 0px none;
-		box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-		background-color: var(--orange-light);
-		color:var(--orange-primary);
-	}
-	.btn-orange-4:hover, .steps .btn:not(.active):hover {
-		background-color: var(--orange-primary);
-		color:var(--orange-light);
-	}
-	.btn-orange-4-hover {
-		background-color: var(--orange-primary) !important;
-		color:var(--orange-light)  !important;
-	}
-	.btn-orange-5 {
-		background-color: var(--orange-light);
-		color: var(--orange-gray);
-	}
-	.btn-orange-5:hover {
-		background-color: var(--orange-muted);
-		color: var(--orange-gray);
-	}
-	.btn-orange-5-hover {
-		background-color: var(--orange-muted) !important;
-		color:var(--orange-gray) !important;
-	}
-	
-	#nav-home-tab.active{
-		background-color: var(--orange-content);
-	}
-	#nav-home-tab {
-		background-image: url("assets/img/OrangeBlack.svg");
-		background-position:center;
-		background-repeat:no-repeat;
-		background-size: 90%;
-		width:80px;
-		height:80px;
-	}
-	#nav-home-tab.active {
-		background-image: url("assets/img/Orange.svg");
-		border-bottom: 0px none transparent;
-	}
-	
-	
-	
-	/* Menú lateral - orange */
-	.menu-orange .menu-title {
-		font-weight: 600;
-		padding: 1rem 1.5rem;
-		background-color: var(--orange-dark);
-		color: var(--orange-light);
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
-	.menu-orange .menu-item {
-		padding: 1rem 1.5rem;
-		padding-left:50px;
-		cursor: pointer;
-		color: var(--orange-light);
-		background-color: var(--orange-accentdark);
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		transition: background-color 0.2s ease-in-out;
-	}
-	.menu-orange a{
-		text-decoration: none;
-	}
-	.menu-orange .menu-title{
-		cursor: pointer !important;
-	}
-	.menu-orange .menu-item:hover {
-		background-color: var(--orange-accent);
-		cursor: pointer !important;
-	}
-	.menu-orange .menu-item.active {
-		background-color: var(--orange-content);
-		color: var(--orange-dark);
-		position: relative;
-		font-weight: 600;
-	}
-	.menu-orange .menu-item.active::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		height: 100%;
-		width: 8px;
-		background-color: var(--orange-primary);
-	}
-	.menu-orange .submenu {
-		background-color: var(--orange-dark);
-	}
-	.menu-orange .submenu .menu-item {
-		padding-left: 2.5rem;
-	}
   </style>
+  
+  <!-- CSS externo -->
+  <link rel="stylesheet" href="css/Orange.css">
 </head>
 <body>
 
@@ -689,10 +372,10 @@
 								<tbody>
 								  <tr>
 									<td class="actions">
-									  <button class="btn-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
+									  <button class="btn-icon-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
 										<span class="material-icons">edit</span>
 									  </button>
-									  <button class="btn-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
+									  <button class="btn-icon-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
 										<span class="material-icons">delete</span>
 									  </button>
 									</td>
@@ -701,10 +384,10 @@
 								  </tr>
 								  <tr class="alter-row">
 									<td class="actions">
-									  <button class="btn-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
+									  <button class="btn-icon-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
 										<span class="material-icons">edit</span>
 									  </button>
-									  <button class="btn-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
+									  <button class="btn-icon-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
 										<span class="material-icons">delete</span>
 									  </button>
 									</td>
@@ -713,10 +396,10 @@
 								  </tr>
 								  <tr>
 									<td class="actions">
-									  <button class="btn-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
+									  <button class="btn-icon-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
 										<span class="material-icons">edit</span>
 									  </button>
-									  <button class="btn-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
+									  <button class="btn-icon-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
 										<span class="material-icons">delete</span>
 									  </button>
 									</td>
@@ -836,14 +519,63 @@
 							  Iconos
 							</div>
 							<div class="card p-4 shadow-sm">
-								<span class="material-icons">person</span>
-								<span class="material-icons">manage_accounts</span>
-								<span class="material-icons">assignment</span>
-								<span class="material-icons">event</span>
-								<span class="material-icons">call</span>
+								<div class="row">
+									<div class="col-3 col-sm-1 my-1">
+										<button class="btn-icon-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
+											<span class="material-icons">edit</span>
+										</button>
+									</div>
+									<div class="col-3 col-sm-1 my-1">
+										<button class="btn-icon-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
+											<span class="material-icons">delete</span>
+										</button>
+									</div>
+									<div class="col-3 col-sm-1 my-1">
+										<button class="btn-icon-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Buscar">
+											<span class="material-icons">search</span>
+										</button>
+									</div>
+									<div class="col-3 col-sm-1 my-1">
+										<button class="btn-icon-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Agregar">
+											<span class="material-icons">add</span>
+										</button>
+									</div>
+									<div class="col-3 col-sm-1 my-1">
+										<button class="btn-icon-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Cuenta">
+											<span class="material-icons">person</span>
+										</button>
+									</div>
+									<div class="col-3 col-sm-1 my-1">
+										<button class="btn-icon-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Usuario">
+											<span class="material-icons">manage_accounts</span>
+										</button>
+									</div>
+									<div class="col-3 col-sm-1 my-1">
+										<button class="btn-icon-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Tarea">
+											<span class="material-icons">assignment</span>
+										</button>
+									</div>
+									<div class="col-3 col-sm-1 my-1">
+										<button class="btn-icon-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Cita">
+											<span class="material-icons">event</span>
+										</button>
+									</div>
+									<div class="col-3 col-sm-1 my-1">
+										<button class="btn-icon-orange-4" data-bs-toggle="tooltip" data-bs-placement="top" title="LLamada">
+											<span class="material-icons">call</span>
+										</button>
+									</div>
+									
+									<div class="col-3 col-sm-1 mt-4">
+									</div>
+									<div class="col-3 col-sm-1 mt-4">
+									</div>
+									<div class="col-3 col-sm-1 mt-4">
+									</div>
+								</div>
 							</div>
 							<div class="my-4 text-primary-orange">
-							  Menú
+								Menú
 							</div>
 							<div class="row">
 								<div class="col-12 col-sm-3 mt-4 text-secundary">
@@ -862,7 +594,22 @@
 						</div>
 					  </div>
 					  
-					  
+					  <div class="row justify-content-start">
+						<div class="col-12 col-md-4 mt-5 text-primary-orange">
+						  Logo
+						</div>
+					  </div>
+					  <div class="row justify-content-start cont-Components my-2">
+						<div class="col-12 mt-1">
+						  <div class="card p-4 shadow-sm ">
+							<div class="row">
+								<div class="col-12 logoPrincipal-Orange border-bottom"></div>
+								<div class="col-12 col-md-6 logoPrincipal-OrangeFont border-end"></div>
+								<div class="col-12 col-md-6 logoPrincipal-OrangeWhite bg-orange-1 "></div>
+							</div>
+						  </div>
+						</div>
+					  </div>
 					</div>
 				  </div>
 				  
