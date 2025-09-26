@@ -1,0 +1,338 @@
+	.cardComponentes { border-radius: 1.5rem; }
+    .card { border-radius: 1.5rem; }
+    .steps .btn {
+		width: 42px; 
+		height: 42px;
+		display: flex; 
+		align-items: center;
+		justify-content: center;
+    }
+    .table thead th {
+      background: #2e2924;
+      color: white;
+    }
+	.table thead th:first-child {
+	  border-top-left-radius: 12px;
+	}
+	.table thead th:last-child {
+	  border-top-right-radius: 12px;
+	}
+    .table td { vertical-align: middle; }
+    .table .actions .btn {
+      border-radius: 50%;
+      width: 36px; height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+	/* Fila alterna con naranja tenue */
+	.cont-Components-blue .alter-row td {
+	  background-color: var(--blue-primary-light) !important;
+	}
+    .custom-select {
+      position: relative;
+    }
+    .custom-select select {
+      padding-left: 2.5rem;
+      border-radius: 1rem;
+    }
+    .custom-select .icon {
+      position: absolute;
+      top: 50%; left: 12px;
+      transform: translateY(-50%);
+      font-size: 20px; 
+	  color: #888;
+    }
+
+    /* NAV */
+    .navbar {
+      background: transparent;
+      padding: 1rem 0;
+      transition: background 300ms ease, backdrop-filter 300ms ease, box-shadow 300ms ease;
+    }
+    .navbar.scrolled {
+      background: rgba(15,23,32,0.92);
+      box-shadow: 0 8px 24px rgba(15,23,32,0.18);
+      backdrop-filter: blur(6px);
+    }
+    .navbar .navbar-brand { color: #fff; font-weight:700; display:flex; align-items:center; gap:.5rem; }
+    .navbar .navbar-brand img { height:44px; }
+	
+	/* FOOTER */
+    footer { 
+		padding:28px 0; 
+		margin-top:30px; 
+		color:#fff; 
+		background:linear-gradient(90deg,#0b1220,#0b1325);
+		font-size:0.95rem; 
+		text-align:center; 
+	}
+	.contTab{
+		padding-left:50px;
+		padding-right:50px;
+	}
+	.text-primary {
+		color: var(--text-color-blue) !important;
+	}
+	.text-secundary {
+		color: var(--text-color-accent-blue) !important;
+	}
+    .text-Oswald {
+		font-family: "Oswald", sans-serif;
+		font-optical-sizing: auto;
+		font-style: normal;
+	}
+	.text-Roboto {
+		font-family: "Roboto", sans-serif;
+		font-optical-sizing: auto;
+		font-style: normal;
+	}
+	.text-tipogrfia .text-Oswald, .text-tipogrfia .text-Roboto{
+		font-size:30px
+	}
+	.bg-Colores div{
+		height: 40px;
+	}
+	.bg-Colores .bg1{
+		height: 80px;
+	}
+	/*  Checkoptions */
+	 /* Bloque de opciones */
+    .option-item {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      gap: 8px;
+      font-weight: 500;
+    }
+    .option-item input {
+      display: none;
+    }
+    .checkmark-blue {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
+    }
+    .option-item input:checked + .checkmark-blue {
+      background: var(--blue-primary);
+      color: #fff;
+    }
+    .option-item input:checked + .checkmark-blue::before {
+      content: "✓";
+      font-size: 16px;
+      font-weight: bold;
+    }
+	.contTabblue{
+		background-color: var(--blue-content);
+	}
+	.text-primary-blue{
+		color:var(--blue-primary);
+		font-size: 20px;
+	}
+	.bg-blue-1{
+		background-color: var(--blue-primary);
+	}
+	.bg-blue-2{
+		background-color: var(--blue-secondary);
+	}
+	.bg-blue-3{
+		background-color: var(--blue-accent);
+	}
+	.bg-blue-4{
+		background-color: var(--blue-gray);
+	}
+	.bg-blue-5{
+		background-color: var(--blue-dark);
+	}
+	.bg-blue-6{
+		background-color: var(--blue-yellow);
+	}
+	.bg-blue-7{
+		background-color: var(--blue-accentdark);
+	}
+	.bg-blue-8{
+		background-color: var(--blue-muted);
+	}
+	.bg-blue-9{
+		background-color: var(--blue-light);
+	}
+	
+	.cont-botones button{
+		font-family: Roboto;
+		box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+	}
+	.btn-blue-1, .cont-Components-blue .steps .btn.active {
+		border: 0px none;
+		box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+		background-color: var(--blue-primary);
+		color:#FFF;
+		
+	}
+	.btn-blue-1:hover, .cont-Components-blue .steps .btn.active:hover {
+		background-color: var(--blue-secondary);
+		color:#FFF;
+	}
+	.btn-blue-1-hover {
+		background-color: var(--blue-secondary) !important;
+		color:#FFF  !important;
+	}
+	.btn-blue-2 {
+		background-color: var(--blue-accent);
+		color:#FFF;
+	}
+	.btn-blue-2:hover {
+		background-color: var(--blue-accentdark);
+		color:#FFF;
+	}
+	.btn-blue-2-hover {
+		background-color: var(--blue-accentdark) !important;
+		color:#FFF  !important;
+	}
+	.btn-blue-3 {
+		background-color: var(--blue-dark);
+		color:#FFF;
+	}
+	.btn-blue-3:hover {
+		background-color: var(--blue-yellow);
+		color:var(--blue-dark);
+	}
+	.btn-blue-3-hover {
+		background-color: var(--blue-yellow) !important;
+		color:var(--blue-dark)  !important;
+	}
+	.btn-blue-4, .steps .btn:not(.active) {
+		border: 0px none;
+		box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+		background-color: var(--blue-light);
+		color:var(--blue-primary);
+	}
+	.btn-blue-4:hover, .steps .btn:not(.active):hover {
+		background-color: var(--blue-primary);
+		color:var(--blue-light);
+	}
+	.btn-blue-4-hover {
+		background-color: var(--blue-primary) !important;
+		color:var(--blue-light)  !important;
+	}
+	.btn-icon-blue-4 {
+		border: 0px none;
+		background-color: var(--blue-light);
+		color:var(--blue-primary);
+		border-radius: 8px;
+		width:36px;
+		height: 36px;
+		Padding:5px;
+	}
+	.btn-icon-blue-4:hover {
+		background-color: var(--blue-primary);
+		color:var(--blue-light);
+	}
+	.btn-blue-5 {
+		background-color: var(--blue-light);
+		color: var(--blue-gray);
+	}
+	.btn-blue-5:hover {
+		background-color: var(--blue-muted);
+		color: var(--blue-gray);
+	}
+	.btn-blue-5-hover {
+		background-color: var(--blue-muted) !important;
+		color:var(--blue-gray) !important;
+	}
+	
+	#nav-contact-tab.active{
+		background-color: var(--blue-content);
+	}
+	#nav-contact-tab {
+		background-image: url("../assets/img/blueBlack.svg");
+		background-position:center;
+		background-repeat:no-repeat;
+		background-size: 90%;
+		width:80px;
+		height:80px;
+	}
+	#nav-contact-tab.active {
+		background-image: url("../assets/img/blue.svg");
+		border-bottom: 0px none transparent;
+	}
+	/* Menú lateral - blue */
+	.menu-blue .menu-title {
+		font-weight: 600;
+		padding: 1rem 1.5rem;
+		background-color: var(--blue-dark);
+		color: var(--blue-light);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.menu-blue .menu-item {
+		padding: 1rem 1.5rem;
+		padding-left:50px;
+		cursor: pointer;
+		color: var(--blue-light);
+		background-color: var(--blue-accentdark);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		transition: background-color 0.2s ease-in-out;
+	}
+	.menu-blue a{
+		text-decoration: none;
+	}
+	.menu-blue .menu-title{
+		cursor: pointer !important;
+	}
+	.menu-blue .menu-item:hover {
+		background-color: var(--blue-accent);
+		cursor: pointer !important;
+	}
+	.menu-blue .menu-item.active {
+		background-color: var(--blue-content);
+		color: var(--blue-dark);
+		position: relative;
+		font-weight: 600;
+	}
+	.menu-blue .menu-item.active::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 8px;
+		background-color: var(--blue-primary);
+	}
+	.menu-blue .submenu {
+		background-color: var(--blue-dark);
+	}
+	.menu-blue .submenu .menu-item {
+		padding-left: 2.5rem;
+	}
+	
+	/*LOGOS*/
+	.logoPrincipal-blue {
+		background-image: url("../assets/img/blue.svg");
+		background-size: auto 100%;
+		background-position: center;
+		background-repeat: no-repeat;
+		min-height:200px;
+	}
+	.logoPrincipal-blueWhite {
+		background-image: url("../assets/img/blueWhite.svg");
+		background-size: auto 100%;
+		background-position: center;
+		background-repeat: no-repeat;
+		min-height:200px;
+	}
+	.logoPrincipal-blueFont{
+		background-image: url("../assets/img/blueFont.svg");
+		background-size: auto 100%;
+		background-position: center;
+		background-repeat: no-repeat;
+		min-height:200px;
+	}
