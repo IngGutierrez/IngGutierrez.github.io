@@ -26,8 +26,8 @@
       justify-content: center;
     }
 	/* Fila alterna con naranja tenue */
-	.cont-Components-orange .alter-row td {
-	  background-color: var(--Orange-primary-light) !important;
+	.cont-Components-green .alter-row td {
+	  background-color: var(--green-primary-light) !important;
 	}
     .custom-select {
       position: relative;
@@ -72,10 +72,10 @@
 		padding-right:50px;
 	}
 	.text-primary {
-		color: var(--text-color-orange) !important;
+		color: var(--text-color-green) !important;
 	}
 	.text-secundary {
-		color: var(--text-color-accent-orange) !important;
+		color: var(--text-color-accent-green) !important;
 	}
     .text-Oswald {
 		font-family: "Oswald", sans-serif;
@@ -108,7 +108,7 @@
     .option-item input {
       display: none;
     }
-    .checkmark-orange {
+    .checkmark-green {
       width: 28px;
       height: 28px;
       border-radius: 8px;
@@ -119,218 +119,218 @@
       align-items: center;
       font-size: 16px;
     }
-    .option-item input:checked + .checkmark-orange {
-      background: var(--orange-primary);
+    .option-item input:checked + .checkmark-green {
+      background: var(--green-primary);
       color: #fff;
     }
-    .option-item input:checked + .checkmark-orange::before {
+    .option-item input:checked + .checkmark-green::before {
       content: "✓";
       font-size: 16px;
       font-weight: bold;
     }
-	.contTaborange{
-		background-color: var(--orange-content);
+	.contTabgreen{
+		background-color: var(--green-content);
 	}
-	.text-primary-orange{
-		color:var(--orange-primary);
+	.text-primary-green{
+		color:var(--green-primary);
 		font-size: 20px;
 	}
-	.bg-orange-1{
-		background-color: var(--orange-primary);
+	.bg-green-1{
+		background-color: var(--green-primary);
 	}
-	.bg-orange-2{
-		background-color: var(--orange-secondary);
+	.bg-green-2{
+		background-color: var(--green-secondary);
 	}
-	.bg-orange-3{
-		background-color: var(--orange-accent);
+	.bg-green-3{
+		background-color: var(--green-accent);
 	}
-	.bg-orange-4{
-		background-color: var(--orange-gray);
+	.bg-green-4{
+		background-color: var(--green-gray);
 	}
-	.bg-orange-5{
-		background-color: var(--orange-dark);
+	.bg-green-5{
+		background-color: var(--green-dark);
 	}
-	.bg-orange-6{
-		background-color: var(--orange-yellow);
+	.bg-green-6{
+		background-color: var(--green-yellow);
 	}
-	.bg-orange-7{
-		background-color: var(--orange-accentdark);
+	.bg-green-7{
+		background-color: var(--green-accentdark);
 	}
-	.bg-orange-8{
-		background-color: var(--orange-muted);
+	.bg-green-8{
+		background-color: var(--green-muted);
 	}
-	.bg-orange-9{
-		background-color: var(--orange-light);
+	.bg-green-9{
+		background-color: var(--green-light);
 	}
 	
 	.cont-botones button{
 		font-family: Roboto;
 		box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 	}
-	.btn-orange-1, .cont-Components-orange .steps .btn.active {
+	.btn-green-1, .cont-Components-green .steps .btn.active {
 		border: 0px none;
 		box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-		background-color: var(--orange-primary);
+		background-color: var(--green-primary);
 		color:#FFF;
 		
 	}
-	.btn-orange-1:hover, .cont-Components-orange .steps .btn.active:hover {
-		background-color: var(--orange-secondary);
+	.btn-green-1:hover, .cont-Components-green .steps .btn.active:hover {
+		background-color: var(--green-secondary);
 		color:#FFF;
 	}
-	.btn-orange-1-hover {
-		background-color: var(--orange-secondary) !important;
+	.btn-green-1-hover {
+		background-color: var(--green-secondary) !important;
 		color:#FFF  !important;
 	}
-	.btn-orange-2 {
-		background-color: var(--orange-accent);
+	.btn-green-2 {
+		background-color: var(--green-accent);
 		color:#FFF;
 	}
-	.btn-orange-2:hover {
-		background-color: var(--orange-accentdark);
+	.btn-green-2:hover {
+		background-color: var(--green-accentdark);
 		color:#FFF;
 	}
-	.btn-orange-2-hover {
-		background-color: var(--orange-accentdark) !important;
+	.btn-green-2-hover {
+		background-color: var(--green-accentdark) !important;
 		color:#FFF  !important;
 	}
-	.btn-orange-3 {
-		background-color: var(--orange-dark);
+	.btn-green-3 {
+		background-color: var(--green-dark);
 		color:#FFF;
 	}
-	.btn-orange-3:hover {
-		background-color: var(--orange-yellow);
-		color:var(--orange-dark);
+	.btn-green-3:hover {
+		background-color: var(--green-yellow);
+		color:var(--green-dark);
 	}
-	.btn-orange-3-hover {
-		background-color: var(--orange-yellow) !important;
-		color:var(--orange-dark)  !important;
+	.btn-green-3-hover {
+		background-color: var(--green-yellow) !important;
+		color:var(--green-dark)  !important;
 	}
-	.btn-orange-4, .steps .btn:not(.active) {
+	.btn-green-4, .steps .btn:not(.active) {
 		border: 0px none;
 		box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-		background-color: var(--orange-light);
-		color:var(--orange-primary);
+		background-color: var(--green-light);
+		color:var(--green-primary);
 	}
-	.btn-orange-4:hover, .steps .btn:not(.active):hover {
-		background-color: var(--orange-primary);
-		color:var(--orange-light);
+	.btn-green-4:hover, .steps .btn:not(.active):hover {
+		background-color: var(--green-primary);
+		color:var(--green-light);
 	}
-	.btn-orange-4-hover {
-		background-color: var(--orange-primary) !important;
-		color:var(--orange-light)  !important;
+	.btn-green-4-hover {
+		background-color: var(--green-primary) !important;
+		color:var(--green-light)  !important;
 	}
-	.btn-icon-orange-4 {
+	.btn-icon-green-4 {
 		border: 0px none;
-		background-color: var(--orange-light);
-		color:var(--orange-primary);
+		background-color: var(--green-light);
+		color:var(--green-primary);
 		border-radius: 8px;
 		width:36px;
 		height: 36px;
 		Padding:5px;
 	}
-	.btn-icon-orange-4:hover {
-		background-color: var(--orange-primary);
-		color:var(--orange-light);
+	.btn-icon-green-4:hover {
+		background-color: var(--green-primary);
+		color:var(--green-light);
 	}
-	.btn-orange-5 {
-		background-color: var(--orange-light);
-		color: var(--orange-gray);
+	.btn-green-5 {
+		background-color: var(--green-light);
+		color: var(--green-gray);
 	}
-	.btn-orange-5:hover {
-		background-color: var(--orange-muted);
-		color: var(--orange-gray);
+	.btn-green-5:hover {
+		background-color: var(--green-muted);
+		color: var(--green-gray);
 	}
-	.btn-orange-5-hover {
-		background-color: var(--orange-muted) !important;
-		color:var(--orange-gray) !important;
+	.btn-green-5-hover {
+		background-color: var(--green-muted) !important;
+		color:var(--green-gray) !important;
 	}
 	
-	#nav-home-tab.active{
-		background-color: var(--orange-content);
+	#nav-profile-tab.active{
+		background-color: var(--green-content);
 	}
-	#nav-home-tab {
-		background-image: url("../assets/img/OrangeBlack.svg");
+	#nav-profile-tab {
+		background-image: url("../assets/img/greenBlack.svg");
 		background-position:center;
 		background-repeat:no-repeat;
 		background-size: 90%;
 		width:80px;
 		height:80px;
 	}
-	#nav-home-tab.active {
-		background-image: url("../assets/img/Orange.svg");
+	#nav-profile-tab.active {
+		background-image: url("../assets/img/green.svg");
 		border-bottom: 0px none transparent;
 	}
-	/* Menú lateral - orange */
-	.menu-orange .menu-title {
+	/* Menú lateral - green */
+	.menu-green .menu-title {
 		font-weight: 600;
 		padding: 1rem 1.5rem;
-		background-color: var(--orange-dark);
-		color: var(--orange-light);
+		background-color: var(--green-dark);
+		color: var(--green-light);
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 	}
-	.menu-orange .menu-item {
+	.menu-green .menu-item {
 		padding: 1rem 1.5rem;
 		padding-left:50px;
 		cursor: pointer;
-		color: var(--orange-light);
-		background-color: var(--orange-accentdark);
+		color: var(--green-light);
+		background-color: var(--green-accentdark);
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		transition: background-color 0.2s ease-in-out;
 	}
-	.menu-orange a{
+	.menu-green a{
 		text-decoration: none;
 	}
-	.menu-orange .menu-title{
+	.menu-green .menu-title{
 		cursor: pointer !important;
 	}
-	.menu-orange .menu-item:hover {
-		background-color: var(--orange-accent);
+	.menu-green .menu-item:hover {
+		background-color: var(--green-accent);
 		cursor: pointer !important;
 	}
-	.menu-orange .menu-item.active {
-		background-color: var(--orange-content);
-		color: var(--orange-dark);
+	.menu-green .menu-item.active {
+		background-color: var(--green-content);
+		color: var(--green-dark);
 		position: relative;
 		font-weight: 600;
 	}
-	.menu-orange .menu-item.active::before {
+	.menu-green .menu-item.active::before {
 		content: "";
 		position: absolute;
 		top: 0;
 		left: 0;
 		height: 100%;
 		width: 8px;
-		background-color: var(--orange-primary);
+		background-color: var(--green-primary);
 	}
-	.menu-orange .submenu {
-		background-color: var(--orange-dark);
+	.menu-green .submenu {
+		background-color: var(--green-dark);
 	}
-	.menu-orange .submenu .menu-item {
+	.menu-green .submenu .menu-item {
 		padding-left: 2.5rem;
 	}
 	
 	/*LOGOS*/
-	.logoPrincipal-Orange {
-		background-image: url("../assets/img/Orange.svg");
+	.logoPrincipal-green {
+		background-image: url("../assets/img/green.svg");
 		background-size: auto 100%;
 		background-position: center;
 		background-repeat: no-repeat;
 		min-height:200px;
 	}
-	.logoPrincipal-OrangeWhite {
-		background-image: url("../assets/img/OrangeWhite.svg");
+	.logoPrincipal-greenWhite {
+		background-image: url("../assets/img/greenWhite.svg");
 		background-size: auto 100%;
 		background-position: center;
 		background-repeat: no-repeat;
 		min-height:200px;
 	}
-	.logoPrincipal-OrangeFont{
-		background-image: url("../assets/img/OrangeFont.svg");
+	.logoPrincipal-greenFont{
+		background-image: url("../assets/img/greenFont.svg");
 		background-size: auto 100%;
 		background-position: center;
 		background-repeat: no-repeat;

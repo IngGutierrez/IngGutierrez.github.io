@@ -38,6 +38,37 @@
 	  --orange-accentdark: #5E584E;
 	  --orange-muted: #DDDDDD;
 	  --orange-light: #FFFFFF;
+	  
+	  --text-color-green: #4B4B4B; 
+	  --text-color-accent-green: #6F6F6F;
+	  --green-content: #F4F9F8; 
+	  --green-primary: #4CAE96; 
+	  --green-primary-light: #E9F7F3; 
+	  --green-secondary: #66BFAE; 
+	  --green-accent: #3E8876; 
+	  --green-gray: #8DA6A0; 
+	  --green-dark: #2F3B37; 
+	  --green-yellow: #A7DCA6; 
+	  --green-accentdark: #37665C; 
+	  --green-muted: #D5E6E1; 
+	  --green-light: #FFFFFF; 
+	  
+	  --text-color-green: #2C2C2C;          /* Texto principal bien oscuro */
+  --text-color-accent-green: #4A4A4A;   /* Texto secundario */
+  
+
+  --green-primary: #4CAE96;             /* Primary */
+  --green-primary-light: #C7F5E7;       /* Primary más suave pero saturado */
+  
+  --green-secondary: #66BFAE;           /* Secondary */
+  --green-accent: #1F9E7F;              /* Verde brillante tipo esmeralda */
+  
+  --green-gray: #6FA89D;                /* Verde grisáceo más vivo */
+  --green-dark: #0D3D34;                /* Verde oscuro profundo */
+  
+  --green-accentdark: #145447;          /* Verde muy profundo para contraste */
+  
+  --green-light: #FFFFFF;               /* Blanco */
     }
     body {
       font-family: 'Poppins', sans-serif;
@@ -47,17 +78,21 @@
       -moz-osx-font-smoothing:grayscale;
       scroll-behavior: smooth;
     }
+	.navbar-toggler{
+		background-color#FFF;
+	}
   </style>
   
   <!-- CSS externo -->
   <link rel="stylesheet" href="css/Orange.css">
+  <link rel="stylesheet" href="css/Green.css">
 </head>
 <body>
 
   <!-- NAV -->
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand fs-6 fs-sm-5 fs-md-4" href="#">
         <img src="assets/img/Logo_SOS.svg" alt="Logo SOS" height="50"/>
         Ing. Daniel Gutiérrez
       </a>
@@ -82,7 +117,7 @@
 				<nav>
 				  <div class="nav nav-tabs" id="nav-tab" role="tablist">
 					<button class="nav-link ms-5 active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true"></button>
-					<button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Green</button>
+					<button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"></button>
 					<button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Purple</button>
 				  </div>
 				</nav>
@@ -348,7 +383,7 @@
 						  Componentes
 						</div>
 					  </div>
-					  <div class="row justify-content-start cont-Components my-4">
+					  <div class="row justify-content-start cont-Components-orange my-4">
 						<!-- Columna izquierda -->
 						<div class="col-12 col-lg-7 mt-1">
 						  <div class="card p-4 shadow-sm">
@@ -439,17 +474,17 @@
 							  <div class="d-flex justify-content-between align-items-center gap-4 custom-options">
 								<label class="option-item">
 								  <input type="radio" name="opciones" checked>
-								  <span class="checkmark"></span>
+								  <span class="checkmark-orange"></span>
 								  <span class="option-text">Opción 1</span>
 								</label>
 								<label class="option-item">
 								  <input type="radio" name="opciones">
-								  <span class="checkmark"></span>
+								  <span class="checkmark-orange"></span>
 								  <span class="option-text">Opción 2</span>
 								</label>
 								<label class="option-item">
 								  <input type="radio" name="opciones">
-								  <span class="checkmark"></span>
+								  <span class="checkmark-orange"></span>
 								  <span class="option-text">Opción 3</span>
 								</label>
 							  </div>
@@ -599,7 +634,7 @@
 						  Logo
 						</div>
 					  </div>
-					  <div class="row justify-content-start cont-Components my-2">
+					  <div class="row justify-content-start my-2">
 						<div class="col-12 mt-1">
 						  <div class="card p-4 shadow-sm ">
 							<div class="row">
@@ -613,7 +648,532 @@
 					</div>
 				  </div>
 				  
-				  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+				  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+					<div class="container contTab contTabgreen">
+					  <div class="row justify-content-end">
+						<div class="col-12 col-md-4 my-5 text-primary">
+							<h3>
+								<b>GUíA DE ESTILO UI/UX</b>
+							</h3>
+						</div>
+					  </div>
+					  <div class="row justify-content-center">
+						<div class="col-12 col-md-6 my-4 text-center text-primary">
+							<h4>
+							DEPARTAMENTO DE TI (Desarrollo)
+							</h4>
+						</div>
+					  </div>
+					  <div class="row justify-content-start">
+						<div class="col-12 col-md-4 my-4 text-primary-green">
+						  Tipografía
+						</div>
+					  </div>
+					  <div class="row justify-content-start text-tipogrfia">
+						<div class="col-12 col-md-4 my-4 text-primary">
+							<span class="text-Oswald">
+								OSWALD
+							</span>
+							<br />
+							<span class="fst-italic">
+								Títulos
+							</span>
+						</div>
+						<div class="col-12 col-md-8 my-4 text-primary">
+						  
+							<span class="fst-italic">
+								Regular
+							</span>
+							<br />
+							<div class="text-Oswald">
+								Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn <br/>
+								Ññ Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz
+							</div>
+						</div>
+					  </div>
+					  <div class="row justify-content-start text-tipogrfia">
+						<div class="col-12 col-md-4 my-4 text-primary">
+							<span class="text-Roboto">
+								ROBOTO
+							</span>
+							<br />
+							<span class="fst-italic">
+								Títulos
+							</span>
+							<br />
+							<span class="fst-italic mt-3">
+								Botones
+							</span>
+						</div>
+						<div class="col-12 col-md-8 my-4 text-primary">
+							<span class="fst-italic">
+								Regular
+							</span>
+							<br />
+							<div class="text-Roboto">
+								Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn <br/>
+								Ññ Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz
+							</div>
+							<br />
+							<span class="fst-italic">
+								Bold
+							</span>
+							<div class="text-Roboto fw-bold">
+								Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn <br/>
+								Ññ Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz
+							</div>
+						</div>
+					  </div>
+					  <div class="row justify-content-start">
+						<div class="col-12 col-md-4 mt-5 mb-4 text-primary-green">
+						  Paleta de Colores
+						</div>
+					  </div>
+					  <div class="row justify-content-start bg-Colores">
+						<div class="col-12 col-sm-4 bg-green-1 float-start bg1 ">
+							#4CAE96
+						</div>
+						<div class="col-12 col-sm-2 px-0 float-start">
+							<div class="bg-green-2">
+								#66BFAE
+							</div>
+							<div class="bg-green-6">
+								#A7DCA6
+							</div>
+						</div>
+						<div class="col-12 col-sm-2 px-0 float-start">
+							<div class="bg-green-3">
+								#1F9E7F
+							</div>
+							<div class="bg-green-7">
+								#145447
+							</div>
+						</div>
+						<div class="col-12 col-sm-2 px-0 float-start">
+							<div class="bg-green-4">
+								#6FA89D
+							</div>
+							<div class="bg-green-8">
+								#D5E6E1
+							</div>
+						</div>
+						<div class="col-12 col-sm-2 px-0 float-start">
+							<div class="bg-green-5">
+								#0D3D34
+							</div>
+							<div class="bg-green-9">
+								#FFFFFF
+							</div>
+						</div>
+						
+					  </div>
+					  <div class="row justify-content-start">
+						<div class="col-12 col-md-4 mt-5 mb-3 text-primary-green">
+						  Botones
+						</div>
+					  </div>
+					  <div class="row justify-content-start cont-botones">
+						<div class="col-12 col-sm-2">
+							<div class="fst-italic mt-sm-5"> 
+								<br/>
+							</div>
+							
+							<div class="fst-italic"> 
+								Default
+							</div>
+							<div class="fst-italic mt-3"> 
+								Hover
+							</div>
+						</div>
+						<div class="col-12 col-sm-2 text-center">
+							<div class="fst-italic  mt-3"> 
+								Primary
+							</div>
+							<button class="btn btn-green-1 mt-3">
+								Boton 1
+							</button>
+							<br/>
+							<button class="btn btn-green-1-hover mt-3">
+								Boton 1
+							</button>
+						</div>
+						<div class="col-12 col-sm-2 text-center">
+							<div class="fst-italic  mt-3"> 
+								Secundary
+							</div>
+							<button class="btn btn-green-2 mt-3">
+								Boton 2
+							</button>
+							<br/>
+							<button class="btn btn-green-2-hover mt-3">
+								Boton 2
+							</button> 
+						</div>
+						<div class="col-12 col-sm-2 text-center">
+							<div class="fst-italic  mt-3"> 
+								Dark
+							</div>
+							<button class="btn btn-green-3 mt-3">
+								Boton 3
+							</button>
+							<br/>
+							<button class="btn btn-green-3-hover mt-3">
+								Boton 3
+							</button>  
+						</div>
+						<div class="col-12 col-sm-2 text-center">
+							<div class="fst-italic  mt-3"> 
+								Light
+							</div>
+							<button class="btn btn-green-4 mt-3">
+								Boton 4
+							</button>
+							<br/>
+							<button class="btn btn-green-4-hover mt-3">
+								Boton 4
+							</button> 
+						</div>
+						<div class="col-12 col-sm-2 text-center">
+							<div class="fst-italic  mt-3"> 
+								Disabled
+							</div>
+							<button class="btn btn-green-5 mt-3">
+								Boton 5
+							</button>
+							<br/>
+							<button class="btn btn-green-5-hover my-3">
+								Boton 5
+							</button> 
+						</div>
+						
+						<div class="col-12 mt-4">
+							<div class="fw-bold">
+								Texto en Botón
+							</div>
+						</div>
+						<div class="col-12 text-center">
+							<button class="btn btn-green-1 mt-5">
+								Boton 1
+							</button>
+							<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+									 width="19.333px" height="19.167px" viewBox="0 0 19.333 19.167" enable-background="new 0 0 19.333 19.167" xml:space="preserve">
+								<path fill-rule="evenodd" clip-rule="evenodd" fill="#9E9E9E" d="M14.458,17.392c-1.204,0.068-2.356,0.288-2.576-1.543
+									c-0.588-4.885-3.672-7.707-8.268-8.508C0.797,6.851,1.925,5.125,2.237,4.073c0.524-1.77,1.021-1.811,2.298-1.696
+									c5.917,0.531,12.172,6.997,12.593,13.021C17.253,17.177,17.051,17.33,14.458,17.392z"/>
+								</svg>
+							<span>
+							Vértice: 5px
+							</span>
+						</div>
+						<div class="col-12 col-sm-3 mt-4 text-secundary">
+							Tipografía: <span class="fst-italic">Roboto</span>
+						</div>
+						<div class="col-12 col-sm-3 mt-4 text-secundary">
+							Peso: <span class="fst-italic">Regular</span> <br/>
+						</div>
+						<div class="col-12 col-sm-3 mt-4 text-secundary">
+							Padding: <span class="fst-italic">0px 17px</span> <br/>
+						</div>
+						<div class="col-12 col-sm-3 mt-4 text-secundary">
+							Color: <span class="fst-italic">#FFFFFF, #4CAE96, #6FA89D  </span> 
+						</div>
+							
+						<div class="col-12 mt-5">
+							<div class="fw-bold">
+								Ícono en Botón
+							</div>
+							
+						</div>
+						<div class="col-12 text-center">
+							<button class="btn btn-green-1 mt-5" style="font-size:24px; line-height: 21px; padding-top: 10px;">
+								*
+							</button>
+							<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+									 width="19.333px" height="19.167px" viewBox="0 0 19.333 19.167" enable-background="new 0 0 19.333 19.167" xml:space="preserve">
+								<path fill-rule="evenodd" clip-rule="evenodd" fill="#9E9E9E" d="M14.458,17.392c-1.204,0.068-2.356,0.288-2.576-1.543
+									c-0.588-4.885-3.672-7.707-8.268-8.508C0.797,6.851,1.925,5.125,2.237,4.073c0.524-1.77,1.021-1.811,2.298-1.696
+									c5.917,0.531,12.172,6.997,12.593,13.021C17.253,17.177,17.051,17.33,14.458,17.392z"/>
+								</svg>
+							<span>
+							Vértice: 5px
+							</span>
+						</div>
+						
+						<div class="col-12  mt-4 text-center text-secundary mb-3">
+							Color: <span class="fst-italic">#FFFFFF, #4CAE96, #6FA89D </span>
+						</div>
+					  </div>
+					  
+					  <div class="row justify-content-start">
+						<div class="col-12 col-md-4 my-4 text-primary-green">
+						  Componentes
+						</div>
+					  </div>
+					  <div class="row justify-content-start cont-Components-green my-4">
+						<!-- Columna izquierda -->
+						<div class="col-12 col-lg-7 mt-1">
+						  <div class="card p-4 shadow-sm">
+							<!-- Pasos -->
+							<div class="d-flex gap-2 mb-4 steps">
+							  <button class="btn active">1</button>
+							  <button class="btn">2</button>
+							  <button class="btn">3</button>
+							</div>
+
+							<!-- Tabla -->
+							<div class="table-responsive">
+							  <table class="table align-middle">
+								<thead>
+								  <tr>
+									<th style="width:120px">Acciones</th>
+									<th>Módulo</th>
+									<th>Tipo de lista</th>
+								  </tr>
+								</thead>
+								<tbody>
+								  <tr>
+									<td class="actions">
+									  <button class="btn-icon-green-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
+										<span class="material-icons">edit</span>
+									  </button>
+									  <button class="btn-icon-green-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
+										<span class="material-icons">delete</span>
+									  </button>
+									</td>
+									<td>Checklist</td>
+									<td>Opción 1</td>
+								  </tr>
+								  <tr class="alter-row">
+									<td class="actions">
+									  <button class="btn-icon-green-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
+										<span class="material-icons">edit</span>
+									  </button>
+									  <button class="btn-icon-green-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
+										<span class="material-icons">delete</span>
+									  </button>
+									</td>
+									<td>Checklist</td>
+									<td>Opción 2</td>
+								  </tr>
+								  <tr>
+									<td class="actions">
+									  <button class="btn-icon-green-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
+										<span class="material-icons">edit</span>
+									  </button>
+									  <button class="btn-icon-green-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
+										<span class="material-icons">delete</span>
+									  </button>
+									</td>
+									<td>Checklist</td>
+									<td>Opción 2</td>
+								  </tr>
+								</tbody>
+							  </table>
+							</div>
+						  </div>
+						</div>
+
+						<!-- Columna derecha -->
+						<div class="col-12 col-md-5 mt-1">
+						  <div class="card p-4 shadow-sm d-flex flex-column gap-3">
+							<!-- Select 1 -->
+							<div class="custom-select">
+							  <span class="icon material-icons">person</span>
+							  <select class="form-select">
+								<option selected>Ejecutivo</option>
+								<option>Cuenta</option>
+								<option>Administrador</option>
+							  </select>
+							</div>
+							<!-- Select 2 -->
+							<div class="custom-select">
+							  <span class="icon material-icons">manage_accounts</span>
+							  <select class="form-select">
+								<option>Ejecutivo</option>
+								<option selected>Cuenta</option>
+								<option>Administrador</option>
+							  </select>
+							</div>
+						  </div>
+						  
+						  <div class="card shadow-sm p-4 mt-1">
+							  <div class="d-flex justify-content-between align-items-center gap-4 custom-options">
+								<label class="option-item">
+								  <input type="radio" name="opciones" checked>
+								  <span class="checkmark-green"></span>
+								  <span class="option-text">Opción 1</span>
+								</label>
+								<label class="option-item">
+								  <input type="radio" name="opciones">
+								  <span class="checkmark-green"></span>
+								  <span class="option-text">Opción 2</span>
+								</label>
+								<label class="option-item">
+								  <input type="radio" name="opciones">
+								  <span class="checkmark-green"></span>
+								  <span class="option-text">Opción 3</span>
+								</label>
+							  </div>
+						  </div>
+						  <div class="card shadow-sm p-4 mt-1">
+							  <div class="d-flex justify-content-between align-items-center gap-2">
+								<button class="btn btn-green-2 d-flex align-items-center gap-2 px-4 py-2">
+								  <span class="material-icons">assignment</span> Tarea
+								</button>
+								<button class="btn btn-green-1 d-flex align-items-center gap-2 px-4 py-2">
+								  <span class="material-icons">event</span> Cita
+								</button>
+								<button class="btn btn-green-3 d-flex align-items-center gap-2 px-4 py-2">
+								  <span class="material-icons">call</span> Llamada
+								</button>
+							  </div>
+							  
+						  </div>
+							
+						</div>
+						
+						<div class="col-12 col-md-5 mt-1">
+						  <div class="card p-4 shadow-sm">
+							<div class="card p-0 overflow-hidden menu-green">
+								<div class="menu-title" data-bs-toggle="collapse" href="#collapseAdministracion" aria-expanded="true">
+									Administración
+									<span class="material-icons">keyboard_arrow_up</span>
+								</div>
+								<div class="collapse show" id="collapseAdministracion">
+									<a href="#" class="menu-item active">
+										Lista de Valores
+									</a>
+									<a href="#" class="menu-item">
+										Reasignación de Cuenta
+									</a>
+								</div>
+								<a href="#" class="menu-title">
+									Prospecto
+								</a>
+								<div class="menu-title" data-bs-toggle="collapse" href="#collapseCliente" aria-expanded="false">
+									Cliente
+									<span class="material-icons">keyboard_arrow_down</span>
+								</div>
+								<div class="collapse" id="collapseCliente">
+									<a href="#" class="menu-item">
+										Actividades
+									</a>
+								</div>
+								<div class="menu-title" data-bs-toggle="collapse" href="#collapseConfiguraciones" aria-expanded="false">
+									Configuraciones
+									<span class="material-icons">keyboard_arrow_down</span>
+								</div>
+								<div class="collapse" id="collapseConfiguraciones">
+									<a href="#" class="menu-item">
+										Settings
+									</a>
+									<a href="#" class="menu-item">
+										Icons
+									</a>
+								</div>
+							</div>
+						  </div>
+						</div>
+						
+						<div class="col-12 col-md-7 mt-1">
+							<div class="my-4 text-primary-green">
+							  Iconos
+							</div>
+							<div class="card p-4 shadow-sm">
+								<div class="row">
+									<div class="col-3 col-sm-1 my-1">
+										<button class="btn-icon-green-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
+											<span class="material-icons">edit</span>
+										</button>
+									</div>
+									<div class="col-3 col-sm-1 my-1">
+										<button class="btn-icon-green-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
+											<span class="material-icons">delete</span>
+										</button>
+									</div>
+									<div class="col-3 col-sm-1 my-1">
+										<button class="btn-icon-green-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Buscar">
+											<span class="material-icons">search</span>
+										</button>
+									</div>
+									<div class="col-3 col-sm-1 my-1">
+										<button class="btn-icon-green-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Agregar">
+											<span class="material-icons">add</span>
+										</button>
+									</div>
+									<div class="col-3 col-sm-1 my-1">
+										<button class="btn-icon-green-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Cuenta">
+											<span class="material-icons">person</span>
+										</button>
+									</div>
+									<div class="col-3 col-sm-1 my-1">
+										<button class="btn-icon-green-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Usuario">
+											<span class="material-icons">manage_accounts</span>
+										</button>
+									</div>
+									<div class="col-3 col-sm-1 my-1">
+										<button class="btn-icon-green-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Tarea">
+											<span class="material-icons">assignment</span>
+										</button>
+									</div>
+									<div class="col-3 col-sm-1 my-1">
+										<button class="btn-icon-green-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Cita">
+											<span class="material-icons">event</span>
+										</button>
+									</div>
+									<div class="col-3 col-sm-1 my-1">
+										<button class="btn-icon-green-4" data-bs-toggle="tooltip" data-bs-placement="top" title="LLamada">
+											<span class="material-icons">call</span>
+										</button>
+									</div>
+									
+									<div class="col-3 col-sm-1 mt-4">
+									</div>
+									<div class="col-3 col-sm-1 mt-4">
+									</div>
+									<div class="col-3 col-sm-1 mt-4">
+									</div>
+								</div>
+							</div>
+							<div class="my-4 text-primary-green">
+								Menú
+							</div>
+							<div class="row">
+								<div class="col-12 col-sm-3 mt-4 text-secundary">
+									Tipografía: <span class="fst-italic">Roboto</span>
+								</div>
+								<div class="col-12 col-sm-3 mt-4 text-secundary">
+									Peso: <span class="fst-italic">Regular</span> <br/>
+								</div>
+								<div class="col-12 col-sm-3 mt-4 text-secundary">
+									Padding: <span class="fst-italic">1rem 1.5rem</span> <br/>
+								</div>
+								<div class="col-12 col-sm-3 mt-4 text-secundary">
+									Color: <span class="fst-italic">#FFFFFF, #0D3D34;  </span> 
+								</div>
+							</div>
+						</div>
+					  </div>
+					  
+					  <div class="row justify-content-start">
+						<div class="col-12 col-md-4 mt-5 text-primary-green">
+						  Logo
+						</div>
+					  </div>
+					  <div class="row justify-content-start my-2">
+						<div class="col-12 mt-1">
+						  <div class="card p-4 shadow-sm ">
+							<div class="row">
+								<div class="col-12 logoPrincipal-green border-bottom"></div>
+								<div class="col-12 col-md-6 logoPrincipal-greenFont border-end"></div>
+								<div class="col-12 col-md-6 logoPrincipal-greenWhite bg-green-1 "></div>
+							</div>
+						  </div>
+						</div>
+					  </div>
+					</div>
+					
+				  </div>
 				  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
 				</div>
 			</div>
@@ -645,6 +1205,9 @@
 		[...tooltipTriggerList].map(el => new bootstrap.Tooltip(el));
 		
 		$('.menu-orange .menu-item').on('click', function(e) {
+			e.preventDefault();
+		});
+		$('.menu-green .menu-item').on('click', function(e) {
 			e.preventDefault();
 		});
 		
