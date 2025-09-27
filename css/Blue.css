@@ -250,7 +250,7 @@
 		background-color: var(--blue-content);
 	}
 	#nav-contact-tab {
-		background-image: url("../assets/img/blueBlack.svg");
+		background-image: url("../assets/img/BlueBlack.svg");
 		background-position:center;
 		background-repeat:no-repeat;
 		background-size: 90%;
@@ -258,7 +258,7 @@
 		height:80px;
 	}
 	#nav-contact-tab.active {
-		background-image: url("../assets/img/blue.svg");
+		background-image: url("../assets/img/Blue.svg");
 		border-bottom: 0px none transparent;
 	}
 	/* Menú lateral - blue */
@@ -316,21 +316,21 @@
 	
 	/*LOGOS*/
 	.logoPrincipal-blue {
-		background-image: url("../assets/img/blue.svg");
+		background-image: url("../assets/img/Blue.svg");
 		background-size: auto 100%;
 		background-position: center;
 		background-repeat: no-repeat;
 		min-height:200px;
 	}
 	.logoPrincipal-blueWhite {
-		background-image: url("../assets/img/blueWhite.svg");
+		background-image: url("../assets/img/BlueWhite.svg");
 		background-size: auto 100%;
 		background-position: center;
 		background-repeat: no-repeat;
 		min-height:200px;
 	}
 	.logoPrincipal-blueFont{
-		background-image: url("../assets/img/blueFont.svg");
+		background-image: url("../assets/img/BlueFont.svg");
 		background-size: auto 100%;
 		background-position: center;
 		background-repeat: no-repeat;
