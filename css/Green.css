@@ -250,7 +250,7 @@
 		background-color: var(--green-content);
 	}
 	#nav-profile-tab {
-		background-image: url("../assets/img/greenBlack.svg");
+		background-image: url("../assets/img/GreenBlack.svg");
 		background-position:center;
 		background-repeat:no-repeat;
 		background-size: 90%;
@@ -258,7 +258,7 @@
 		height:80px;
 	}
 	#nav-profile-tab.active {
-		background-image: url("../assets/img/green.svg");
+		background-image: url("../assets/img/Green.svg");
 		border-bottom: 0px none transparent;
 	}
 	/* Menú lateral - green */
@@ -316,21 +316,21 @@
 	
 	/*LOGOS*/
 	.logoPrincipal-green {
-		background-image: url("../assets/img/green.svg");
+		background-image: url("../assets/img/Green.svg");
 		background-size: auto 100%;
 		background-position: center;
 		background-repeat: no-repeat;
 		min-height:200px;
 	}
 	.logoPrincipal-greenWhite {
-		background-image: url("../assets/img/greenWhite.svg");
+		background-image: url("../assets/img/GreenWhite.svg");
 		background-size: auto 100%;
 		background-position: center;
 		background-repeat: no-repeat;
 		min-height:200px;
 	}
 	.logoPrincipal-greenFont{
-		background-image: url("../assets/img/greenFont.svg");
+		background-image: url("../assets/img/GreenFont.svg");
 		background-size: auto 100%;
 		background-position: center;
 		background-repeat: no-repeat;
