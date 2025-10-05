@@ -113,7 +113,7 @@
 		<h1 class="text-center mb-4 fw-bold" data-aos="fade-down">Portafolio</h1>
 		
 		<div class="row">
-			<div class="col align-self-cente card px-0">
+			<div class="col align-self-cente card px-0 overflow-hidden">
 				<nav>
 				  <div class="nav nav-tabs" id="nav-tab" role="tablist">
 					<button class="nav-link ms-5 active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true"></button>
@@ -509,28 +509,29 @@
 						<div class="col-12 col-md-5 mt-1">
 						  <div class="card p-4 shadow-sm">
 							<div class="card p-0 overflow-hidden menu-orange">
+								
 								<div class="menu-title" data-bs-toggle="collapse" href="#collapseAdministracion" aria-expanded="true">
-									Administración
+									Dashboards
 									<span class="material-icons">keyboard_arrow_up</span>
 								</div>
 								<div class="collapse show" id="collapseAdministracion">
 									<a href="#" class="menu-item active">
-										Lista de Valores
+										Reportes 1
 									</a>
 									<a href="#" class="menu-item">
-										Reasignación de Cuenta
+										Reportes 2
 									</a>
 								</div>
 								<a href="#" class="menu-title">
-									Prospecto
+									Asistencia
 								</a>
 								<div class="menu-title" data-bs-toggle="collapse" href="#collapseCliente" aria-expanded="false">
-									Cliente
+									Empleados
 									<span class="material-icons">keyboard_arrow_down</span>
 								</div>
 								<div class="collapse" id="collapseCliente">
 									<a href="#" class="menu-item">
-										Actividades
+										Solicitudes
 									</a>
 								</div>
 								<div class="menu-title" data-bs-toggle="collapse" href="#collapseConfiguraciones" aria-expanded="false">
@@ -539,10 +540,10 @@
 								</div>
 								<div class="collapse" id="collapseConfiguraciones">
 									<a href="#" class="menu-item">
-										Settings
+										Perfil
 									</a>
 									<a href="#" class="menu-item">
-										Icons
+										Settings
 									</a>
 								</div>
 							</div>
@@ -643,6 +644,204 @@
 								<div class="col-12 col-md-6 logoPrincipal-OrangeWhite bg-orange-1 "></div>
 							</div>
 						  </div>
+						</div>
+					  </div>
+					  
+					  <div class="row justify-content-start my-2 mt-5">
+						<div class="col-12">
+							<div class="card shadow-sm overflow-hidden">
+								<div class="row">
+									<div class="col-12 col-md-3 menu-orange bg-orange-5 pe-0">
+										<button class="navbar-toggler d-md-none top-0 start-0" type="button" data-bs-toggle="collapse" data-bs-target="#menuCollapse" aria-controls="menuCollapse" aria-expanded="false" aria-label="Toggle navigation">
+											<span class="navbar-toggler-icon"></span>
+										</button>
+										<div class="collapse navbar-collapse d-md-block" id="menuCollapse">
+											<div class="menu-title">
+												<div class="logoPrincipal-OrangeWhite" style="width:100%"></div>
+											</div>
+											<a href="#" class="menu-item active">
+												Asistencia
+											</a>
+											<div class="menu-title" data-bs-toggle="collapse" href="#collapseAdministracion" aria-expanded="false">
+												Dashboards
+												<span class="material-icons">keyboard_arrow_down</span>
+											</div>
+											<div class="collapse" id="collapseAdministracion">
+												<a href="#" class="menu-item">
+													Reportes 1
+												</a>
+												<a href="#" class="menu-item">
+													Reportes 2
+												</a>
+											</div>
+											<div class="menu-title" data-bs-toggle="collapse" href="#collapseCliente" aria-expanded="false">
+												Empleados
+												<span class="material-icons">keyboard_arrow_down</span>
+											</div>
+											<div class="collapse" id="collapseCliente">
+												<a href="#" class="menu-item">
+													Solicitudes
+												</a>
+											</div>
+											<div class="menu-title" data-bs-toggle="collapse" href="#collapseConfiguraciones" aria-expanded="false">
+												Configuraciones
+												<span class="material-icons">keyboard_arrow_down</span>
+											</div>
+											<div class="collapse" id="collapseConfiguraciones">
+												<a href="#" class="menu-item">
+													Perfil
+												</a>
+												<a href="#" class="menu-item">
+													Settings
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-12 col-md-9 mt-1 contTaborange pe-md-4">
+										
+										<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+											<h1 class="text-Oswald">Asistencia</h1>
+											<div class="btn-toolbar mb-2 mb-md-0">
+												<div class="btn-group mr-2 pe-1">
+													<button type="button" class="btn btn-sm btn-outline-secondary btn-orange-4">Compartir</button>
+													<button type="button" class="btn btn-sm btn-outline-secondary btn-orange-4">Exportar</button>
+												</div>
+												<button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle btn-orange-2">
+													<i class="fas fa-calendar-alt"></i>
+													Esta semana
+												</button>
+											</div>
+										</div>
+										
+										
+										<div class="row justify-content-center">
+											<div class="col-12 col-md-5">
+											  <div class="card p-4 shadow-sm text-center">
+												<h5 class="card-title text-primary-orange">Registro de Asistencia</h5>
+												<button class="btn btn-orange-1 mt-3">
+												  <span class="material-icons">fingerprint</span> Registrar Entrada/Salida
+												</button>
+											  </div>
+											</div>
+											<div class="col-12 col-md-5">
+											  <div class="card px-4 py-2 shadow-sm">
+												<h5 class="card-title text-primary-orange">Resumen de Horas Trabajadas</h5>
+												<p class="text-secundary">
+												  <span class="material-icons">schedule</span> Horas Trabajadas: 8
+												</p>
+												<p class="text-secundary">
+												  <span class="material-symbols-outlined">clock_loader_40</span> Horas Extras: 2
+												</p>
+											  </div>
+											</div>
+										</div>
+
+										<!-- Tarjeta: Historial Reciente -->
+										<div class="row justify-content-center">
+											<div class="col-12 col-md-10 py-5">
+											  <div class="card p-4 shadow-sm">
+												<h5 class="card-title text-primary-orange">Historial Reciente</h5>
+												<div class="table-responsive">
+												  <table class="table table-borderless">
+													<thead>
+													  <tr class="text-secundary">
+														<th>Fecha</th>
+														<th>Entrada</th>
+														<th>Salida</th>
+														<th>Total</th>
+													  </tr>
+													</thead>
+													<tbody>
+													  <tr>
+														<td>2024-01-01</td>
+														<td>08:00</td>
+														<td>17:00</td>
+														<td>9 horas</td>
+													  </tr>
+													  <tr>
+														<td>2024-01-02</td>
+														<td>08:00</td>
+														<td>18:00</td>
+														<td>10 horas</td>
+													  </tr>
+													</tbody>
+												  </table>
+												</div>
+											  </div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					  </div>
+					  
+					  <div class="row justify-content-start my-2 mt-5">
+						<div class="col-12">
+							<div class="card shadow-sm overflow-hidden">
+								<div class="row">
+									<div class="col-12 col-md-3 menu-orange bg-orange-5 pe-0">
+										<button class="navbar-toggler d-md-none top-0 start-0" type="button" data-bs-toggle="collapse" data-bs-target="#menuCollapse" aria-controls="menuCollapse" aria-expanded="false" aria-label="Toggle navigation">
+											<span class="navbar-toggler-icon"></span>
+										</button>
+										<div class="collapse navbar-collapse d-md-block" id="menuCollapse">
+											<div class="menu-title">
+												<div class="logoPrincipal-OrangeWhite" style="width:100%"></div>
+											</div>
+											<a href="#" class="menu-title">
+												Asistencia
+											</a>
+											<div class="menu-title" data-bs-toggle="collapse" href="#collapseAdministracion" aria-expanded="true">
+												Dashboards
+												<span class="material-icons">keyboard_arrow_up</span>
+											</div>
+											<div class="collapse show" id="collapseAdministracion">
+												<a href="#" class="menu-item active">
+													Reportes 1
+												</a>
+												<a href="#" class="menu-item">
+													Reportes 2
+												</a>
+											</div>
+											<div class="menu-title" data-bs-toggle="collapse" href="#collapseCliente" aria-expanded="false">
+												Empleados
+												<span class="material-icons">keyboard_arrow_down</span>
+											</div>
+											<div class="collapse" id="collapseCliente">
+												<a href="#" class="menu-item">
+													Solicitudes
+												</a>
+											</div>
+											<div class="menu-title" data-bs-toggle="collapse" href="#collapseConfiguraciones" aria-expanded="false">
+												Configuraciones
+												<span class="material-icons">keyboard_arrow_down</span>
+											</div>
+											<div class="collapse" id="collapseConfiguraciones">
+												<a href="#" class="menu-item">
+													Perfil
+												</a>
+												<a href="#" class="menu-item">
+													Settings
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-12 col-md-9 mt-1 contTaborange pe-md-4">
+										
+										<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+											<h1 class="text-Oswald">Dashboard</h1>
+										</div>
+										
+
+									</div>
+								</div>
+							</div>
+						</div>
+					  </div>
+					  
+					  
+					  <div class="row justify-content-start mt-5">
+						<div class="col-12">
 						</div>
 					  </div>
 					</div>
@@ -1718,6 +1917,7 @@
   
 
   <script>
+	
     $(function(){
       
       // navbar scrolled effect
@@ -1745,6 +1945,76 @@
                 arrow.text('keyboard_arrow_down');
             }
         });
+			
+			
+			
+			 // Convierte "rgb(...)" o "rgba(...)" a "#RRGGBB" (alpha se mezcla sobre blanco)
+	  function rgbaToHex(rgba) {
+		if(!rgba) return null;
+
+		// Si ya es hex directo
+		var hexMatch = rgba.match(/^#([0-9a-f]{3,8})$/i);
+		if(hexMatch) {
+		  var hex = hexMatch[1];
+		  if(hex.length === 3) hex = hex.split('').map(c => c+c).join('');
+		  if(hex.length >= 6) hex = hex.slice(0,6);
+		  return ('#' + hex).toUpperCase();
+		}
+
+		var m = rgba.match(/rgba?\(\s*([0-9]+(?:\.[0-9]+)?)\s*,\s*([0-9]+(?:\.[0-9]+)?)\s*,\s*([0-9]+(?:\.[0-9]+)?)(?:\s*,\s*([0-9\.]+))?\s*\)/i);
+		if(!m) return null;
+
+		var r = parseFloat(m[1]), g = parseFloat(m[2]), b = parseFloat(m[3]);
+		var a = (m[4] === undefined) ? 1 : parseFloat(m[4]);
+
+		// Si hay alpha < 1, mezclar sobre blanco para obtener el color final visible
+		if(a < 1) {
+		  r = Math.round((1 - a) * 255 + a * r);
+		  g = Math.round((1 - a) * 255 + a * g);
+		  b = Math.round((1 - a) * 255 + a * b);
+		} else {
+		  r = Math.round(r); g = Math.round(g); b = Math.round(b);
+		}
+
+		var hex = ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
+		return '#' + hex;
+	  }
+
+	  // Busca el background-color efectivo subiendo por ancestros si es 'transparent' o 'rgba(0, 0, 0, 0)'
+	  function getEffectiveBackgroundColor(elem) {
+		var e = elem;
+		while(e && e.nodeType === 1) {
+		  var bg = window.getComputedStyle(e).backgroundColor;
+		  if(bg && bg !== 'transparent' && bg !== 'rgba(0, 0, 0, 0)') return bg;
+		  e = e.parentElement;
+		}
+		return null;
+	  }
+
+	  // Selecciona todos los divs dentro de .bg-Colores que tengan clase bg-blue-N
+	  var $targets = $('.bg-Colores').find('div').filter(function(){
+		return /(^|\s)bg-blue-\d+(\s|$)/.test(this.className);
+	  });
+
+	  $targets.each(function(){
+		var $el = $(this);
+		var bg = getEffectiveBackgroundColor(this);       // ejemplo: "rgb(102,191,174)"
+		var hex = rgbaToHex(bg) || 'N/A';
+		$el.text(hex);
+
+		// estilo opcional: centrar texto horizontalmente sin romper layout
+		$el.css('text-align','center');
+
+		// (opcional) ajustar color de texto para contraste legible
+		if(hex !== 'N/A') {
+		  var r = parseInt(hex.substr(1,2),16);
+		  var g = parseInt(hex.substr(3,2),16);
+		  var b = parseInt(hex.substr(5,2),16);
+		  var lum = (0.299*r + 0.587*g + 0.114*b) / 255;
+		  $el.css('color', lum > 0.6 ? '#000' : '#fff');
+		}
+	  });
+
     });
   </script>
 </body>
