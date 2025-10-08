@@ -482,7 +482,7 @@
 								  <span class="checkmark-orange"></span>
 								  <span class="option-text">Opción 2</span>
 								</label>
-								<label class="option-item">
+								<label class="option-item d-none d-sm-flex">
 								  <input type="radio" name="opciones">
 								  <span class="checkmark-orange"></span>
 								  <span class="option-text">Opción 3</span>
@@ -497,7 +497,7 @@
 								<button class="btn btn-orange-1 d-flex align-items-center gap-2 px-4 py-2">
 								  <span class="material-icons">event</span> Cita
 								</button>
-								<button class="btn btn-orange-3 d-flex align-items-center gap-2 px-4 py-2">
+								<button class="btn btn-orange-3 d-flex align-items-center gap-2 px-4 py-2 d-none d-sm-flex">
 								  <span class="material-icons">call</span> Llamada
 								</button>
 							  </div>
@@ -718,7 +718,8 @@
 											<div class="col-12 col-md-5">
 											  <div class="card p-4 shadow-sm text-center">
 												<h5 class="card-title text-primary-orange">Registro de Asistencia</h5>
-												<button class="btn btn-orange-1 mt-3">
+												
+												<button class="btn btn-orange-1 d-flex align-items-center gap-2 px-4 py-2 mt-3">
 												  <span class="material-icons">fingerprint</span> Registrar Entrada/Salida
 												</button>
 											  </div>
@@ -737,12 +738,12 @@
 										</div>
 
 										<!-- Tarjeta: Historial Reciente -->
-										<div class="row justify-content-center">
+										<div class="row justify-content-center cont-Components-orange">
 											<div class="col-12 col-md-10 py-5">
 											  <div class="card p-4 shadow-sm">
 												<h5 class="card-title text-primary-orange">Historial Reciente</h5>
 												<div class="table-responsive">
-												  <table class="table table-borderless">
+												  <table class="table">
 													<thead>
 													  <tr class="text-secundary">
 														<th>Fecha</th>
@@ -758,7 +759,7 @@
 														<td>17:00</td>
 														<td>9 horas</td>
 													  </tr>
-													  <tr>
+													  <tr class="alter-row">
 														<td>2024-01-02</td>
 														<td>08:00</td>
 														<td>18:00</td>
@@ -826,18 +827,53 @@
 											</div>
 										</div>
 									</div>
+									
+									
 									<div class="col-12 col-md-9 mt-1 contTaborange pe-md-4">
 										
 										<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 											<h1 class="text-Oswald">Dashboard</h1>
+											<div class="btn-toolbar mb-2 mb-md-0">
+												<div class="btn-group mr-2 pe-1">
+													<button type="button" class="btn btn-sm btn-outline-secondary btn-orange-4">Compartir</button>
+													<button type="button" class="btn btn-sm btn-outline-secondary btn-orange-4">Exportar</button>
+												</div>
+												<button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle btn-orange-2">
+													<i class="fas fa-calendar-alt"></i>
+													Esta semana
+												</button>
+											</div>
 										</div>
 										
-
+										<div class="row justify-content-center">
+											<div class="col-12 col-md-5">
+											  <canvas class="my-4 w-60" id="attendanceChart" width="800" height="380"></canvas>
+											</div>
+											<div class="col-12 col-md-5">
+											  <div class="card p-4 shadow-sm text-center">
+												<h5 class="card-title text-primary-orange">Acciones</h5>
+												
+												<button class="btn btn-orange-1 d-flex align-items-center gap-2 px-4 py-2 mt-2">
+												  <span class="material-icons">manage_accounts</span><span>Gestionar Empleados</span>
+												</button>
+												<button class="btn btn-orange-1 d-flex align-items-center gap-2 px-4 py-2 mt-2">
+												  <span class="material-symbols-outlined">finance</span> Generar Informe
+												</button>
+											  </div>
+											</div>
+											
+										</div>
+										<div class="row">
+											<div class="col-12 col-md-6">
+												
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					  </div>
+					  
 					  
 					  
 					  <div class="row justify-content-start mt-5">
@@ -1914,11 +1950,37 @@
 
   <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <script>
 	
     $(function(){
+		 // Código para el gráfico (ejemplo)
+        var ctx = document.getElementById('attendanceChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Presentes', 'Ausentes', 'Retrasos'],
+                datasets: [{
+                    data: [70, 10, 20], // Datos de ejemplo
+                    backgroundColor: [
+                        'rgba(246, 145, 0, 0.8)',
+                        'rgba(247, 168, 58, 0.8)',
+                        'rgba(245, 189, 54, 0.8)'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                cutout: '50%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    }
+                }
+            }
+        });
+	
       
       // navbar scrolled effect
       $('.navbar').addClass('scrolled');
