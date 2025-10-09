@@ -1610,15 +1610,15 @@
 					  <div class="row justify-content-start my-2 mt-5">
 						<div class="col-12">
 							<div class="card shadow-sm overflow-hidden">
-								<div id="app">
+								<div id="app2">
 
-    <nav id="sidebar" class="menu-green bg-green-5 collapsed" aria-label="Sidebar principal">
+    <nav id="sidebar2" class="menu-green bg-green-5 collapsed" aria-label="Sidebar principal">
       <!-- mobile toggler (Bootstrap collapse) -->
       <button class="navbar-toggler d-md-none m-2" type="button" data-bs-toggle="collapse" data-bs-target="#menuCollapse" aria-controls="menuCollapse" aria-expanded="false" aria-label="Abrir menú">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse d-md-block" id="menuCollapse">
+      <div class="collapse d-md-block" id="menuCollapse2">
         <div class="menu-title" aria-hidden="true">
           <div class="logoPrincipal-greenWhiteMenu" style="width:100%"></div>
         </div>
@@ -1632,35 +1632,35 @@
           </li>
 
           <li>
-            <div class="menu-title" data-bs-toggle="collapse" href="#collapseDashboards" role="button" aria-expanded="false" aria-controls="collapseDashboards">
+            <div class="menu-title" data-bs-toggle="collapse" href="#collapseDashboards2" role="button" aria-expanded="false" aria-controls="collapseDashboards2">
               <span class="icon material-icons" aria-hidden="true">dashboard</span>
               <span class="label-title">Dashboards</span>
               <span class="material-icons arrow" aria-hidden="true">keyboard_arrow_down</span>
             </div>
-            <div class="collapse submenu" id="collapseDashboards">
+            <div class="collapse submenu" id="collapseDashboards2">
               <a href="#" class="menu-item"><span class="icon material-icons">insert_chart</span><span class="label">Reportes 1</span></a>
               <a href="#" class="menu-item"><span class="icon material-icons">insights</span><span class="label">Reportes 2</span></a>
             </div>
           </li>
 
           <li>
-            <div class="menu-title" data-bs-toggle="collapse" href="#collapseEmpleados" role="button" aria-expanded="false" aria-controls="collapseEmpleados">
+            <div class="menu-title" data-bs-toggle="collapse" href="#collapseEmpleados2" role="button" aria-expanded="false" aria-controls="collapseEmpleados2">
               <span class="icon material-icons" aria-hidden="true">group</span>
               <span class="label-title">Empleados</span>
               <span class="material-icons arrow" aria-hidden="true">keyboard_arrow_down</span>
             </div>
-            <div class="collapse submenu" id="collapseEmpleados">
+            <div class="collapse submenu" id="collapseEmpleados2">
               <a href="#" class="menu-item"><span class="icon material-icons">person_add</span><span class="label">Solicitudes</span></a>
             </div>
           </li>
 
           <li>
-            <div class="menu-title" data-bs-toggle="collapse" href="#collapseConfig" role="button" aria-expanded="false" aria-controls="collapseConfig">
+            <div class="menu-title" data-bs-toggle="collapse" href="#collapseConfig2" role="button" aria-expanded="false" aria-controls="collapseConfig2">
               <span class="icon material-icons" aria-hidden="true">settings</span>
               <span class="label-title">Configuraciones</span>
               <span class="material-icons arrow" aria-hidden="true">keyboard_arrow_down</span>
             </div>
-            <div class="collapse submenu" id="collapseConfig">
+            <div class="collapse submenu" id="collapseConfig2">
               <a href="#" class="menu-item"><span class="icon material-icons">person</span><span class="label">Perfil</span></a>
               <a href="#" class="menu-item"><span class="icon material-icons">tune</span><span class="label">Settings</span></a>
             </div>
@@ -1669,7 +1669,7 @@
       </div>
     </nav>
 
-    <main class="content contTabgreen" id="mainContent">
+    <main class="content contTabgreen" id="mainContent2">
       
 		<div class="container body-content px-5">
 			<input type="hidden" id="hid_Total" value="0" />
@@ -2368,138 +2368,115 @@
 		}
 	  });
 	  
-  const $app = $('#app');
-  const $sidebar = $('#sidebar');
-  const $main = $('#mainContent');
-  const $menuCollapse = $('#menuCollapse');
-  const $toggleBtn = $('#sidebarToggle');
-  const $closeBtn = $('#sidebarClose');
-
   const COLLAPSED_W = 64;
-  const EXPANDED_W = 240;
+  const EXPANDED_W  = 240;
   const DIFF = EXPANDED_W - COLLAPSED_W; // 176
 
-  // Apply initial state (desktop collapsed by default)
-  function applyInitial(){
-    const isMobile = $(window).width() < 768;
-    if(isMobile){
-      $sidebar.removeClass('collapsed expanded');
-      $toggleBtn.hide();
-      $closeBtn.hide();
-      // bootstrap collapse control
-      const bs = bootstrap.Collapse.getOrCreateInstance($menuCollapse[0], {toggle:false});
-      bs.hide();
-      $main.css('transform','none');
-      // ensure absolute sidebar not interfering in mobile flow
-      $sidebar.css('position','');
-    } else {
-      // ensure app wrapper height accounts for viewport
-      $app.css('min-height','100vh');
-      $sidebar.addClass('collapsed').removeClass('expanded');
-      // show toggle
-      $toggleBtn.show();
-      $closeBtn.hide();
-      const bs = bootstrap.Collapse.getOrCreateInstance($menuCollapse[0], {toggle:false});
-      bs.show();
-      // absolute positioning relative to #app; ensure position is absolute
-      $sidebar.css('position','absolute');
-      // initial main transform: none (collapsed icons overlay but we keep padding)
-      $main.css('transform','translateX(0)');
+  // encuentra todos los contenedores de "app" (app, app2, etc.)
+  $('[id^="app"]').each(function(index){
+    const $app = $(this);
+    const $sidebar = $app.find('nav.menu-green').first();
+    const $menuCollapse = $sidebar.find('.collapse').first(); // puede ser #menuCollapse o #menuCollapse2
+    const $main = $app.find('main.content').first();
+
+    if(!$sidebar.length || !$main.length) {
+      console.warn('Sidebar o main no encontrado en', $app);
+      return;
     }
 
-    // position the toggle relative to the sidebar left edge (noop for now)
-    positionToggle();
-  }
+    
 
-  // Position the toggle button vertically aligned with top of app + small offset
-  function positionToggle(){
-    // no-op by default; left:8px is fine. Adjust here if needed.
-  }
+    // Helper: isMobile
+    function isMobile(){ return $(window).width() < 768; }
 
-  // Hover behavior: expand visually and move main by DIFF
-  $sidebar.on('mouseenter', function(){
-     console.log($(window).width());
-    if($(window).width() >= 768 && $sidebar.hasClass('collapsed')){
-      $sidebar.addClass('expanded');
-      // If user previously toggled open, don't override (we handle pinned separately)
-      if(!$sidebar.data('pinned')){
-        $main.css('transform', 'translateX(' + DIFF + 'px)');
+    // Apply initial state for this instance
+    function applyInitialInstance(){
+      if(isMobile()){
+        $sidebar.removeClass('collapsed expanded hovered');
+    
+        // bootstrap collapse control: hide menu content on mobile (toggle with hamburger)
+        if($menuCollapse.length){
+          const bs = bootstrap.Collapse.getOrCreateInstance($menuCollapse[0], {toggle:false});
+          bs.hide();
+        }
+        $main.css('transform','none');
+        $sidebar.css('position','');
+      } else {
+        $app.css('min-height','100vh');
+        $sidebar.addClass('collapsed').removeClass('expanded hovered');
+        $sidebar.removeData('pinned');
+     
+        if($menuCollapse.length){
+          const bs = bootstrap.Collapse.getOrCreateInstance($menuCollapse[0], {toggle:false});
+          bs.show();
+        }
+        $sidebar.css('position','absolute');
+        $main.css('transform','translateX(0)');
       }
-      // show inner close button while expanded (only for desktop)
-      $closeBtn.show();
-      $toggleBtn.hide();
     }
-  });
 
-  $sidebar.on('mouseleave', function(){
-    if($(window).width() >= 768 && $sidebar.hasClass('collapsed')){
-      // if pinned, keep expanded; else collapse
-      if(!$sidebar.data('pinned')){
-        $sidebar.removeClass('expanded');
+    // Hover open/close for this instance
+    let leaveTimer = null;
+    function openByHoverInstance(){
+      if(isMobile()) return;
+      if($sidebar.data('pinned')) return;
+      clearTimeout(leaveTimer);
+      $sidebar.addClass('hovered expanded');
+      $main.css('transform', 'translateX(' + DIFF + 'px)');
+    }
+    function closeByHoverInstance(){
+      if(isMobile()) return;
+      if($sidebar.data('pinned')) return;
+      clearTimeout(leaveTimer);
+      leaveTimer = setTimeout(function(){
+        $sidebar.removeClass('hovered expanded');
         $main.css('transform', 'translateX(0)');
-        $closeBtn.hide();
-        $toggleBtn.show();
-      }
+      }, 80);
     }
-  });
 
-  // Toggle button opens the menu (pins it open)
-  $toggleBtn.on('click', function(){
-    if($(window).width() < 768) return;
-    // open and pin
-    $sidebar.removeClass('collapsed').addClass('expanded');
-    $sidebar.data('pinned', true);
-    $main.css('transform', 'translateX(' + DIFF + 'px)');
-    $toggleBtn.hide();
-    $closeBtn.show();
-  });
+    // attach events scoped to this sidebar
+    $sidebar.on('mouseenter', openByHoverInstance);
+    $sidebar.on('mouseleave', closeByHoverInstance);
 
-  // Close button closes the menu (unpins)
-  $closeBtn.on('click', function(){
-    if($(window).width() < 768) return;
-    $sidebar.addClass('collapsed').removeClass('expanded');
-    $sidebar.removeData('pinned');
-    $main.css('transform', 'translateX(0)');
-    $closeBtn.hide();
-    $toggleBtn.show();
-  });
-
-  // When a submenu is opened by bootstrap, rotate its arrow (add .open on the menu-title)
-  $('[data-bs-toggle="collapse"][href^="#"], [data-bs-toggle="collapse"][data-bs-target^="#"]').each(function(){
-    const $tgl = $(this);
-    const target = $tgl.attr('data-bs-target') || $tgl.attr('href');
-    if(!target) return;
-    const id = target.replace('#','');
-    const $collapseEl = $('#' + id);
-    if(!$collapseEl.length) return;
-
-    $collapseEl.on('show.bs.collapse', function(){ $tgl.addClass('open'); });
-    $collapseEl.on('hide.bs.collapse', function(){ $tgl.removeClass('open'); });
-  });
-
-  // Mobile: when user opens the collapse via hamburger, ensure main not translated
-  if($menuCollapse.length){
-    $menuCollapse.on('show.bs.collapse', function(){
-      if($(window).width() < 768){
-        $main.css('transform','none');
-      }
+    // bootstrap collapse arrow rotation for this instance's toggles only
+    $sidebar.find('[data-bs-toggle="collapse"]').each(function(){
+      const $tgl = $(this);
+      const target = $tgl.attr('data-bs-target') || $tgl.attr('href');
+      if(!target) return;
+      const id = target.replace('#','');
+      const $collapseEl = $('#' + id);
+      if(!$collapseEl.length) return;
+      $collapseEl.on('show.bs.collapse', function(){ $tgl.addClass('open'); });
+      $collapseEl.on('hide.bs.collapse', function(){ $tgl.removeClass('open'); });
     });
-    $menuCollapse.on('hide.bs.collapse', function(){
-      if($(window).width() < 768){
-        $main.css('transform','none');
-      }
-    });
-  }
 
-  // Reapply initial on load and resize (debounced)
-  $(document).ready(applyInitial);
-  // also call immediately in case ready already fired
-  if(document.readyState === 'interactive' || document.readyState === 'complete') applyInitial();
+    // ensure mobile collapse won't translate main for this instance
+    if($menuCollapse.length){
+      $menuCollapse.on('show.bs.collapse', function(){
+        if(isMobile()) $main.css('transform','none');
+      });
+      $menuCollapse.on('hide.bs.collapse', function(){
+        if(isMobile()) $main.css('transform','none');
+      });
+    }
 
-  let rt;
+    // run initial
+    applyInitialInstance();
+
+    // store instance apply function so resize global can call it later
+    $app.data('applyInstance', applyInitialInstance);
+  }); // end each app
+
+  // global resize: call each instance's applyInitial
+  let resizeTimer;
   $(window).on('resize', function(){
-    clearTimeout(rt);
-    rt = setTimeout(applyInitial, 120);
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function(){
+      $('[id^="app"]').each(function(){
+        const fn = $(this).data('applyInstance');
+        if(typeof fn === 'function') fn();
+      });
+    }, 120);
   });
 
 
