@@ -206,15 +206,15 @@
 		background-color: var(--orange-yellow) !important;
 		color:var(--orange-dark)  !important;
 	}
-	.btn-orange-4, .steps .btn:not(.active) {
+	.btn-orange-4, .cont-Components-orange .steps .btn:not(.active) {
 		border: 0px none;
-		box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-		background-color: var(--orange-light);
-		color:var(--orange-primary);
+		box-shadow: 0 2px 6px rgba(0,0,0,0.15) !important;
+		background-color: var(--orange-light) !important;
+		color:var(--orange-primary) !important;
 	}
-	.btn-orange-4:hover, .steps .btn:not(.active):hover {
-		background-color: var(--orange-primary);
-		color:var(--orange-light);
+	.btn-orange-4:hover, .cont-Components-orange .steps .btn:not(.active):hover {
+		background-color: var(--orange-primary) !important;
+		color:var(--orange-light) !important;
 	}
 	.btn-orange-4-hover {
 		background-color: var(--orange-primary) !important;
