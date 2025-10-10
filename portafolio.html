@@ -1275,28 +1275,34 @@
 						<div class="col-12 col-md-5 mt-1">
 						  <div class="card p-4 shadow-sm">
 							<div class="card p-0 overflow-hidden menu-green">
-								<div class="menu-title" data-bs-toggle="collapse" href="#collapseAdministracion" aria-expanded="true">
-									Administración
-									<span class="material-icons">keyboard_arrow_up</span>
+								<a href="#" class="menu-title">
+									Compra
+								</a>
+								<a href="#" class="menu-item active">
+									Corte
+								</a>
+								<div class="menu-title " data-bs-toggle="collapse" href="#collapseAdministracion" aria-expanded="false">
+									Articulos
+									<span class="material-icons">keyboard_arrow_down</span>
 								</div>
-								<div class="collapse show" id="collapseAdministracion">
-									<a href="#" class="menu-item active">
-										Lista de Valores
+								<div class="collapse" id="collapseAdministracion">
+									<a href="#" class="menu-item">
+										Inventario
 									</a>
 									<a href="#" class="menu-item">
-										Reasignación de Cuenta
+										Factura Proveedores
 									</a>
 								</div>
-								<a href="#" class="menu-title">
-									Prospecto
-								</a>
 								<div class="menu-title" data-bs-toggle="collapse" href="#collapseCliente" aria-expanded="false">
-									Cliente
+									Catalogos
 									<span class="material-icons">keyboard_arrow_down</span>
 								</div>
 								<div class="collapse" id="collapseCliente">
 									<a href="#" class="menu-item">
-										Actividades
+										Tipos de Categorias
+									</a>
+									<a href="#" class="menu-item">
+										Tipos de Embalajes
 									</a>
 								</div>
 								<div class="menu-title" data-bs-toggle="collapse" href="#collapseConfiguraciones" aria-expanded="false">
@@ -1308,7 +1314,7 @@
 										Settings
 									</a>
 									<a href="#" class="menu-item">
-										Icons
+										Codigos de Promocion
 									</a>
 								</div>
 							</div>
@@ -1435,27 +1441,34 @@
               <span class="label">Compra</span>
             </a>
           </li>
+		  <li>
+            <a href="#" class="menu-item" title="Compra">
+              <span class="material-symbols-outlined">price_change</span>
+              <span class="label">Corte</span>
+            </a>
+          </li>
 
           <li>
             <div class="menu-title" data-bs-toggle="collapse" href="#collapseDashboards" role="button" aria-expanded="false" aria-controls="collapseDashboards">
-              <span class="icon material-icons" aria-hidden="true">dashboard</span>
-              <span class="label-title">Dashboards</span>
+              <span class="material-symbols-outlined">pages</span>
+              <span class="label-title">Articulos</span>
               <span class="material-icons arrow" aria-hidden="true">keyboard_arrow_down</span>
             </div>
             <div class="collapse submenu" id="collapseDashboards">
-              <a href="#" class="menu-item"><span class="icon material-icons">insert_chart</span><span class="label">Reportes 1</span></a>
-              <a href="#" class="menu-item"><span class="icon material-icons">insights</span><span class="label">Reportes 2</span></a>
+              <a href="#" class="menu-item"><span class="material-symbols-outlined">inventory</span><span class="label">Inventarios</span></a>
+              <a href="#" class="menu-item"><span class="material-symbols-outlined">local_atm</span><span class="label">Facturas Proveedores</span></a>
             </div>
           </li>
 
           <li>
             <div class="menu-title" data-bs-toggle="collapse" href="#collapseEmpleados" role="button" aria-expanded="false" aria-controls="collapseEmpleados">
-              <span class="icon material-icons" aria-hidden="true">group</span>
-              <span class="label-title">Empleados</span>
+              <span class="material-symbols-outlined">view_list</span>
+              <span class="label-title">Catalogos</span>
               <span class="material-icons arrow" aria-hidden="true">keyboard_arrow_down</span>
             </div>
             <div class="collapse submenu" id="collapseEmpleados">
-              <a href="#" class="menu-item"><span class="icon material-icons">person_add</span><span class="label">Solicitudes</span></a>
+              <a href="#" class="menu-item"><span class="material-symbols-outlined">label</span><span class="label">Tipos de Categoria</span></a>
+			  <a href="#" class="menu-item"><span class="material-symbols-outlined">package_2</span><span class="label">Tipos de Embalaje</span></a>	
             </div>
           </li>
 
@@ -1466,8 +1479,8 @@
               <span class="material-icons arrow" aria-hidden="true">keyboard_arrow_down</span>
             </div>
             <div class="collapse submenu" id="collapseConfig">
-              <a href="#" class="menu-item"><span class="icon material-icons">person</span><span class="label">Perfil</span></a>
-              <a href="#" class="menu-item"><span class="icon material-icons">tune</span><span class="label">Settings</span></a>
+              <a href="#" class="menu-item"><span class="material-symbols-outlined">display_settings</span><span class="label">Setting</span></a>
+              <a href="#" class="menu-item"><span class="material-symbols-outlined">barcode</span><span class="label">Codigos de Promocion</span></a>
             </div>
           </li>
         </ul>
@@ -1535,12 +1548,10 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="firstName">Articulo</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control required" placeholder="Buscar articulo" autocomplete="off" id="txtArticulo">
-                            <div class="input-group-append">
-                                <span class="material-symbols-outlined">keyboard</span>
-                            </div>
-                        </div>
+						<div class="input-group mb-3">
+						  <input type="text" class="form-control" placeholder="Buscar articulo" aria-describedby="basic-addon2">
+						  <span class="input-group-text material-symbols-outlined" id="basic-addon2">keyboard</span>
+						</div>
                         <small id="lblCantidadStock" class="text-muted d-block" style="height:20px">Cantidad en Stock</small>
                     </div>
                     <div class="col-md-2 mb-3">
@@ -1566,7 +1577,7 @@
                                     <a href="#" class="p-3"><i class="i-cancel"></i></a>
                                 </div>
                                 <div>
-                                    <h6 class="my-0">Product name</h6>
+                                    <h6 class="my-0">Nombre del Producto</h6>
                                     <small class="text-muted">Cantidad <b>4</b> / Precio Unitario <b>$ 20</b></small>
                                 </div>
 
@@ -1625,32 +1636,39 @@
 
         <ul class="menu-list mb-0">
           <li>
-            <a href="#" class="menu-item active" title="Compra">
+            <a href="#" class="menu-item" title="Compra">
               <span class="material-symbols-outlined">shopping_cart</span>
               <span class="label">Compra</span>
             </a>
           </li>
+		  <li>
+            <a href="#" class="menu-item active" title="Compra">
+              <span class="material-symbols-outlined">price_change</span>
+              <span class="label">Corte</span>
+            </a>
+          </li>
 
           <li>
-            <div class="menu-title" data-bs-toggle="collapse" href="#collapseDashboards2" role="button" aria-expanded="false" aria-controls="collapseDashboards2">
-              <span class="icon material-icons" aria-hidden="true">dashboard</span>
-              <span class="label-title">Dashboards</span>
+            <div class="menu-title" data-bs-toggle="collapse" href="#collapseDashboards" role="button" aria-expanded="false" aria-controls="collapseDashboards2">
+              <span class="material-symbols-outlined">pages</span>
+              <span class="label-title">Articulos</span>
               <span class="material-icons arrow" aria-hidden="true">keyboard_arrow_down</span>
             </div>
             <div class="collapse submenu" id="collapseDashboards2">
-              <a href="#" class="menu-item"><span class="icon material-icons">insert_chart</span><span class="label">Reportes 1</span></a>
-              <a href="#" class="menu-item"><span class="icon material-icons">insights</span><span class="label">Reportes 2</span></a>
+              <a href="#" class="menu-item"><span class="material-symbols-outlined">inventory</span><span class="label">Inventarios</span></a>
+              <a href="#" class="menu-item"><span class="material-symbols-outlined">local_atm</span><span class="label">Facturas Proveedores</span></a>
             </div>
           </li>
 
           <li>
             <div class="menu-title" data-bs-toggle="collapse" href="#collapseEmpleados2" role="button" aria-expanded="false" aria-controls="collapseEmpleados2">
-              <span class="icon material-icons" aria-hidden="true">group</span>
-              <span class="label-title">Empleados</span>
+              <span class="material-symbols-outlined">view_list</span>
+              <span class="label-title">Catalogos</span>
               <span class="material-icons arrow" aria-hidden="true">keyboard_arrow_down</span>
             </div>
             <div class="collapse submenu" id="collapseEmpleados2">
-              <a href="#" class="menu-item"><span class="icon material-icons">person_add</span><span class="label">Solicitudes</span></a>
+              <a href="#" class="menu-item"><span class="material-symbols-outlined">label</span><span class="label">Tipos de Categoria</span></a>
+			  <a href="#" class="menu-item"><span class="material-symbols-outlined">package_2</span><span class="label">Tipos de Embalaje</span></a>	
             </div>
           </li>
 
@@ -1661,8 +1679,8 @@
               <span class="material-icons arrow" aria-hidden="true">keyboard_arrow_down</span>
             </div>
             <div class="collapse submenu" id="collapseConfig2">
-              <a href="#" class="menu-item"><span class="icon material-icons">person</span><span class="label">Perfil</span></a>
-              <a href="#" class="menu-item"><span class="icon material-icons">tune</span><span class="label">Settings</span></a>
+              <a href="#" class="menu-item"><span class="material-symbols-outlined">display_settings</span><span class="label">Setting</span></a>
+              <a href="#" class="menu-item"><span class="material-symbols-outlined">barcode</span><span class="label">Codigos de Promocion</span></a>
             </div>
           </li>
         </ul>
@@ -1677,9 +1695,98 @@
 
 			<div class="row">
 				<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-					<h1 class="text-Oswald">Inventario</h1>
+					<h1 class="text-Oswald">Corte</h1>
 				</div>
-				Contenido    
+<!-- FILTROS -->
+                            <div class="col-12 mb-3">
+                              <div class="row g-2 align-items-end">
+                                <div class="col-sm-3">
+                                  <label>Fecha inicio</label>
+                                  <input type="date" id="fechaInicio" class="form-control form-control-sm" value="">
+                                </div>
+                                <div class="col-sm-3">
+                                  <label>Fecha fin</label>
+                                  <input type="date" id="fechaFin" class="form-control form-control-sm" value="">
+                                </div>
+                                <div class="col-sm-3">
+                                  <label>Folio</label>
+                                  <input type="text" id="filtroFolio" class="form-control form-control-sm" placeholder="Folio (opcional)">
+                                </div>
+                                <div class="col-sm-3 text-end">
+                                  <button id="btnBuscarCorte" class="btn btn-green-2">Buscar</button>
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- RESUMEN -->
+                            <div class="col-12 mb-3">
+                              <div class="row">
+                                <div class="col-md-4">
+                                  <div class="card summary-box p-3">
+                                    <h5>Ingresos</h5>
+                                    <h3 id="sumIngresos">$ 0.00</h3>
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="card summary-box p-3">
+                                    <h5>Gastos</h5>
+                                    <h3 id="sumGastos">$ 0.00</h3>
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="card summary-box p-3 summary-card">
+                                    <h5>Utilidad</h5>
+                                    <h3 id="sumUtilidad">$ 0.00</h3>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- TABLA DE MOVIMIENTOS -->
+                            <div class="col-12 cont-Components-green">
+                              <div class="card px-0">
+                                <div class="table-responsive">
+                                  <table class="table table-striped table-hover" id="tblCorte">
+                                    <thead>
+                                      <tr>
+                                        <th style="width:10%">Folio</th>
+                                        <th style="width:18%">Fecha</th>
+                                        <th style="width:20%">Tipo</th>
+                                        <th style="width:28%">Descripción</th>
+                                        <th style="width:12%" class="text-end">Monto</th>
+                                        <th style="width:12%" class="text-center">Acciones</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <!-- Se llenará con jQuery -->
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- FOOTER DEL CORTE: Totales y inputs para ajustes -->
+                            <div class="col-12 mt-4">
+                              <div class="row g-2 align-items-center">
+                                <div class="col-md-3">
+                                  <label>Total efectivo</label>
+                                  <input type="text" id="totalEfectivo" class="form-control form-control-sm text-end" readonly>
+                                </div>
+                                <div class="col-md-3">
+                                  <label>Total tarjeta</label>
+                                  <input type="text" id="totalTarjeta" class="form-control form-control-sm text-end" readonly>
+                                </div>
+                                <div class="col-md-3">
+                                  <label>Total otros</label>
+                                  <input type="text" id="totalOtros" class="form-control form-control-sm text-end" readonly>
+                                </div>
+                                <div class="col-md-3 text-end">
+                                  <label>&nbsp;</label>
+                                  <h4 class="mb-0">Total: $ <span id="totalGeneral">0.00</span></h4>
+                                </div>
+                              </div>
+                            </div>
+   
 			</div>
 		</div>
 
@@ -2244,6 +2351,87 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <script>
+	// Datos de ejemplo (simulan ventas / movimientos del día). En integración real vendrían de API.
+    const movimientosEjemplo = [
+      {folio: 'F-1001', fecha: '2025-10-08', tipo: 'Venta', descripcion: 'Venta en caja #1 (efectivo)', metodo: 'Efectivo', monto: 1200.00},
+      {folio: 'F-1002', fecha: '2025-10-08', tipo: 'Venta', descripcion: 'Venta tarjeta VISA', metodo: 'Tarjeta', monto: 850.50},
+      {folio: 'F-1003', fecha: '2025-10-08', tipo: 'Devolución', descripcion: 'Devolución producto', metodo: 'Efectivo', monto: -150.00},
+      {folio: 'F-1004', fecha: '2025-10-08', tipo: 'Gasto', descripcion: 'Compra insumos', metodo: 'Otros', monto: -320.00},
+      {folio: 'F-1005', fecha: '2025-10-09', tipo: 'Venta', descripcion: 'Venta tarjeta MASTERCARD', metodo: 'Tarjeta', monto: 400.00}
+    ];
+
+    function formatMoney(v){ return Number(v).toLocaleString('es-MX',{minimumFractionDigits:2, maximumFractionDigits:2}); }
+
+    function renderTabla(data){
+      const $tbody = $('#tblCorte tbody');
+      $tbody.empty();
+      data.forEach((m, idx) => {
+        const $tr = $('<tr>');
+        $tr.append($('<td>').text(m.folio));
+        $tr.append($('<td>').text(m.fecha));
+        $tr.append($('<td>').text(m.tipo));
+        $tr.append($('<td>').text(m.descripcion));
+        $tr.append($('<td class="text-end">').text('$ ' + formatMoney(m.monto)));
+        const $acciones = $('<td class="text-center">');
+        const $btnDel = $('<button class="btn btn-sm btn-outline-danger">Cancelar</button>').on('click', function(){
+          if(confirm('¿Cancelar registro ' + m.folio + '?')){
+            movimientosEjemplo.splice(idx,1);
+            renderTabla(movimientosEjemplo);
+            calcularTotales(movimientosEjemplo);
+          }
+        });
+        $acciones.append($btnDel);
+        $tr.append($acciones);
+        $tbody.append($tr);
+      });
+    }
+
+    function calcularTotales(data){
+      let efectivo = 0, tarjeta = 0, otros = 0, ingresos = 0, gastos = 0;
+      data.forEach(d => {
+        const v = Number(d.monto);
+        if(d.metodo === 'Efectivo') efectivo += v;
+        else if(d.metodo === 'Tarjeta') tarjeta += v;
+        else otros += v;
+
+        if(v > 0) ingresos += v; else gastos += v; // gastos negativos
+      });
+      const utilidad = ingresos + gastos; // gastos ya son negativos
+      $('#totalEfectivo').val(formatMoney(efectivo));
+      $('#totalTarjeta').val(formatMoney(tarjeta));
+      $('#totalOtros').val(formatMoney(otros));
+      $('#sumIngresos').text('$ ' + formatMoney(ingresos));
+      $('#sumGastos').text('$ ' + formatMoney(Math.abs(gastos)));
+      $('#sumUtilidad').text('$ ' + formatMoney(utilidad));
+      $('#totalGeneral').text(formatMoney(efectivo + tarjeta + otros));
+    }
+
+    function filtrarPorFechaYFolio(data, inicio, fin, folio){
+      return data.filter(d => {
+        const fecha = new Date(d.fecha);
+        let ok = true;
+        if(inicio) ok = ok && (fecha >= new Date(inicio));
+        if(fin) ok = ok && (fecha <= new Date(fin));
+        if(folio) ok = ok && d.folio.toLowerCase().includes(folio.toLowerCase());
+        return ok;
+      });
+    }
+
+    function exportCSV(data){
+      if(!data.length) { alert('No hay registros para exportar'); return; }
+      const headers = ['Folio','Fecha','Tipo','Descripción','Monto'];
+      const rows = data.map(r => [r.folio, r.fecha, r.tipo, '"' + r.descripcion.replace(/"/g,'""') + '"', r.monto]);
+      let csv = headers.join(',') + '\n' + rows.map(r=>r.join(',')).join('\n');
+      const blob = new Blob([csv],{type:'text/csv;charset=utf-8;'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'corte_export_' + (new Date()).toISOString().slice(0,10) + '.csv';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
 	
     $(function(){
 		 // Código para el gráfico (ejemplo)
@@ -2481,6 +2669,69 @@
 
 
 		
+		
+		
+		
+		
+		
+			// inicializar fechas a hoy por defecto
+      const hoy = new Date().toISOString().slice(0,10);
+      $('#fechaInicio').val(hoy);
+      $('#fechaFin').val(hoy);
+
+      // render inicial con todos los movimientos de ejemplo
+      renderTabla(movimientosEjemplo);
+      calcularTotales(movimientosEjemplo);
+
+      // Buscar con filtros
+      $('#btnBuscarCorte').on('click', function(e){
+        e.preventDefault();
+        const inicio = $('#fechaInicio').val();
+        const fin = $('#fechaFin').val();
+        const folio = $('#filtroFolio').val();
+        const result = filtrarPorFechaYFolio(movimientosEjemplo, inicio, fin, folio);
+        renderTabla(result);
+        calcularTotales(result);
+      });
+
+      // Generar Corte (muestra modal simple / alerta con resumen)
+      $('#btnGenCorte').on('click', function(e){
+        e.preventDefault();
+        const inicio = $('#fechaInicio').val();
+        const fin = $('#fechaFin').val();
+        const result = filtrarPorFechaYFolio(movimientosEjemplo, inicio, fin, $('#filtroFolio').val());
+        if(!result.length) { alert('No hay movimientos en el rango seleccionado.'); return; }
+        calcularTotales(result);
+        const total = Number($('#totalGeneral').text().replace(/,/g,''));
+        const msg = 'Corte generado.\nRegistros: ' + result.length + '\nTotal: $ ' + formatMoney(total);
+        alert(msg);
+      });
+
+      // Exportar CSV
+      $('#btnExport').on('click', function(e){
+        e.preventDefault();
+        const inicio = $('#fechaInicio').val();
+        const fin = $('#fechaFin').val();
+        const result = filtrarPorFechaYFolio(movimientosEjemplo, inicio, fin, $('#filtroFolio').val());
+        exportCSV(result);
+      });
+
+      // Imprimir: abre una ventana con la tabla (simple)
+      $('#btnPrint').on('click', function(e){
+        e.preventDefault();
+        const inicio = $('#fechaInicio').val();
+        const fin = $('#fechaFin').val();
+        const result = filtrarPorFechaYFolio(movimientosEjemplo, inicio, fin, $('#filtroFolio').val());
+        let html = '<html><head><title>Corte</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"></head><body><h3>Corte de caja</h3>'; 
+        html += '<table class="table table-bordered"><thead><tr><th>Folio</th><th>Fecha</th><th>Tipo</th><th>Descripción</th><th>Monto</th></tr></thead><tbody>';
+        result.forEach(r => { html += '<tr><td>'+r.folio+'</td><td>'+r.fecha+'</td><td>'+r.tipo+'</td><td>'+r.descripcion+'</td><td>$ '+formatMoney(r.monto)+'</td></tr>'; });
+        html += '</tbody></table></body></html>';
+        const w = window.open('', '_blank');
+        w.document.write(html);
+        w.document.close();
+        w.focus();
+        w.print();
+      });
     });
   </script>
 </body>
