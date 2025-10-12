@@ -7,9 +7,11 @@
 	align-items: center;
 	justify-content: center;
 }
-.table thead th {
-  background: #2e2924;
-  color: white;
+.cont-Components-green .table, .cont-Components-green .table-striped{
+	thead th{
+	  background: var(--green-dark);
+	  color: white;
+	}
 }
 .table thead th:first-child {
   border-top-left-radius: 12px;
@@ -28,6 +30,14 @@
 /* Fila alterna con naranja tenue */
 .cont-Components-green .alter-row td {
   background-color: var(--green-primary-light) !important;
+}
+.cont-Components-green .table-striped>tbody>tr:nth-of-type(odd)>* {
+    --bs-table-color-type: var(--bs-table-striped-color);
+    --bs-table-bg-type: var(--green-primary-light) !important;
+}
+.cont-Components-green .table-hover>tbody>tr:hover>* {
+    --bs-table-color-state: var(--bs-table-hover-color);
+    --bs-table-bg-state: var(--green-muted);
 }
 .custom-select {
   position: relative;
