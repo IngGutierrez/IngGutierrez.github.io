@@ -1504,14 +1504,14 @@
                     <div>
                         <h6 class="my-0 text-muted">Cantidad de Articulos</h6>
                     </div>
-                    <span class="text-muted"><label id="lblCantidad" class="lblCantidad">0</label></span>
+                    <span class="text-muted"><label id="lblCantidad" class="lblCantidad">4</label></span>
                 </div>
                 <div class="d-flex justify-content-between lh-condensed mb-4">
                     <div>
-                        <h5 class="my-0">Total a Pagar</h5>
+                        <h5 class="my-0 text-primary-green">Total a Pagar</h5>
                         <small class="text-muted d-none">Brief description</small>
                     </div>
-                    <h5 class="my-0">$ <label id="lblTotalCompra" class="lblTotal">0</label></h5>
+                    <h5 class="my-0">$ <label id="lblTotalCompra" class="lblTotal">75</label></h5>
                 </div>
                 <div class="d-flex justify-content-between lh-condensed mb-1">
                     <div class="col-6 pt-2">
@@ -1547,7 +1547,7 @@
             <form class="needs-validation" novalidate>
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="firstName">Articulo</label>
+                        <label for="firstName text-primary-green">Articulo</label>
 						<div class="input-group mb-3">
 						  <input type="text" class="form-control" placeholder="Buscar articulo" aria-describedby="basic-addon2">
 						  <span class="input-group-text material-symbols-outlined" id="basic-addon2">keyboard</span>
@@ -1567,7 +1567,7 @@
                 </div>
                 <hr class="mb-4">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-muted">Articulos</span>
+                    <span class="text-primary-green">Articulos</span>
                     <span class="badge badge-secondary badge-pill"><label id="lblCantidadAux" class="lblCantidad m-0">0</label></span>
                 </h4>
                 <ul class="list-group mb-3" id="ulArticulos">
@@ -1649,7 +1649,7 @@
           </li>
 
           <li>
-            <div class="menu-title" data-bs-toggle="collapse" href="#collapseDashboards" role="button" aria-expanded="false" aria-controls="collapseDashboards2">
+            <div class="menu-title" data-bs-toggle="collapse" href="#collapseDashboards2" role="button" aria-expanded="false" aria-controls="collapseDashboards2">
               <span class="material-symbols-outlined">pages</span>
               <span class="label-title">Articulos</span>
               <span class="material-icons arrow" aria-hidden="true">keyboard_arrow_down</span>
@@ -1723,19 +1723,19 @@
                               <div class="row">
                                 <div class="col-md-4">
                                   <div class="card summary-box p-3">
-                                    <h5>Ingresos</h5>
+                                    <h5 class="text-primary-green">Ingresos</h5>
                                     <h3 id="sumIngresos">$ 0.00</h3>
                                   </div>
                                 </div>
                                 <div class="col-md-4">
                                   <div class="card summary-box p-3">
-                                    <h5>Gastos</h5>
+                                    <h5 class="text-primary-green">Gastos</h5>
                                     <h3 id="sumGastos">$ 0.00</h3>
                                   </div>
                                 </div>
                                 <div class="col-md-4">
                                   <div class="card summary-box p-3 summary-card">
-                                    <h5>Utilidad</h5>
+                                    <h5 class="text-primary-green">Utilidad</h5>
                                     <h3 id="sumUtilidad">$ 0.00</h3>
                                   </div>
                                 </div>
@@ -2330,6 +2330,11 @@
 						  </div>
 						</div>
 					  </div>
+					  
+					  <div class="row justify-content-start mt-5">
+						<div class="col-12">
+						</div>
+					  </div>
 					</div>
 					
 				  </div>
@@ -2373,7 +2378,7 @@
         $tr.append($('<td>').text(m.descripcion));
         $tr.append($('<td class="text-end">').text('$ ' + formatMoney(m.monto)));
         const $acciones = $('<td class="text-center">');
-        const $btnDel = $('<button class="btn btn-sm btn-outline-danger">Cancelar</button>').on('click', function(){
+        const $btnDel = $('<button class="btn-icon-green-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar"><span class="material-icons">delete</span></button>').on('click', function(){
           if(confirm('¿Cancelar registro ' + m.folio + '?')){
             movimientosEjemplo.splice(idx,1);
             renderTabla(movimientosEjemplo);
