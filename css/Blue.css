@@ -30,9 +30,13 @@
 	.cont-Components-blue .alter-row td {
 	  background-color: var(--blue-primary-light) !important;
 	}
-	.cont-Components-blue .table-striped>tbody>tr:nth-of-type(odd)>* {
+	.cont-Components-blue .table-striped>tbody>tr>* {
 		--bs-table-color-type: var(--bs-table-striped-color);
 		--bs-table-bg-type: var(--blue-primary-light) !important;
+	}
+	.cont-Components-blue .table-striped>tbody>tr:nth-of-type(odd)>* {
+		--bs-table-color-type: var(--bs-table-striped-color);
+		--bs-table-bg-type: var(--blue-light) !important;
 	}
 	.cont-Components-blue .table-hover>tbody>tr:hover>* {
 		--bs-table-color-state: var(--bs-table-hover-color);
