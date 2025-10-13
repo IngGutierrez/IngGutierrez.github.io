@@ -540,8 +540,8 @@ footer {
     /* main: padding-left so collapsed icons don't cover text; on open we translate main by the diff */
     main.content { min-height:100vh; transition: transform .22s ease; will-change: transform; }
     @media (min-width:768px){
-      main.content { padding-left: var(--sidebar-collapsed); }
+      main.contTabgreen { padding-left: var(--sidebar-collapsed); }
     }
     @media (max-width:767.98px){
-      main.content { padding-left:16px; padding-right:16px; transform:none !important; }
+      main.contTabgreen { padding-left:16px; padding-right:16px; transform:none !important; }
     }

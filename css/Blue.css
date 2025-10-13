@@ -7,28 +7,38 @@
 		align-items: center;
 		justify-content: center;
     }
-    .table thead th {
-      background: #2e2924;
+    .cont-Components-blue .table thead th {
+      background: var(--blue-dark) !important;
       color: white;
     }
-	.table thead th:first-child {
+	.cont-Components-blue .table thead th:first-child {
 	  border-top-left-radius: 12px;
 	}
-	.table thead th:last-child {
+	.cont-Components-blue .table thead th:last-child {
 	  border-top-right-radius: 12px;
 	}
-    .table td { vertical-align: middle; }
-    .table .actions .btn {
+    .cont-Components-blue .table td { vertical-align: middle; }
+    .cont-Components-blue .table .actions .btn {
       border-radius: 50%;
       width: 36px; height: 36px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
     }
+
 	/* Fila alterna con naranja tenue */
 	.cont-Components-blue .alter-row td {
 	  background-color: var(--blue-primary-light) !important;
 	}
+	.cont-Components-blue .table-striped>tbody>tr:nth-of-type(odd)>* {
+		--bs-table-color-type: var(--bs-table-striped-color);
+		--bs-table-bg-type: var(--blue-primary-light) !important;
+	}
+	.cont-Components-blue .table-hover>tbody>tr:hover>* {
+		--bs-table-color-state: var(--bs-table-hover-color);
+		--bs-table-bg-state: var(--blue-muted);
+	}
+
     .custom-select {
       position: relative;
     }
@@ -273,12 +283,9 @@
 	}
 	.menu-blue .menu-item {
 		padding: 1rem 1.5rem;
-		padding-left:50px;
 		cursor: pointer;
-		color: var(--blue-light);
-		background-color: var(--blue-accentdark);
+		position:relative;
 		display: flex;
-		justify-content: space-between;
 		align-items: center;
 		transition: background-color 0.2s ease-in-out;
 	}
@@ -289,8 +296,18 @@
 		cursor: pointer !important;
 	}
 	.menu-blue .menu-item:hover {
-		background-color: var(--blue-accent);
+		background-color: var(--blue-content);
+		color: var(--blue-dark);
 		cursor: pointer !important;
+	}
+	.menu-blue .menu-item:hover::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 8px;
+		background-color: var(--blue-primary);
 	}
 	.menu-blue .menu-item.active {
 		background-color: var(--blue-content);
@@ -313,6 +330,23 @@
 	.menu-blue .submenu .menu-item {
 		padding-left: 2.5rem;
 	}
+	
+	.cont-Components-blue .top-menu { 
+		background: var(--blue-dark); 
+		color: var(--blue-light); 
+		border-radius: 0.5rem; 
+		position: absolute;
+		z-index:1;
+		width:100%;
+		top:0;
+		left:0;
+	}
+    .cont-Components-blue .top-menu .nav-link { color: #fff; }
+    .cont-Components-blue .top-menu .nav-link.active, .top-menu .nav-link:hover { background: rgba(255,255,255,0.06); color: #fff; }
+    .cont-Components-blue .menu-item .material-symbols-outlined { vertical-align: -4px; margin-right:6px; }
+    /* conserva tus clases legacy para compatibilidad */
+    .cont-Components-blue .menu-item { display:flex; align-items:center; }
+    .cont-Components-blue .summary-card { border-left:4px solid var(--blue-primary); }
 	
 	/*LOGOS*/
 	.logoPrincipal-blue {
