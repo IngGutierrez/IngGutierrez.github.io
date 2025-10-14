@@ -367,6 +367,14 @@
 		background-repeat: no-repeat;
 		min-height:200px;
 	}
+	.logoPrincipal-blueWhiteMenu {
+		background-image: url(../assets/img/BlueWhite.svg);
+		background-size: auto 100%;
+		background-position: center;
+		background-repeat: no-repeat;
+		min-height: 60px;
+		margin: 0px auto;
+	}
 	.logoPrincipal-blueFont{
 		background-image: url("../assets/img/BlueFont.svg");
 		background-size: auto 100%;

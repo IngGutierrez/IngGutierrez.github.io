@@ -2331,7 +2331,7 @@
 						</div>
 					  </div>
 					  
-					   <div class="row justify-content-start cont-Components-blue my-2 mt-5">
+					  <div class="row justify-content-start cont-Components-blue my-2 mt-5">
 							<div class="col-12">
 							  <div class="card shadow-sm overflow-hidden">
 								<div id="app" class="p-3">
@@ -2344,6 +2344,7 @@
 									  </button>
 
 									  <div class="collapse navbar-collapse" id="menuApp">
+										<div class="logoPrincipal-blueWhiteMenu" style="width:60px"></div>
 										<ul class="nav nav-pills me-auto mb-2 mb-lg-0">
 										  <li class="nav-item">
 											<a class="nav-link menu-item" href="#" data-app="compra">
@@ -2432,7 +2433,7 @@
                 <button id="btnSearchProv" class="btn btn-blue-2"><span class="material-symbols-outlined">search</span></button>
                 <button id="btnClearProv" class="btn btn-blue-4"><span class="material-symbols-outlined">filter_alt_off</span></button>
 				
-				<button id="btnAddUser" class="btn btn-blue-3 me-2 ms-2"><span class="material-icons">add</span></button>
+				<button id="btnAddProv" class="btn btn-blue-3 me-2 ms-2"><span class="material-icons">add</span></button>
               </div>
             </div>
 
@@ -2477,7 +2478,154 @@
 							  </div>
 							</div>
 						  </div>
-					  
+					  <div class="row justify-content-start cont-Components-blue my-2 mt-5">
+							<div class="col-12">
+							  <div class="card shadow-sm overflow-hidden">
+								<div id="app" class="p-3">
+
+								  <!-- MENÚ HORIZONTAL para app -->
+								  <nav class="navbar navbar-expand-lg menu-blue top-menu mb-3 px-3 py-2">
+									<div class="container-fluid px-0">
+									  <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#menuApp" aria-controls="menuApp" aria-expanded="false" aria-label="Toggle menu">
+										<span class="material-icons">menu</span>
+									  </button>
+
+									  <div class="collapse navbar-collapse" id="menuApp">
+										<div class="logoPrincipal-blueWhiteMenu" style="width:60px"></div>
+										<ul class="nav nav-pills me-auto mb-2 mb-lg-0">
+										  <li class="nav-item">
+											<a class="nav-link menu-item" href="#" data-app="compra">
+											  <span class="material-symbols-outlined">supervisor_account</span> Cliente
+											</a>
+										  </li>
+
+										  <li class="nav-item">
+											<a class="nav-link menu-item" href="#" data-app="corte">
+											  <span class="material-symbols-outlined">deployed_code_account</span> Proveedor
+											</a>
+										  </li>
+
+										  <li class="nav-item dropdown">
+											<a class="nav-link dropdown-toggle menu-item" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+											  <span class="material-symbols-outlined">manage_accounts</span> RH
+											</a>
+											<ul class="dropdown-menu">
+											  <li><a class="dropdown-item menu-item" href="#"><span class="material-symbols-outlined">account_circle</span> Usuarios</a></li>
+											  <li><a class="dropdown-item menu-item" href="#"><span class="material-symbols-outlined">ar_on_you</span> Vacaciones</a></li>
+											</ul>
+										  </li>
+
+										  <li class="nav-item dropdown">
+											<a class="nav-link dropdown-toggle menu-item" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+											  <span class="material-symbols-outlined">view_list</span> Administración
+											</a>
+											<ul class="dropdown-menu">
+											  <li><a class="dropdown-item menu-item" href="#"><span class="material-symbols-outlined">price_check</span> Cuentas por Cobrar</a></li>
+											  <li><a class="dropdown-item menu-item" href="#"><span class="material-symbols-outlined">mintmark</span> Cuentas por Pagar</a></li>
+											</ul>
+										  </li>
+
+										  <li class="nav-item dropdown">
+											<a class="nav-link dropdown-toggle menu-item" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+											  <span class="material-symbols-outlined">settings</span> Setting
+											</a>
+											<ul class="dropdown-menu">
+											  <li><a class="dropdown-item menu-item" href="#"><span class="material-symbols-outlined">display_settings</span> Configuraciones</a></li>
+											  <li><a class="dropdown-item menu-item" href="#"><span class="material-symbols-outlined">account_tree</span> Cataogos</a></li>
+											</ul>
+										  </li>
+										</ul>
+										<!-- opcional zona derecha en el menú -->
+										<div class="d-flex align-items-center">
+											<button class="btn btn-blue-4 d-flex align-items-center gap-2 px-4 py-2 me-2">
+											  <span class="material-symbols-outlined">account_circle</span> Ing. Daniel
+											</button>
+											<button class="btn btn-blue-1 d-flex align-items-center gap-2 px-4 py-2 me-2">
+											  <span class="material-symbols-outlined">exit_to_app</span>
+											</button>	
+										</div>
+									  </div>
+									</div>
+								  </nav>
+
+								  <!-- MAIN contenido Compra (sin cambios funcionales) -->
+								  <main class="content pt-5" id="mainContent">
+									<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+										<h1 class="text-Oswald">Usuario</h1>
+									</div>
+									
+									<div class="row g-2 align-items-end mb-3">
+              <div class="col-sm-3">
+                <label>Buscar (nombre / email)</label>
+                <input id="searchUser" class="form-control form-control-sm" placeholder="Ej: Ana Pérez, ana@ejemplo.com">
+              </div>
+              <div class="col-sm-3">
+                <label>Departamento</label>
+                <select id="filterUserDept" class="form-select form-select-sm">
+                  <option value="">Todos</option>
+                  <option>RH</option>
+                  <option>Operaciones</option>
+                  <option>Ventas</option>
+                </select>
+              </div>
+              <div class="col-sm-2">
+                <label>Perfil</label>
+                <select id="filterUserProfile" class="form-select form-select-sm">
+                  <option value="">Todos</option>
+                  <option>Admin</option>
+                  <option>Supervisor</option>
+                  <option>Usuario</option>
+                </select>
+              </div>
+              <div class="col-sm-3 text-end">
+                <button id="btnSearchUser" class="btn btn-blue-2"><span class="material-symbols-outlined">search</span></button>
+                <button id="btnClearUser" class="btn btn-blue-4"><span class="material-symbols-outlined">filter_alt_off</span></button>
+				
+				<button id="btnAddUser" class="btn btn-blue-3 me-2 ms-2"><span class="material-icons">add</span></button>
+              </div>
+            </div>
+
+            <!-- Tabla usuarios -->
+            <div class="card card-table overflow-hidden cont-Components-blue p-0 mb-3">
+              <div class="table-responsive">
+                <table class="table table-striped table-hover mb-0" id="tblUsers">
+                  <thead class="table-light">
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Email</th>
+                      <th>Departamento</th>
+                      <th>Perfil</th>
+                      <th>Activo</th>
+                      <th class="text-center">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Perfil y permisos (preview) -->
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="card p-3">
+                  <h6>Perfil seleccionado</h6>
+                  <div id="selectedProfileInfo">Ningún usuario seleccionado</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card p-3">
+                  <h6>Permisos</h6>
+                  <div id="profilePermissions" class="small-muted">Selecciona un usuario para ver permisos</div>
+                </div>
+              </div>
+            </div>
+								  </main>
+
+								</div>
+							  </div>
+							</div>
+						  </div>
+						  
 					  <div class="row justify-content-start mt-5">
 						<div class="col-12">
 						</div>
@@ -2518,7 +2666,7 @@
             </div>
           </form>
         </div>
-        <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button><button id="saveProv" class="btn btn-primary">Guardar</button></div>
+        <div class="modal-footer"><button class="btn btn-blue-4" data-bs-dismiss="modal">Cerrar</button><button id="saveProv" class="btn btn-blue-1">Guardar</button></div>
       </div>
     </div>
   </div>
@@ -2545,7 +2693,7 @@
             </div>
           </form>
         </div>
-        <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button><button id="saveUser" class="btn btn-primary">Guardar usuario</button></div>
+        <div class="modal-footer"><button class="btn btn-blue-4" data-bs-dismiss="modal">Cerrar</button><button id="saveUser" class="btn btn-blue-1">Guardar usuario</button></div>
       </div>
     </div>
   </div>
@@ -2564,8 +2712,10 @@
     ];
 
     let users = [
-      {name:'Ana Pérez', email:'ana@empresa.mx', dept:'RH', profile:'Admin', active:1, perms:['view','edit','admin']},
-      {name:'Carlos Ruiz', email:'carlos@empresa.mx', dept:'Operaciones', profile:'Usuario', active:1, perms:['view']}
+      {name:'Ana Pérez', email:'ana@empresa.mx', dept:'Admin', profile:'Admin', active:1, perms:['view','edit','admin']},
+      {name:'Carlos Ruiz', email:'carlos@empresa.mx', dept:'Operaciones', profile:'Usuario', active:1, perms:['view','edit']},
+	  {name:'Yaneth Rosas', email:'yaneth@rosas.mx', dept:'RH', profile:'Admin', active:1, perms:['view','edit','admin']},
+      {name:'Daniel Guzman', email:'daniel@guzman.mx', dept:'Operaciones', profile:'Usuario', active:1, perms:['view']}
     ];
 
     // Helper: render tablas --------------------------------------------------------
@@ -2603,9 +2753,9 @@
           <td class="text-center"></td>
         </tr>`);
         const $actions = $('<div class="btn-group" role="group"></div>');
-        const $edit = $(`<button class="btn btn-sm btn-outline-primary">Editar</button>`).on('click', ()=>openUserModal(i));
-        const $perm = $(`<button class="btn btn-sm btn-outline-secondary">Permisos</button>`).on('click', ()=>showUserPerms(i));
-        const $del = $(`<button class="btn btn-sm btn-outline-danger">Eliminar</button>`).on('click', ()=>{ if(confirm('Eliminar usuario?')){ users.splice(i,1); renderUsers(users); $('#selectedProfileInfo').text('Usuario eliminado'); }});
+		const $edit = $(`<button class="btn-icon-blue-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"><span class="material-icons">edit</span></button>`).on('click', ()=>openUserModal(i));
+		const $perm = $(`<button class="btn-icon-blue-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"><span class="material-icons">visibility</span></button>`).on('click', ()=>showUserPerms(i));
+        const $del = $(`<button class="btn-icon-blue-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar"><span class="material-icons">delete</span></button>`).on('click', ()=>{ if(confirm('Eliminar usuario?')){ users.splice(i,1); renderUsers(users); $('#selectedProfileInfo').text('Usuario eliminado'); }});
         $actions.append($edit).append($perm).append($del);
         $tr.find('td').last().append($actions);
         $tb.append($tr);
