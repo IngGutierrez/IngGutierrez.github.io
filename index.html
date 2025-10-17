@@ -148,6 +148,33 @@
     <!-- .contact-icon:hover { -->
       <!-- transform: rotate(15deg) scale(1.2); -->
     <!-- } -->
+	
+	#tech { margin-top: 40px; margin-bottom: 40px; }
+  .tech-wrapper { background:#000; /* fondo negro como en la imagen */ }
+
+  /* Grid de logos */
+  .tech-logo {
+    max-height:54px;      /* tamaño base, ajusta a tu gusto */
+    width: auto;
+    display:block;
+    filter: brightness(0) invert(1); /* fuerza logos blancos */
+    opacity: .95;
+    transition: transform .25s ease, opacity .2s ease;
+  }
+  .tech-logo:hover { transform: translateY(-8px) scale(1.08); opacity:1; }
+
+  /* responsive: más grande en pantallas anchas */
+  @media(min-width:1200px){
+    .tech-logo { max-height:72px; }
+  }
+  @media(min-width:1400px){
+    .tech-logo { max-height:86px; }
+  }
+
+  /* Alineado del título sobre fondo oscuro */
+  #tech h2 { color: #fff; margin-left: 0; }
+	
+	
     /* FOOTER */
     footer { padding:28px 0; margin-top:30px; color:#fff; background:linear-gradient(90deg,#0b1220,#0b1325); font-size:0.95rem; text-align:center; }
 
@@ -200,14 +227,15 @@
           <div class="card-glass">
             <h5 class="mb-3 fw-bold">Habilidades</h5>
             <div class="mb-3">
-              <span class="skill-badge">SQL Server</span>
-              <span class="skill-badge">.NET</span>
-              <span class="skill-badge">JavaScript</span>
-              <span class="skill-badge">Bootstrap</span>
-			  <span class="skill-badge">HTML5</span>
-			  <span class="skill-badge">CSS3</span>
+              <span class="skill-badge">Certificado en Tecnologias</span>
+			  <span class="skill-badge">Gestion de Proyectos</span>
+              <span class="skill-badge">Gestion de Equipos</span>
+              <span class="skill-badge">Resolucion de Problemas</span>
+              <span class="skill-badge">Metodologias Ágiles</span>
+			  <span class="skill-badge">SCRUM</span>
+			  <span class="skill-badge">KANBAN</span>
             </div>
-            <p class="mb-0">También: Node.js, PHP, MySQL, APIs REST, GitHub.</p>
+            <p class="mb-0">También: Conocimientos técnicos avanzados, Adaptabilidad, Analítico y Proactivo</p>
           </div>
         </div>
       </div>
@@ -241,6 +269,58 @@
       </div>
     </div>
   </section>
+  
+  <section id="tech" class="py-5" data-aos="fade-up" style="background:#000;">
+  <div class="container">
+    <h2 class="fw-bold text-start mb-5" style="color:#fff; font-size:3rem;">Tecnologías</h2>
+
+    <div class="tech-wrapper p-5 " >
+      <div class="tech-grid row gx-4 gy-5 justify-content-center align-items-center">
+        <!-- Fila 1 -->
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
+          <img src="assets/img/logo-sqlserver.svg" alt="SQL Server" class="tech-logo">
+        </div>
+		<div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
+          <img src="assets/img/logo-mysql.svg" alt="MySQL" class="tech-logo">
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
+          <img src="assets/img/logo-html5.svg" alt="HTML5" class="tech-logo">
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
+          <img src="assets/img/logo-css3.svg" alt="CSS3" class="tech-logo">
+        </div>
+		<div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
+          <img src="assets/img/logo-nodejs.svg" alt="NodeJs" class="tech-logo">
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
+          <img src="assets/img/logo-js.svg" alt="JavaScript" class="tech-logo">
+        </div>
+        
+		<div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
+          <img src="assets/img/logo-php.svg" alt="PHP" class="tech-logo">
+        </div>
+        <!-- Fila 2 -->
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
+          <img src="assets/img/logo-bootstrap.svg" alt="Bootstrap" class="tech-logo">
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
+          <img src="assets/img/logo-VS.svg" alt="Visual Studio" class="tech-logo">
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
+          <img src="assets/img/logo-net.svg" alt=".NET" class="tech-logo">
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
+          <img src="assets/img/logo-microsoft.svg" alt="Microsoft" class="tech-logo">
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
+          <img src="assets/img/logo-api.svg" alt="API" class="tech-logo">
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</section>
 
   <!-- PROJECTS -->
   <section id="projects">
