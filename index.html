@@ -183,6 +183,150 @@
       .hero h1 { font-size:2rem; }
       .logo-hero { max-width:120px; }
     }
+	
+	
+	
+	
+	/*Certificados*/
+	#certificados {
+    padding: 72px 0;
+    background: linear-gradient(180deg, rgba(8,10,12,0.02), rgba(8,10,12,0.03));
+  }
+
+  #certificados .heading {
+    max-width: 720px;
+    margin: 0 auto 36px;
+    text-align: center;
+	color:#FFF;
+  }
+
+  #certificados .heading h2 {
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    margin-bottom: 6px;
+  }
+
+  #certificados .heading p {
+    color: #6b7280; /* neutral muted */
+    margin-bottom: 0;
+  }
+
+  .cert-grid {
+    display: grid;
+    gap: 22px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    align-items: stretch;
+  }
+
+  .cert-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    padding: 20px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.60), rgba(255,255,255,0.48));
+	background-color:#FFF;
+    backdrop-filter: blur(8px) saturate(110%);
+    box-shadow: 0 8px 30px rgba(11,13,15,0.06);
+    transition: transform .32s cubic-bezier(.2,.9,.3,1), box-shadow .32s, opacity .32s;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cert-card::before {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    background: radial-gradient(circle at 10% 20%, rgba(0,160,130,0.06), transparent 12%),
+                radial-gradient(circle at 90% 80%, rgba(6,167,227,0.05), transparent 12%);
+    transform: rotate(8deg);
+    pointer-events: none;
+  }
+
+  .cert-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 18px 50px rgba(11,13,15,0.12);
+  }
+
+  .cert-meta {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .cert-badge {
+    min-width: 56px;
+    min-height: 56px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, rgba(0,160,130,0.12), rgba(6,167,227,0.08));
+    box-shadow: inset 0 -6px 10px rgba(255,255,255,0.3);
+  }
+
+  .cert-badge svg { width:34px; height:34px; opacity:0.95; }
+
+  .cert-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0;
+    color: #0b1220;
+  }
+
+  .cert-sub {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 4px;
+  }
+
+  .cert-actions {
+    margin-top: 10px;
+    display:flex;
+    gap:10px;
+    align-items:center;
+  }
+
+  .btn-cert {
+    display:inline-flex;
+    gap:8px;
+    align-items:center;
+    padding:8px 12px;
+    border-radius:10px;
+    border: none;
+    cursor:pointer;
+    font-weight:600;
+    font-size:0.9rem;
+    background: linear-gradient(90deg, #06a7e3 0%, #009929 100%);
+    color: white;
+    box-shadow: 0 6px 18px rgba(6,167,227,0.12);
+    text-decoration: none;
+    transition: transform .18s, box-shadow .18s, opacity .18s;
+  }
+
+  .btn-cert:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(6,167,227,0.14); }
+
+  .btn-outline {
+    padding: 8px 12px;
+    border-radius:10px;
+    border:1px solid rgba(11,13,15,0.06);
+    background: transparent;
+    color: #0b1220;
+    text-decoration:none;
+    font-weight:600;
+    font-size:0.9rem;
+  }
+
+  .small-note {
+    margin-top:auto;
+    font-size:0.82rem;
+    color:#9aa3af;
+  }
+
+  /* Responsive tweaks */
+  @media (max-width:575px) {
+    #certificados { padding: 36px 16px; }
+    .cert-card { padding:16px; border-radius:12px; }
+  }
   </style>
 </head>
 <body>
@@ -331,6 +475,114 @@
       </div>
     </div>
   </section>
+
+
+<section id="certificados" aria-labelledby="certificados-title" style="background-color: #212830">
+  <div class="container">
+    <div class="heading">
+      <h2 id="certificados-title">Certificados</h2>
+      <p>Formación y cursos que complementan mi experiencia profesional. Haz clic en "Ver certificado" para abrir la constancia.</p>
+    </div>
+
+    <div class="cert-grid">
+      <!-- Card 1 -->
+      <article class="cert-card" aria-label="Certificado Habilidades Gerenciales - El nuevo gerente, 2023">
+        <div class="cert-meta">
+          <div class="cert-badge" aria-hidden="true">
+            <!-- Icono personalizado (graduación) -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 7l10 5 10-5-10-5z" />
+              <path d="M12 12v6" />
+              <path d="M6 18v2a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-2" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="cert-title">Habilidades Gerenciales - El nuevo gerente</h3>
+            <div class="cert-sub">UDEMY · 2023</div>
+          </div>
+        </div>
+
+        <p class="small-note">Curso orientado a liderazgo práctico, toma de decisiones y gestión de equipos.</p>
+
+        <div class="cert-actions">
+          <a class="btn-cert" href="https://www.udemy.com/certificate/UC-c1b44479-c326-4570-8283-471538c89fa6/" target="_blank" rel="noopener noreferrer" aria-label="Abrir certificado Habilidades Gerenciales en nueva pestaña">
+            <!-- SVG icon (external) -->
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="margin-right:6px" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15 3h6v6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 14L21 3" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Ver certificado
+          </a>
+
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="cert-card" aria-label="Certificado Universidad React De 0 a Master, 2022">
+        <div class="cert-meta">
+          <div class="cert-badge" aria-hidden="true">
+            <!-- Icono código -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 18l6-6-6-6" />
+              <path d="M8 6L2 12l6 6" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="cert-title">Universidad React De 0 a Master</h3>
+            <div class="cert-sub">UDEMY · 2022</div>
+          </div>
+        </div>
+
+        <p class="small-note">Aprendizaje completo de React: hooks, rutas, estado global y despliegue.</p>
+
+        <div class="cert-actions">
+          <a class="btn-cert" href="https://www.udemy.com/certificate/UC-867ef760-c0f0-4c84-8076-b707382b3a77/" target="_blank" rel="noopener noreferrer" aria-label="Abrir certificado React en nueva pestaña">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="margin-right:6px" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15 3h6v6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 14L21 3" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Ver certificado
+          </a>
+
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="cert-card" aria-label="Certificado Administración avanzada con SQL Server, 2019">
+        <div class="cert-meta">
+          <div class="cert-badge" aria-hidden="true">
+            <!-- Icono base de datos -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+              <path d="M3 5v6c0 1.657 4.03 3 9 3s9-1.343 9-3V5" />
+              <path d="M3 11v6c0 1.657 4.03 3 9 3s9-1.343 9-3v-6" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="cert-title">Administración avanzada con SQL Server</h3>
+            <div class="cert-sub">UDEMY · 2019</div>
+          </div>
+        </div>
+
+        <p class="small-note">Administración, optimización y seguridad de bases de datos en SQL Server.</p>
+
+        <div class="cert-actions">
+          <a class="btn-cert" href="https://www.udemy.com/certificate/UC-ivkd2qs1/" target="_blank" rel="noopener noreferrer" aria-label="Abrir certificado SQL Server en nueva pestaña">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="margin-right:6px" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15 3h6v6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 14L21 3" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Ver certificado
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
 
   <!-- CONTACT -->
 <section id="contact">
