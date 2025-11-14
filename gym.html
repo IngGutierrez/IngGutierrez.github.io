@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Rutina Semanal — SmartFit Style</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --accent:#FDB924;
+    --accent-dark:#e6a300;
+    --bg:#f5f6f7;
+    --card-bg:#ffffff;
+    --text:#222;
+    --muted:#6c6c6c;
+    --shadow: 0 8px 30px rgba(17,17,17,0.06);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family: "Montserrat", system-ui, Arial, sans-serif;
+  }
+  header{
+    background:#111;
+    color:#fff;
+    padding:18px;
+    text-align:center;
+    font-weight:700;
+    letter-spacing:1px;
+  }
+  .top-actions{
+    padding:20px 12px;
+    display:flex;
+    gap:8px;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    background:transparent;
+  }
+  .btn-dia{
+    background:var(--accent);
+    color:#111;
+    font-weight:700;
+    border-radius:999px;
+    padding:10px 18px;
+    border:0;
+    cursor:pointer;
+    transition:all .18s ease;
+  }
+  .btn-dia.active{
+    background:#111;
+    color:#fff;
+    transform:scale(1.03);
+    box-shadow:0 6px 18px rgba(0,0,0,0.12);
+  }
+  .descanso-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: var(--accent);;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  background-image: url("assets/icon/Descanzo.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 75%;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+.descanso-btn:hover {
+  background: #ff6b00;
+  background-image: url("assets/icon/Descanzo.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 75%;
+  
+}
+
+  /* Contenedor día (100vh) */
+  .cards-dia{
+    display:none;
+    min-height:70vh;        /* ocupa pantalla */
+    padding:32px 20px;
+    align-items:flex-start;
+    justify-content:flex-start;
+    gap:24px;
+    overflow:auto;
+  }
+  .cards-dia.active{ display:flex; flex-wrap:wrap; justify-content:center; align-items:flex-start; }
+
+  /* SmartFit card (usaste este markup) */
+  .new-home-v4-training-classes-list__item{ width:320px; }
+  .new-home-v4-training-classes-card{
+    background:var(--card-bg);
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    transition:transform .18s ease;
+    display:flex;
+    flex-direction:column;
+    height:100%;
+  }
+  .new-home-v4-training-classes-card:hover{ transform:translateY(-6px); }
+  .new-home-v4-training-classes-card__image{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+    display:block;
+  }
+  .new-home-v4-training-classes-card__header{
+    padding:12px 14px;
+    border-bottom:1px solid #f3f3f3;
+  }
+  .new-home-v4-training-classes-card__title{
+    margin:0;
+    color:var(--accent);
+    font-size:1.1rem;
+    font-weight:700;
+  }
+  .new-home-v4-training-classes-card__content{ padding:12px 14px 18px; flex:1; display:flex; flex-direction:column; }
+  .new-home-v4-training-classes-details-list{ list-style:none; padding:0; margin:4px 0 8px; display:flex; gap:8px; flex-wrap:wrap; }
+  .new-home-v4-training-classes-details-list__item{
+    flex:1 1 30%;
+    display:flex;
+    gap:8px;
+    align-items:center;
+    justify-content:flex-start;
+    color:var(--muted);
+    font-size:0.9rem;
+  }
+  .new-home-v4-training-classes-details-list__icon{ width:36px; display:inline-flex; align-items:center; justify-content:center; }
+  .new-home-v4-training-classes-details-list__title{ font-weight:600; color:#444; margin:0; font-size:0.85rem; }
+  .new-home-v4-training-classes-details-list__text{ margin:0; color:#666; font-size:0.9rem; }
+  .new-home-v4-training-classes-card__divider{ border:0; border-top:1px solid #eee; margin:10px 0; }
+  .new-home-v4-training-classes-card__text{ margin:0; color:#555; font-size:0.95rem; line-height:1.35; }
+
+  /* Footer / secciones finales */
+  .bottom-sections{ padding:40px 20px; background:transparent; max-width:1100px; margin:0 auto; }
+  .guide, .resumen, .progresion, .registro{ background:var(--card-bg); border-radius:12px; padding:18px; box-shadow:var(--shadow); margin-bottom:18px; }
+  .section-title{ color:var(--accent); font-weight:700; margin-bottom:8px; }
+
+  /* Responsive */
+  @media (max-width:991px){
+    .new-home-v4-training-classes-list__item{ width:90%; max-width:420px; }
+    .cards-dia{ padding:20px 12px; }
+  }
+  .list-desc{
+	width:100%;
+	text-align:center;
+  }
+  
+</style>
+</head>
+<body>
+
+<header>
+	🏋️‍♂️ GymHome
+</header>
+<div class="text-center">
+	<h1>RUTINA SEMANAL</h1>
+</div>
+<!-- selector -->
+<div class="top-actions">
+  <div>
+    <button class="btn-dia active" data-dia="lunes">LUNES</button>
+    <button class="btn-dia" data-dia="martes">MARTES</button>
+    <button class="btn-dia" data-dia="miercoles">MIÉRCOLES</button>
+    <button class="btn-dia" data-dia="jueves">JUEVES</button>
+    <button class="btn-dia" data-dia="viernes">VIERNES</button>
+  </div>
+  <div>
+    <button class="descanso-btn" data-bs-toggle="modal" data-bs-target="#modalDescanso"></button>
+  </div>
+</div>
+
+<!-- ======= LUNES ======= -->
+<section id="lunes" class="cards-dia active">
+  <!-- Card 1 -->
+  <div class="new-home-v4-training-classes-list__item">
+    <article class="new-home-v4-training-classes-list__item">
+      <div class="new-home-v4-training-classes-card">
+        <img src="assets/ejercicios/flexiones.jpg" alt="Flexiones" loading="lazy" class="new-home-v4-training-classes-card__image">
+        <div class="new-home-v4-training-classes-card__header">
+          <h3 class="new-home-v4-training-classes-card__title">Flexión de brazos — 3×12–15</h3>
+        </div>
+        <div class="new-home-v4-training-classes-card__content">
+          <ul class="new-home-v4-training-classes-details-list">
+            <li class="new-home-v4-training-classes-details-list__item">
+              <div class="list-desc">
+				<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					 width="29" height="29" viewBox="0 0 535 528" enable-background="new 0 0 535 528" xml:space="preserve">
+				<path fill-rule="evenodd" clip-rule="evenodd" fill="#8A8C8D" d="M521.529,298.902c-9.99-47.875-34.661-86.416-74.125-115.4
+					c-1.744-1.281-3.215-2.756-4.484-4.522c-11.733-16.309-25.771-30.332-42.047-42.106c-1.755-1.27-3.283-2.672-4.555-4.443
+					c-11.795-16.433-25.911-30.563-42.33-42.375c-1.881-1.354-3.42-2.951-4.758-4.812C303.153,21.101,220.315-7.024,144.547,15.741
+					C52.073,43.526-3.982,135.833,14.46,230.883c8.344,43.006,29.832,78.657,63.186,107.16c4.966,4.244,11.151,7.14,15.042,12.504
+					c12.043,16.601,26.277,30.951,42.943,42.89c1.544,1.105,2.823,2.41,3.928,3.952c11.869,16.55,26.056,30.791,42.625,42.639
+					c1.772,1.269,3.209,2.798,4.468,4.546c44.583,61.942,122.931,90.512,196.899,71.807c83.347-21.076,141.474-95.553,141.446-181.232
+					C525.17,322.938,524.016,310.814,521.529,298.902z M392.599,156.041c-4.017-0.989-7.721-1.863-11.395-2.849
+					c-0.544-0.146-1.226-0.75-1.368-1.272c-1.007-3.679-1.888-7.393-2.939-11.613C384.683,143.455,389.709,148.371,392.599,156.041z
+					 M33.688,243.92c-7.125-23.736-9.627-48.117-5.459-72.5c12.162-71.155,52.498-119.496,121.6-140.58
+					c58.709-17.913,112.346-4.277,159.702,34.272c-74.361-22.496-141.791-10.622-197.165,45.094
+					c-55.271,55.612-66.729,122.972-43.345,197.459C52.445,288.847,40.801,267.618,33.688,243.92z M111.99,342.863
+					c-6.411-2.782-10.885-7.059-14.338-13.015c-12.743-21.982-20.663-45.383-23.342-70.729c-8.508-80.499,40.785-153.56,113.291-179.086
+					c22.628-7.966,45.919-11.017,69.731-9.28c28.397,2.071,54.697,10.875,78.909,25.995c4.767,2.977,6.88,7.588,9.988,12.323
+					c-71.086-18.065-134.564-4.717-186.615,47.228C107.471,208.337,94.019,271.829,111.99,342.863z M143.114,374.2
+					c4.214,0.134,8.084,1.97,12.161,2.798c0.384,0.078,0.813,0.727,0.932,1.186c0.96,3.684,1.851,7.385,2.823,11.324
+					C151.063,386.869,146.605,381.143,143.114,374.2z M152.55,360.004c-6.735-1.59-12.784-3.904-18.835-6.206
+					c-1.5-0.57-1.58-2.102-2.032-3.28c-5.597-14.624-9.287-29.686-10.737-45.319c-3.858-41.588,5.688-79.804,29.475-114.085
+					c26.721-38.508,63.502-62.303,109.474-71.166c31.743-6.12,62.944-3.023,93.244,8.508c2.295,0.873,3.811,2.019,4.558,4.427
+					c1.494,4.824,3.212,9.579,4.802,14.374c0.2,0.604,0.185,1.279,0.314,2.262c-60.654-6.249-113.705,10.388-156.892,53.647
+					C162.844,246.314,146.28,299.263,152.55,360.004z M168.453,360.267c-11.997-86.168,39.649-162.724,115.823-187.814
+					c24.604-8.104,49.735-10.66,75.444-7.216c0.661,0.089,1.338,0.184,1.999,0.144c4.232-0.257,5.629,1.858,5.964,5.924
+					c0.647,7.859,1.812,15.676,1.492,22.055c-0.033,78.972-51.961,146.947-126.596,167.037c-22.984,6.188-46.339,7.314-69.922,4.117
+					C170.003,364.152,168.816,362.876,168.453,360.267z M181.847,401.069c-1.621-0.65-2.507-1.481-3.159-3.166
+					c-2.16-5.579-4.167-11.188-5.733-17.535c11.733,1.019,22.78,1.746,33.884,1.189c40.286-2.018,76.296-15.498,107.724-40.699
+					c34.792-27.897,56.827-63.898,66.29-107.463c4.022-18.521,4.995-37.298,3.012-56.182c-0.789-7.513-0.731-7.795,6.301-5.302
+					c16.384,5.809,11.972,1.267,17.601,17.649c7.123,20.727,9.437,42.234,7.839,63.966c-5.549,75.446-57.904,134.302-124.271,152.932
+					c-19.122,5.367-38.544,7.379-58.239,6.149C215.461,411.508,198.313,407.682,181.847,401.069z M199.756,433.217
+					c-4.777-2.969-6.886-7.574-10.005-12.317c71.108,18.087,134.587,4.716,186.627-47.227c52.133-52.035,65.604-115.531,47.62-186.565
+					c6.409,2.805,10.892,7.065,14.344,13.026c12.734,21.984,21.062,45.34,23.262,70.733c5.215,60.216-15.326,110.078-61.044,149.329
+					c-25.01,21.472-54.429,34-87.075,38.053C272.764,463.303,234.75,454.969,199.756,433.217z M472.699,441.006
+					c-60.644,77.343-173.98,87.615-247.388,22.925c74.306,23.563,141.947,12.052,197.704-43.543
+					c55.751-55.59,67.445-123.192,44.321-196.909C513.121,271.188,530.91,366.769,472.699,441.006z"/>
+				</svg>
+                <p class="new-home-v4-training-classes-details-list__title">Series</p>
+                <p class="new-home-v4-training-classes-details-list__text">3 × 12–15</p>
+              </div>
+            </li>
+
+            <li class="new-home-v4-training-classes-details-list__item">
+              <div class="list-desc">
+				<svg width="34" height="29" viewBox="0 0 34 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.375 6H3C1.89543 6 1 6.89543 1 8V22C1 23.1046 1.89543 24 3 24H11.0625M19.375 6H27C28.1046 6 29 6.89543 29 8V22C29 23.1046 28.1046 24 27 24H17.625" stroke="#8A8C8E" stroke-width="1.6" stroke-linecap="round"></path><path d="M29 9H31C32.1046 9 33 9.89543 33 11V19C33 20.1046 32.1046 21 31 21H29V9Z" stroke="#8A8C8E" stroke-width="1.6"></path></svg>
+                <p class="new-home-v4-training-classes-details-list__title">Intensidad</p>
+                <p class="new-home-v4-training-classes-details-list__text">Media</p>
+              </div>
+            </li>
+			
+			<li class="new-home-v4-training-classes-details-list__item">
+              <div class="list-desc">
+				<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="29" height="29" viewBox="0 0 444 528" enable-background="new 0 0 444 528" xml:space="preserve"><path fill-rule="evenodd" clip-rule="evenodd" fill="#8A8C8E" d="M410.981,249.29c-10.634-33.007-29.856-60.719-55.706-83.796 c-1.922-1.715-2.225-2.7-0.227-4.55c3.909-3.621,7.699-7.389,11.312-11.306c1.726-1.87,2.8-1.535,4.401,0.015 c3.95,3.823,7.954,7.598,12.085,11.223c4.824,4.235,10.244,4.158,14.245,0.024c4.141-4.277,3.995-10.144-0.77-14.617 c-13.604-12.769-27.285-25.458-41.047-38.057c-4.868-4.458-10.648-4.227-14.621,0.155c-3.942,4.348-3.475,9.908,1.333,14.594 c2.861,2.791,5.741,5.58,8.804,8.142c2.352,1.966,3.08,3.366,0.322,5.789c-4.123,3.621-7.967,7.587-11.672,11.642 c-1.888,2.065-3.195,1.911-5.377,0.44c-23.758-16.026-49.759-26.513-78.072-31.123c-2.229-0.363-3.12-1.145-3.05-3.497 c0.159-5.328,0.235-10.673-0.021-15.994c-0.149-3.084,1.149-3.542,3.769-3.432c4.325,0.182,8.664,0.053,12.997,0.048 c10.021-0.009,13.291-3.211,13.304-13.047c0.009-7.333,0.002-14.666,0.001-21.999c-0.001-7.999,0.081-16-0.025-23.998 c-0.092-6.864-4.042-10.898-10.889-10.91c-35.996-0.062-71.994-0.059-107.991-0.004c-7.116,0.011-11.027,4.04-11.057,11.254 c-0.066,15.832-0.07,31.665,0.002,47.496c0.033,7.173,3.984,11.082,11.129,11.191c5.165,0.08,10.337,0.141,15.497-0.037 c2.542-0.088,3.517,0.543,3.414,3.28c-0.211,5.659-0.295,11.343,0.025,16.991c0.188,3.297-1.226,4.146-4.064,4.817 c-6.453,1.526-12.914,3.153-19.189,5.275C52.241,161.681-3.415,279.124,37.312,385.308 c35.256,91.92,130.752,143.545,227.218,123.295c44.067-9.251,81.418-31.123,110.01-66.004 C421.718,385.043,433.819,320.174,410.981,249.29z M177.045,75.084c-3.233,0.042-4.245-0.785-4.133-4.094 c0.254-7.484,0.207-14.985,0.016-22.473c-0.072-2.846,0.806-3.594,3.61-3.584c27.639,0.1,55.278,0.099,82.917,0 c2.794-0.01,3.688,0.721,3.617,3.577c-0.19,7.654-0.188,15.319,0,22.974c0.07,2.846-0.804,3.614-3.61,3.586 c-13.818-0.137-27.639-0.062-41.458-0.062C204.351,75.008,190.696,74.904,177.045,75.084z M226.098,115.033 c-1.664-0.015-3.329-0.002-4.993-0.002c-0.005-0.076-0.011-0.151-0.017-0.227c-4.976,0.357-9.959,0.636-14.924,1.107 c-2.301,0.218-3.578-0.29-3.174-2.871c0.025-0.163,0-0.333,0.002-0.499c0.076-5.64-1.977-13.014,0.816-16.441 c2.906-3.567,10.584-0.955,16.166-1.037c4.248-0.063,9.921-1.914,12.357,0.885c2.087,2.397,0.641,7.914,0.665,12.051 C233.038,115.095,233.008,115.093,226.098,115.033z M222.821,492.974c-98.917-0.052-178.901-80.171-178.865-179.166 c0.036-98.841,80.246-178.867,179.226-178.815c98.88,0.052,178.924,80.24,178.862,179.184 C401.982,413.057,321.823,493.026,222.821,492.974z"/> <path fill-rule="evenodd" clip-rule="evenodd" fill="#8A8C8E" d="M232.99,314.096c-0.175,3.5-1.758,6.464-4.982,8.437 c-3.662,2.239-7.279,1.88-10.766-0.442c-8.712-5.807-17.416-11.625-26.114-17.449c-23.889-15.996-47.76-32.018-71.67-47.981 c-4.142-2.766-7.241-6.07-6.229-11.447c1.424-7.568,9.399-10.388,16.396-5.756c13.029,8.625,25.965,17.39,38.947,26.087 c19.33,12.947,38.649,25.91,58.011,38.809C230.071,306.676,232.748,309.393,232.99,314.096z"/></svg>
+                <p class="new-home-v4-training-classes-details-list__title">Descanzo</p>
+                <p class="new-home-v4-training-classes-details-list__text">45–60 seg.</p>
+              </div>
+            </li>
+          </ul>
+
+          <hr class="new-home-v4-training-classes-card__divider">
+
+          <p class="new-home-v4-training-classes-card__text">
+            <b>Cuerpo recto; bajar 2s subir explosivo. Mantén core activo.</b> <br/>Si son fáciles, eleva pies o añade excéntrica lenta. Al terminar las 3 series descansa 60–90 seg antes del siguiente ejercicio.
+          </p>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="new-home-v4-training-classes-list__item">
+    <article class="new-home-v4-training-classes-list__item">
+      <div class="new-home-v4-training-classes-card">
+        <img src="assets/ejercicios/pressmancuerna.jpg" alt="Press con mancuerna" loading="lazy" class="new-home-v4-training-classes-card__image">
+        <div class="new-home-v4-training-classes-card__header">
+          <h3 class="new-home-v4-training-classes-card__title">Press con mancuerna — 3×8–12</h3>
+        </div>
+        <div class="new-home-v4-training-classes-card__content">
+		  <ul class="new-home-v4-training-classes-details-list">
+            <li class="new-home-v4-training-classes-details-list__item">
+              <div class="list-desc">
+				<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="29" height="29" viewBox="0 0 535 528" enable-background="new 0 0 535 528" xml:space="preserve"> <path fill-rule="evenodd" clip-rule="evenodd" fill="#8A8C8D" d="M521.529,298.902c-9.99-47.875-34.661-86.416-74.125-115.4 c-1.744-1.281-3.215-2.756-4.484-4.522c-11.733-16.309-25.771-30.332-42.047-42.106c-1.755-1.27-3.283-2.672-4.555-4.443 c-11.795-16.433-25.911-30.563-42.33-42.375c-1.881-1.354-3.42-2.951-4.758-4.812C303.153,21.101,220.315-7.024,144.547,15.741 C52.073,43.526-3.982,135.833,14.46,230.883c8.344,43.006,29.832,78.657,63.186,107.16c4.966,4.244,11.151,7.14,15.042,12.504 c12.043,16.601,26.277,30.951,42.943,42.89c1.544,1.105,2.823,2.41,3.928,3.952c11.869,16.55,26.056,30.791,42.625,42.639 c1.772,1.269,3.209,2.798,4.468,4.546c44.583,61.942,122.931,90.512,196.899,71.807c83.347-21.076,141.474-95.553,141.446-181.232 C525.17,322.938,524.016,310.814,521.529,298.902z M392.599,156.041c-4.017-0.989-7.721-1.863-11.395-2.849 c-0.544-0.146-1.226-0.75-1.368-1.272c-1.007-3.679-1.888-7.393-2.939-11.613C384.683,143.455,389.709,148.371,392.599,156.041z M33.688,243.92c-7.125-23.736-9.627-48.117-5.459-72.5c12.162-71.155,52.498-119.496,121.6-140.58 c58.709-17.913,112.346-4.277,159.702,34.272c-74.361-22.496-141.791-10.622-197.165,45.094 c-55.271,55.612-66.729,122.972-43.345,197.459C52.445,288.847,40.801,267.618,33.688,243.92z M111.99,342.863 c-6.411-2.782-10.885-7.059-14.338-13.015c-12.743-21.982-20.663-45.383-23.342-70.729c-8.508-80.499,40.785-153.56,113.291-179.086 c22.628-7.966,45.919-11.017,69.731-9.28c28.397,2.071,54.697,10.875,78.909,25.995c4.767,2.977,6.88,7.588,9.988,12.323 c-71.086-18.065-134.564-4.717-186.615,47.228C107.471,208.337,94.019,271.829,111.99,342.863z M143.114,374.2 c4.214,0.134,8.084,1.97,12.161,2.798c0.384,0.078,0.813,0.727,0.932,1.186c0.96,3.684,1.851,7.385,2.823,11.324 C151.063,386.869,146.605,381.143,143.114,374.2z M152.55,360.004c-6.735-1.59-12.784-3.904-18.835-6.206 c-1.5-0.57-1.58-2.102-2.032-3.28c-5.597-14.624-9.287-29.686-10.737-45.319c-3.858-41.588,5.688-79.804,29.475-114.085 c26.721-38.508,63.502-62.303,109.474-71.166c31.743-6.12,62.944-3.023,93.244,8.508c2.295,0.873,3.811,2.019,4.558,4.427 c1.494,4.824,3.212,9.579,4.802,14.374c0.2,0.604,0.185,1.279,0.314,2.262c-60.654-6.249-113.705,10.388-156.892,53.647 C162.844,246.314,146.28,299.263,152.55,360.004z M168.453,360.267c-11.997-86.168,39.649-162.724,115.823-187.814 c24.604-8.104,49.735-10.66,75.444-7.216c0.661,0.089,1.338,0.184,1.999,0.144c4.232-0.257,5.629,1.858,5.964,5.924 c0.647,7.859,1.812,15.676,1.492,22.055c-0.033,78.972-51.961,146.947-126.596,167.037c-22.984,6.188-46.339,7.314-69.922,4.117 C170.003,364.152,168.816,362.876,168.453,360.267z M181.847,401.069c-1.621-0.65-2.507-1.481-3.159-3.166 c-2.16-5.579-4.167-11.188-5.733-17.535c11.733,1.019,22.78,1.746,33.884,1.189c40.286-2.018,76.296-15.498,107.724-40.699 c34.792-27.897,56.827-63.898,66.29-107.463c4.022-18.521,4.995-37.298,3.012-56.182c-0.789-7.513-0.731-7.795,6.301-5.302 c16.384,5.809,11.972,1.267,17.601,17.649c7.123,20.727,9.437,42.234,7.839,63.966c-5.549,75.446-57.904,134.302-124.271,152.932 c-19.122,5.367-38.544,7.379-58.239,6.149C215.461,411.508,198.313,407.682,181.847,401.069z M199.756,433.217 c-4.777-2.969-6.886-7.574-10.005-12.317c71.108,18.087,134.587,4.716,186.627-47.227c52.133-52.035,65.604-115.531,47.62-186.565 c6.409,2.805,10.892,7.065,14.344,13.026c12.734,21.984,21.062,45.34,23.262,70.733c5.215,60.216-15.326,110.078-61.044,149.329 c-25.01,21.472-54.429,34-87.075,38.053C272.764,463.303,234.75,454.969,199.756,433.217z M472.699,441.006 c-60.644,77.343-173.98,87.615-247.388,22.925c74.306,23.563,141.947,12.052,197.704-43.543 c55.751-55.59,67.445-123.192,44.321-196.909C513.121,271.188,530.91,366.769,472.699,441.006z"/></svg>
+                <p class="new-home-v4-training-classes-details-list__title">Series</p>
+                <p class="new-home-v4-training-classes-details-list__text">3 × 8–12</p>
+              </div>
+            </li>
+
+            <li class="new-home-v4-training-classes-details-list__item">
+              <div class="list-desc">
+				<svg width="34" height="29" viewBox="0 0 34 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.375 6H3C1.89543 6 1 6.89543 1 8V22C1 23.1046 1.89543 24 3 24H11.0625M19.375 6H27C28.1046 6 29 6.89543 29 8V22C29 23.1046 28.1046 24 27 24H17.625" stroke="#8A8C8E" stroke-width="1.6" stroke-linecap="round"></path><path d="M29 9H31C32.1046 9 33 9.89543 33 11V19C33 20.1046 32.1046 21 31 21H29V9Z" stroke="#8A8C8E" stroke-width="1.6"></path></svg>
+                <p class="new-home-v4-training-classes-details-list__title">Intensidad</p>
+                <p class="new-home-v4-training-classes-details-list__text">Alta</p>
+              </div>
+            </li>
+			
+			<li class="new-home-v4-training-classes-details-list__item">
+              <div class="list-desc">
+				<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="29" height="29" viewBox="0 0 444 528" enable-background="new 0 0 444 528" xml:space="preserve"><path fill-rule="evenodd" clip-rule="evenodd" fill="#8A8C8E" d="M410.981,249.29c-10.634-33.007-29.856-60.719-55.706-83.796 c-1.922-1.715-2.225-2.7-0.227-4.55c3.909-3.621,7.699-7.389,11.312-11.306c1.726-1.87,2.8-1.535,4.401,0.015 c3.95,3.823,7.954,7.598,12.085,11.223c4.824,4.235,10.244,4.158,14.245,0.024c4.141-4.277,3.995-10.144-0.77-14.617 c-13.604-12.769-27.285-25.458-41.047-38.057c-4.868-4.458-10.648-4.227-14.621,0.155c-3.942,4.348-3.475,9.908,1.333,14.594 c2.861,2.791,5.741,5.58,8.804,8.142c2.352,1.966,3.08,3.366,0.322,5.789c-4.123,3.621-7.967,7.587-11.672,11.642 c-1.888,2.065-3.195,1.911-5.377,0.44c-23.758-16.026-49.759-26.513-78.072-31.123c-2.229-0.363-3.12-1.145-3.05-3.497 c0.159-5.328,0.235-10.673-0.021-15.994c-0.149-3.084,1.149-3.542,3.769-3.432c4.325,0.182,8.664,0.053,12.997,0.048 c10.021-0.009,13.291-3.211,13.304-13.047c0.009-7.333,0.002-14.666,0.001-21.999c-0.001-7.999,0.081-16-0.025-23.998 c-0.092-6.864-4.042-10.898-10.889-10.91c-35.996-0.062-71.994-0.059-107.991-0.004c-7.116,0.011-11.027,4.04-11.057,11.254 c-0.066,15.832-0.07,31.665,0.002,47.496c0.033,7.173,3.984,11.082,11.129,11.191c5.165,0.08,10.337,0.141,15.497-0.037 c2.542-0.088,3.517,0.543,3.414,3.28c-0.211,5.659-0.295,11.343,0.025,16.991c0.188,3.297-1.226,4.146-4.064,4.817 c-6.453,1.526-12.914,3.153-19.189,5.275C52.241,161.681-3.415,279.124,37.312,385.308 c35.256,91.92,130.752,143.545,227.218,123.295c44.067-9.251,81.418-31.123,110.01-66.004 C421.718,385.043,433.819,320.174,410.981,249.29z M177.045,75.084c-3.233,0.042-4.245-0.785-4.133-4.094 c0.254-7.484,0.207-14.985,0.016-22.473c-0.072-2.846,0.806-3.594,3.61-3.584c27.639,0.1,55.278,0.099,82.917,0 c2.794-0.01,3.688,0.721,3.617,3.577c-0.19,7.654-0.188,15.319,0,22.974c0.07,2.846-0.804,3.614-3.61,3.586 c-13.818-0.137-27.639-0.062-41.458-0.062C204.351,75.008,190.696,74.904,177.045,75.084z M226.098,115.033 c-1.664-0.015-3.329-0.002-4.993-0.002c-0.005-0.076-0.011-0.151-0.017-0.227c-4.976,0.357-9.959,0.636-14.924,1.107 c-2.301,0.218-3.578-0.29-3.174-2.871c0.025-0.163,0-0.333,0.002-0.499c0.076-5.64-1.977-13.014,0.816-16.441 c2.906-3.567,10.584-0.955,16.166-1.037c4.248-0.063,9.921-1.914,12.357,0.885c2.087,2.397,0.641,7.914,0.665,12.051 C233.038,115.095,233.008,115.093,226.098,115.033z M222.821,492.974c-98.917-0.052-178.901-80.171-178.865-179.166 c0.036-98.841,80.246-178.867,179.226-178.815c98.88,0.052,178.924,80.24,178.862,179.184 C401.982,413.057,321.823,493.026,222.821,492.974z"/> <path fill-rule="evenodd" clip-rule="evenodd" fill="#8A8C8E" d="M232.99,314.096c-0.175,3.5-1.758,6.464-4.982,8.437 c-3.662,2.239-7.279,1.88-10.766-0.442c-8.712-5.807-17.416-11.625-26.114-17.449c-23.889-15.996-47.76-32.018-71.67-47.981 c-4.142-2.766-7.241-6.07-6.229-11.447c1.424-7.568,9.399-10.388,16.396-5.756c13.029,8.625,25.965,17.39,38.947,26.087 c19.33,12.947,38.649,25.91,58.011,38.809C230.071,306.676,232.748,309.393,232.99,314.096z"/></svg>
+                <p class="new-home-v4-training-classes-details-list__title">Descanzo</p>
+                <p class="new-home-v4-training-classes-details-list__text">45–60 seg.</p>
+              </div>
+            </li>
+          </ul>
+          <hr class="new-home-v4-training-classes-card__divider">
+          <p class="new-home-v4-training-classes-card__text">
+            <b>Control 2–3s en bajada.</b> <br/>Usa discos incrementales según progresión. Tras completar las 3 series, descansar 60–90 s antes de pike push.
+          </p>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="new-home-v4-training-classes-list__item">
+    <article class="new-home-v4-training-classes-list__item">
+      <div class="new-home-v4-training-classes-card">
+        <img src="assets/ejercicios/pikepush.jpg" alt="Pike Push" loading="lazy" class="new-home-v4-training-classes-card__image">
+        <div class="new-home-v4-training-classes-card__header">
+          <h3 class="new-home-v4-training-classes-card__title">Pike Push — 3×8–12</h3>
+        </div>
+        <div class="new-home-v4-training-classes-card__content">
+		  <ul class="new-home-v4-training-classes-details-list">
+            <li class="new-home-v4-training-classes-details-list__item">
+              <div class="list-desc">
+				<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="29" height="29" viewBox="0 0 535 528" enable-background="new 0 0 535 528" xml:space="preserve"> <path fill-rule="evenodd" clip-rule="evenodd" fill="#8A8C8D" d="M521.529,298.902c-9.99-47.875-34.661-86.416-74.125-115.4 c-1.744-1.281-3.215-2.756-4.484-4.522c-11.733-16.309-25.771-30.332-42.047-42.106c-1.755-1.27-3.283-2.672-4.555-4.443 c-11.795-16.433-25.911-30.563-42.33-42.375c-1.881-1.354-3.42-2.951-4.758-4.812C303.153,21.101,220.315-7.024,144.547,15.741 C52.073,43.526-3.982,135.833,14.46,230.883c8.344,43.006,29.832,78.657,63.186,107.16c4.966,4.244,11.151,7.14,15.042,12.504 c12.043,16.601,26.277,30.951,42.943,42.89c1.544,1.105,2.823,2.41,3.928,3.952c11.869,16.55,26.056,30.791,42.625,42.639 c1.772,1.269,3.209,2.798,4.468,4.546c44.583,61.942,122.931,90.512,196.899,71.807c83.347-21.076,141.474-95.553,141.446-181.232 C525.17,322.938,524.016,310.814,521.529,298.902z M392.599,156.041c-4.017-0.989-7.721-1.863-11.395-2.849 c-0.544-0.146-1.226-0.75-1.368-1.272c-1.007-3.679-1.888-7.393-2.939-11.613C384.683,143.455,389.709,148.371,392.599,156.041z M33.688,243.92c-7.125-23.736-9.627-48.117-5.459-72.5c12.162-71.155,52.498-119.496,121.6-140.58 c58.709-17.913,112.346-4.277,159.702,34.272c-74.361-22.496-141.791-10.622-197.165,45.094 c-55.271,55.612-66.729,122.972-43.345,197.459C52.445,288.847,40.801,267.618,33.688,243.92z M111.99,342.863 c-6.411-2.782-10.885-7.059-14.338-13.015c-12.743-21.982-20.663-45.383-23.342-70.729c-8.508-80.499,40.785-153.56,113.291-179.086 c22.628-7.966,45.919-11.017,69.731-9.28c28.397,2.071,54.697,10.875,78.909,25.995c4.767,2.977,6.88,7.588,9.988,12.323 c-71.086-18.065-134.564-4.717-186.615,47.228C107.471,208.337,94.019,271.829,111.99,342.863z M143.114,374.2 c4.214,0.134,8.084,1.97,12.161,2.798c0.384,0.078,0.813,0.727,0.932,1.186c0.96,3.684,1.851,7.385,2.823,11.324 C151.063,386.869,146.605,381.143,143.114,374.2z M152.55,360.004c-6.735-1.59-12.784-3.904-18.835-6.206 c-1.5-0.57-1.58-2.102-2.032-3.28c-5.597-14.624-9.287-29.686-10.737-45.319c-3.858-41.588,5.688-79.804,29.475-114.085 c26.721-38.508,63.502-62.303,109.474-71.166c31.743-6.12,62.944-3.023,93.244,8.508c2.295,0.873,3.811,2.019,4.558,4.427 c1.494,4.824,3.212,9.579,4.802,14.374c0.2,0.604,0.185,1.279,0.314,2.262c-60.654-6.249-113.705,10.388-156.892,53.647 C162.844,246.314,146.28,299.263,152.55,360.004z M168.453,360.267c-11.997-86.168,39.649-162.724,115.823-187.814 c24.604-8.104,49.735-10.66,75.444-7.216c0.661,0.089,1.338,0.184,1.999,0.144c4.232-0.257,5.629,1.858,5.964,5.924 c0.647,7.859,1.812,15.676,1.492,22.055c-0.033,78.972-51.961,146.947-126.596,167.037c-22.984,6.188-46.339,7.314-69.922,4.117 C170.003,364.152,168.816,362.876,168.453,360.267z M181.847,401.069c-1.621-0.65-2.507-1.481-3.159-3.166 c-2.16-5.579-4.167-11.188-5.733-17.535c11.733,1.019,22.78,1.746,33.884,1.189c40.286-2.018,76.296-15.498,107.724-40.699 c34.792-27.897,56.827-63.898,66.29-107.463c4.022-18.521,4.995-37.298,3.012-56.182c-0.789-7.513-0.731-7.795,6.301-5.302 c16.384,5.809,11.972,1.267,17.601,17.649c7.123,20.727,9.437,42.234,7.839,63.966c-5.549,75.446-57.904,134.302-124.271,152.932 c-19.122,5.367-38.544,7.379-58.239,6.149C215.461,411.508,198.313,407.682,181.847,401.069z M199.756,433.217 c-4.777-2.969-6.886-7.574-10.005-12.317c71.108,18.087,134.587,4.716,186.627-47.227c52.133-52.035,65.604-115.531,47.62-186.565 c6.409,2.805,10.892,7.065,14.344,13.026c12.734,21.984,21.062,45.34,23.262,70.733c5.215,60.216-15.326,110.078-61.044,149.329 c-25.01,21.472-54.429,34-87.075,38.053C272.764,463.303,234.75,454.969,199.756,433.217z M472.699,441.006 c-60.644,77.343-173.98,87.615-247.388,22.925c74.306,23.563,141.947,12.052,197.704-43.543 c55.751-55.59,67.445-123.192,44.321-196.909C513.121,271.188,530.91,366.769,472.699,441.006z"/></svg>
+                <p class="new-home-v4-training-classes-details-list__title">Series</p>
+                <p class="new-home-v4-training-classes-details-list__text">3 × 8–12</p>
+              </div>
+            </li>
+
+            <li class="new-home-v4-training-classes-details-list__item">
+              <div class="list-desc">
+				<svg width="34" height="29" viewBox="0 0 34 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.375 6H3C1.89543 6 1 6.89543 1 8V22C1 23.1046 1.89543 24 3 24H11.0625M19.375 6H27C28.1046 6 29 6.89543 29 8V22C29 23.1046 28.1046 24 27 24H17.625" stroke="#8A8C8E" stroke-width="1.6" stroke-linecap="round"></path><path d="M29 9H31C32.1046 9 33 9.89543 33 11V19C33 20.1046 32.1046 21 31 21H29V9Z" stroke="#8A8C8E" stroke-width="1.6"></path></svg>
+                <p class="new-home-v4-training-classes-details-list__title">Intensidad</p>
+                <p class="new-home-v4-training-classes-details-list__text">Alta</p>
+              </div>
+            </li>
+			
+			<li class="new-home-v4-training-classes-details-list__item">
+              <div class="list-desc">
+				<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="29" height="29" viewBox="0 0 444 528" enable-background="new 0 0 444 528" xml:space="preserve"><path fill-rule="evenodd" clip-rule="evenodd" fill="#8A8C8E" d="M410.981,249.29c-10.634-33.007-29.856-60.719-55.706-83.796 c-1.922-1.715-2.225-2.7-0.227-4.55c3.909-3.621,7.699-7.389,11.312-11.306c1.726-1.87,2.8-1.535,4.401,0.015 c3.95,3.823,7.954,7.598,12.085,11.223c4.824,4.235,10.244,4.158,14.245,0.024c4.141-4.277,3.995-10.144-0.77-14.617 c-13.604-12.769-27.285-25.458-41.047-38.057c-4.868-4.458-10.648-4.227-14.621,0.155c-3.942,4.348-3.475,9.908,1.333,14.594 c2.861,2.791,5.741,5.58,8.804,8.142c2.352,1.966,3.08,3.366,0.322,5.789c-4.123,3.621-7.967,7.587-11.672,11.642 c-1.888,2.065-3.195,1.911-5.377,0.44c-23.758-16.026-49.759-26.513-78.072-31.123c-2.229-0.363-3.12-1.145-3.05-3.497 c0.159-5.328,0.235-10.673-0.021-15.994c-0.149-3.084,1.149-3.542,3.769-3.432c4.325,0.182,8.664,0.053,12.997,0.048 c10.021-0.009,13.291-3.211,13.304-13.047c0.009-7.333,0.002-14.666,0.001-21.999c-0.001-7.999,0.081-16-0.025-23.998 c-0.092-6.864-4.042-10.898-10.889-10.91c-35.996-0.062-71.994-0.059-107.991-0.004c-7.116,0.011-11.027,4.04-11.057,11.254 c-0.066,15.832-0.07,31.665,0.002,47.496c0.033,7.173,3.984,11.082,11.129,11.191c5.165,0.08,10.337,0.141,15.497-0.037 c2.542-0.088,3.517,0.543,3.414,3.28c-0.211,5.659-0.295,11.343,0.025,16.991c0.188,3.297-1.226,4.146-4.064,4.817 c-6.453,1.526-12.914,3.153-19.189,5.275C52.241,161.681-3.415,279.124,37.312,385.308 c35.256,91.92,130.752,143.545,227.218,123.295c44.067-9.251,81.418-31.123,110.01-66.004 C421.718,385.043,433.819,320.174,410.981,249.29z M177.045,75.084c-3.233,0.042-4.245-0.785-4.133-4.094 c0.254-7.484,0.207-14.985,0.016-22.473c-0.072-2.846,0.806-3.594,3.61-3.584c27.639,0.1,55.278,0.099,82.917,0 c2.794-0.01,3.688,0.721,3.617,3.577c-0.19,7.654-0.188,15.319,0,22.974c0.07,2.846-0.804,3.614-3.61,3.586 c-13.818-0.137-27.639-0.062-41.458-0.062C204.351,75.008,190.696,74.904,177.045,75.084z M226.098,115.033 c-1.664-0.015-3.329-0.002-4.993-0.002c-0.005-0.076-0.011-0.151-0.017-0.227c-4.976,0.357-9.959,0.636-14.924,1.107 c-2.301,0.218-3.578-0.29-3.174-2.871c0.025-0.163,0-0.333,0.002-0.499c0.076-5.64-1.977-13.014,0.816-16.441 c2.906-3.567,10.584-0.955,16.166-1.037c4.248-0.063,9.921-1.914,12.357,0.885c2.087,2.397,0.641,7.914,0.665,12.051 C233.038,115.095,233.008,115.093,226.098,115.033z M222.821,492.974c-98.917-0.052-178.901-80.171-178.865-179.166 c0.036-98.841,80.246-178.867,179.226-178.815c98.88,0.052,178.924,80.24,178.862,179.184 C401.982,413.057,321.823,493.026,222.821,492.974z"/> <path fill-rule="evenodd" clip-rule="evenodd" fill="#8A8C8E" d="M232.99,314.096c-0.175,3.5-1.758,6.464-4.982,8.437 c-3.662,2.239-7.279,1.88-10.766-0.442c-8.712-5.807-17.416-11.625-26.114-17.449c-23.889-15.996-47.76-32.018-71.67-47.981 c-4.142-2.766-7.241-6.07-6.229-11.447c1.424-7.568,9.399-10.388,16.396-5.756c13.029,8.625,25.965,17.39,38.947,26.087 c19.33,12.947,38.649,25.91,58.011,38.809C230.071,306.676,232.748,309.393,232.99,314.096z"/></svg>
+                <p class="new-home-v4-training-classes-details-list__title">Descanzo</p>
+                <p class="new-home-v4-training-classes-details-list__text">45–60 seg.</p>
+              </div>
+            </li>
+          </ul>
+          <hr class="new-home-v4-training-classes-card__divider">
+          <p class="new-home-v4-training-classes-card__text">
+            Ejercicio de hombros. <b>Si es fácil, añade rep o inclinación más vertical.</b> Descanso 60–90 s entre series. Al terminar el bloque Push, descansa 2 min antes del siguiente bloque (Pull).
+          </p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ======= MARTES ======= -->
+<section id="martes" class="cards-dia">
+  <!-- Sentadilla -->
+  <div class="new-home-v4-training-classes-list__item">
+    <article class="new-home-v4-training-classes-list__item">
+      <div class="new-home-v4-training-classes-card">
+        <img src="assets/ejercicios/sentadilla.jpg" alt="Sentadilla" loading="lazy" class="new-home-v4-training-classes-card__image">
+        <div class="new-home-v4-training-classes-card__header">
+          <h3 class="new-home-v4-training-classes-card__title">Sentadilla — 4×10–12</h3>
+        </div>
+        <div class="new-home-v4-training-classes-card__content">
+          <ul class="new-home-v4-training-classes-details-list">
+            <li class="new-home-v4-training-classes-details-list__item">
+              <span class="new-home-v4-training-classes-details-list__icon">...svg...</span>
+              <div><p class="new-home-v4-training-classes-details-list__title">Duración</p><p class="new-home-v4-training-classes-details-list__text">4×10–12</p></div>
+            </li>
+            <li class="new-home-v4-training-classes-details-list__item">
+              <span class="new-home-v4-training-classes-details-list__icon">...svg...</span>
+              <div><p class="new-home-v4-training-classes-details-list__title">Intensidad</p><p class="new-home-v4-training-classes-details-list__text">Media</p></div>
+            </li>
+          </ul>
+          <hr class="new-home-v4-training-classes-card__divider">
+          <p class="new-home-v4-training-classes-card__text">Sentadilla con mancuerna — Mantén el pecho erguido y los talones apoyados. Descanso 75–90 s entre series.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- Zancadas -->
+  <div class="new-home-v4-training-classes-list__item">
+    <article class="new-home-v4-training-classes-list__item">
+      <div class="new-home-v4-training-classes-card">
+        <img src="assets/ejercicios/zancadas.jpg" alt="Zancadas" loading="lazy" class="new-home-v4-training-classes-card__image">
+        <div class="new-home-v4-training-classes-card__header">
+          <h3 class="new-home-v4-training-classes-card__title">Zancadas — 3×10 / pierna</h3>
+        </div>
+        <div class="new-home-v4-training-classes-card__content">
+          <ul class="new-home-v4-training-classes-details-list">
+            <li class="new-home-v4-training-classes-details-list__item"><span class="new-home-v4-training-classes-details-list__icon">...svg...</span><div><p class="new-home-v4-training-classes-details-list__title">Duración</p><p class="new-home-v4-training-classes-details-list__text">3×10/por pierna</p></div></li>
+            <li class="new-home-v4-training-classes-details-list__item"><span class="new-home-v4-training-classes-details-list__icon">...svg...</span><div><p class="new-home-v4-training-classes-details-list__title">Intensidad</p><p class="new-home-v4-training-classes-details-list__text">Media</p></div></li>
+          </ul>
+          <hr class="new-home-v4-training-classes-card__divider">
+          <p class="new-home-v4-training-classes-card__text">Zancadas con mancuerna — Descanso 60–75 s entre series.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- Sentadilla Bulgara -->
+  <div class="new-home-v4-training-classes-list__item">
+    <article class="new-home-v4-training-classes-list__item">
+      <div class="new-home-v4-training-classes-card">
+        <img src="assets/ejercicios/sentadillabulgara.jpg" alt="Sentadilla Búlgara" loading="lazy" class="new-home-v4-training-classes-card__image">
+        <div class="new-home-v4-training-classes-card__header">
+          <h3 class="new-home-v4-training-classes-card__title">Sentadilla búlgara — 3×10 / pierna</h3>
+        </div>
+        <div class="new-home-v4-training-classes-card__content">
+          <ul class="new-home-v4-training-classes-details-list">
+            <li class="new-home-v4-training-classes-details-list__item"><span class="new-home-v4-training-classes-details-list__icon">...svg...</span><div><p class="new-home-v4-training-classes-details-list__title">Duración</p><p class="new-home-v4-training-classes-details-list__text">3×10/por pierna</p></div></li>
+            <li class="new-home-v4-training-classes-details-list__item"><span class="new-home-v4-training-classes-details-list__icon">...svg...</span><div><p class="new-home-v4-training-classes-details-list__title">Intensidad</p><p class="new-home-v4-training-classes-details-list__text">Media</p></div></li>
+          </ul>
+          <hr class="new-home-v4-training-classes-card__divider">
+          <p class="new-home-v4-training-classes-card__text">Sentadilla búlgara — Descansa 60–75 s entre series.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ======= MIÉRCOLES ======= -->
+<section id="miercoles" class="cards-dia">
+  <!-- Remo / Curl / Plancha based on your original text -->
+  <div class="new-home-v4-training-classes-list__item">
+    <article class="new-home-v4-training-classes-list__item">
+      <div class="new-home-v4-training-classes-card">
+        <img src="assets/ejercicios/remobanda.jpg" alt="Remo con banda" loading="lazy" class="new-home-v4-training-classes-card__image">
+        <div class="new-home-v4-training-classes-card__header"><h3 class="new-home-v4-training-classes-card__title">Remo con banda — 4×12–15</h3></div>
+        <div class="new-home-v4-training-classes-card__content">
+          <ul class="new-home-v4-training-classes-details-list">
+            <li class="new-home-v4-training-classes-details-list__item"><span class="new-home-v4-training-classes-details-list__icon">...svg...</span><div><p class="new-home-v4-training-classes-details-list__title">Duración</p><p class="new-home-v4-training-classes-details-list__text">4×12–15</p></div></li>
+            <li class="new-home-v4-training-classes-details-list__item"><span class="new-home-v4-training-classes-details-list__icon">...svg...</span><div><p class="new-home-v4-training-classes-details-list__title">Intensidad</p><p class="new-home-v4-training-classes-details-list__text">Media</p></div></li>
+          </ul>
+          <hr class="new-home-v4-training-classes-card__divider">
+          <p class="new-home-v4-training-classes-card__text">Remo con banda — Descanso 45–60 s entre series; 60–90 s al terminar el ejercicio.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="new-home-v4-training-classes-list__item">
+    <article class="new-home-v4-training-classes-list__item">
+      <div class="new-home-v4-training-classes-card">
+        <img src="assets/ejercicios/remoinclinado.jpg" alt="Remo inclinado" loading="lazy" class="new-home-v4-training-classes-card__image">
+        <div class="new-home-v4-training-classes-card__header"><h3 class="new-home-v4-training-classes-card__title">Remo inclinado — 3×10–12</h3></div>
+        <div class="new-home-v4-training-classes-card__content">
+          <ul class="new-home-v4-training-classes-details-list">
+            <li class="new-home-v4-training-classes-details-list__item">...</li>
+            <li class="new-home-v4-training-classes-details-list__item">...</li>
+          </ul>
+          <hr class="new-home-v4-training-classes-card__divider">
+          <p class="new-home-v4-training-classes-card__text">Remo inclinado con mancuerna — Descanso 60–75 s entre series.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="new-home-v4-training-classes-list__item">
+    <article class="new-home-v4-training-classes-list__item">
+      <div class="new-home-v4-training-classes-card">
+        <img src="assets/ejercicios/curlbiceps.jpg" alt="Curl bíceps" loading="lazy" class="new-home-v4-training-classes-card__image">
+        <div class="new-home-v4-training-classes-card__header"><h3 class="new-home-v4-training-classes-card__title">Curl bíceps — 3×10–12</h3></div>
+        <div class="new-home-v4-training-classes-card__content">
+          <ul class="new-home-v4-training-classes-details-list">
+            <li class="new-home-v4-training-classes-details-list__item">...</li>
+            <li class="new-home-v4-training-classes-details-list__item">...</li>
+          </ul>
+          <hr class="new-home-v4-training-classes-card__divider">
+          <p class="new-home-v4-training-classes-card__text">Curl bíceps — Descanso 45–60 s entre series.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ======= JUEVES ======= -->
+<section id="jueves" class="cards-dia">
+  <div class="new-home-v4-training-classes-list__item">
+    <article class="new-home-v4-training-classes-list__item">
+      <div class="new-home-v4-training-classes-card">
+        <img src="assets/ejercicios/elevacioneslaterales.jpg" alt="Elevaciones laterales" loading="lazy" class="new-home-v4-training-classes-card__image">
+        <div class="new-home-v4-training-classes-card__header"><h3 class="new-home-v4-training-classes-card__title">Elevaciones laterales — 3×12–15</h3></div>
+        <div class="new-home-v4-training-classes-card__content">
+          <ul class="new-home-v4-training-classes-details-list"><li>...</li><li>...</li></ul>
+          <hr class="new-home-v4-training-classes-card__divider">
+          <p class="new-home-v4-training-classes-card__text">Descanso 45–60 s entre series.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="new-home-v4-training-classes-list__item">
+    <article class="new-home-v4-training-classes-list__item">
+      <div class="new-home-v4-training-classes-card">
+        <img src="assets/ejercicios/fondos.jpg" alt="Fondos / Tríceps" loading="lazy" class="new-home-v4-training-classes-card__image">
+        <div class="new-home-v4-training-classes-card__header"><h3 class="new-home-v4-training-classes-card__title">Fondos / Press tríceps — 3×10–12</h3></div>
+        <div class="new-home-v4-training-classes-card__content">
+          <ul class="new-home-v4-training-classes-details-list"><li>...</li><li>...</li></ul>
+          <hr class="new-home-v4-training-classes-card__divider">
+          <p class="new-home-v4-training-classes-card__text">Descanso 60 s entre series.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="new-home-v4-training-classes-list__item">
+    <article class="new-home-v4-training-classes-list__item">
+      <div class="new-home-v4-training-classes-card">
+        <img src="assets/ejercicios/presshombro.jpg" alt="Press Hombro" loading="lazy" class="new-home-v4-training-classes-card__image">
+        <div class="new-home-v4-training-classes-card__header"><h3 class="new-home-v4-training-classes-card__title">Press hombro — 3×10–12</h3></div>
+        <div class="new-home-v4-training-classes-card__content">
+          <ul class="new-home-v4-training-classes-details-list"><li>...</li><li>...</li></ul>
+          <hr class="new-home-v4-training-classes-card__divider">
+          <p class="new-home-v4-training-classes-card__text">Rutina de hombros y complementos.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ======= VIERNES ======= -->
+<section id="viernes" class="cards-dia">
+  <div class="new-home-v4-training-classes-list__item">
+    <article class="new-home-v4-training-classes-list__item">
+      <div class="new-home-v4-training-classes-card">
+        <img src="assets/ejercicios/burpees.jpg" alt="Burpees" loading="lazy" class="new-home-v4-training-classes-card__image">
+        <div class="new-home-v4-training-classes-card__header"><h3 class="new-home-v4-training-classes-card__title">Burpees — 4×10–12</h3></div>
+        <div class="new-home-v4-training-classes-card__content">
+          <ul class="new-home-v4-training-classes-details-list">
+            <li class="new-home-v4-training-classes-details-list__item">
+              <div class="list-desc">
+				<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="29" height="29" viewBox="0 0 535 528" enable-background="new 0 0 535 528" xml:space="preserve"> <path fill-rule="evenodd" clip-rule="evenodd" fill="#8A8C8D" d="M521.529,298.902c-9.99-47.875-34.661-86.416-74.125-115.4 c-1.744-1.281-3.215-2.756-4.484-4.522c-11.733-16.309-25.771-30.332-42.047-42.106c-1.755-1.27-3.283-2.672-4.555-4.443 c-11.795-16.433-25.911-30.563-42.33-42.375c-1.881-1.354-3.42-2.951-4.758-4.812C303.153,21.101,220.315-7.024,144.547,15.741 C52.073,43.526-3.982,135.833,14.46,230.883c8.344,43.006,29.832,78.657,63.186,107.16c4.966,4.244,11.151,7.14,15.042,12.504 c12.043,16.601,26.277,30.951,42.943,42.89c1.544,1.105,2.823,2.41,3.928,3.952c11.869,16.55,26.056,30.791,42.625,42.639 c1.772,1.269,3.209,2.798,4.468,4.546c44.583,61.942,122.931,90.512,196.899,71.807c83.347-21.076,141.474-95.553,141.446-181.232 C525.17,322.938,524.016,310.814,521.529,298.902z M392.599,156.041c-4.017-0.989-7.721-1.863-11.395-2.849 c-0.544-0.146-1.226-0.75-1.368-1.272c-1.007-3.679-1.888-7.393-2.939-11.613C384.683,143.455,389.709,148.371,392.599,156.041z M33.688,243.92c-7.125-23.736-9.627-48.117-5.459-72.5c12.162-71.155,52.498-119.496,121.6-140.58 c58.709-17.913,112.346-4.277,159.702,34.272c-74.361-22.496-141.791-10.622-197.165,45.094 c-55.271,55.612-66.729,122.972-43.345,197.459C52.445,288.847,40.801,267.618,33.688,243.92z M111.99,342.863 c-6.411-2.782-10.885-7.059-14.338-13.015c-12.743-21.982-20.663-45.383-23.342-70.729c-8.508-80.499,40.785-153.56,113.291-179.086 c22.628-7.966,45.919-11.017,69.731-9.28c28.397,2.071,54.697,10.875,78.909,25.995c4.767,2.977,6.88,7.588,9.988,12.323 c-71.086-18.065-134.564-4.717-186.615,47.228C107.471,208.337,94.019,271.829,111.99,342.863z M143.114,374.2 c4.214,0.134,8.084,1.97,12.161,2.798c0.384,0.078,0.813,0.727,0.932,1.186c0.96,3.684,1.851,7.385,2.823,11.324 C151.063,386.869,146.605,381.143,143.114,374.2z M152.55,360.004c-6.735-1.59-12.784-3.904-18.835-6.206 c-1.5-0.57-1.58-2.102-2.032-3.28c-5.597-14.624-9.287-29.686-10.737-45.319c-3.858-41.588,5.688-79.804,29.475-114.085 c26.721-38.508,63.502-62.303,109.474-71.166c31.743-6.12,62.944-3.023,93.244,8.508c2.295,0.873,3.811,2.019,4.558,4.427 c1.494,4.824,3.212,9.579,4.802,14.374c0.2,0.604,0.185,1.279,0.314,2.262c-60.654-6.249-113.705,10.388-156.892,53.647 C162.844,246.314,146.28,299.263,152.55,360.004z M168.453,360.267c-11.997-86.168,39.649-162.724,115.823-187.814 c24.604-8.104,49.735-10.66,75.444-7.216c0.661,0.089,1.338,0.184,1.999,0.144c4.232-0.257,5.629,1.858,5.964,5.924 c0.647,7.859,1.812,15.676,1.492,22.055c-0.033,78.972-51.961,146.947-126.596,167.037c-22.984,6.188-46.339,7.314-69.922,4.117 C170.003,364.152,168.816,362.876,168.453,360.267z M181.847,401.069c-1.621-0.65-2.507-1.481-3.159-3.166 c-2.16-5.579-4.167-11.188-5.733-17.535c11.733,1.019,22.78,1.746,33.884,1.189c40.286-2.018,76.296-15.498,107.724-40.699 c34.792-27.897,56.827-63.898,66.29-107.463c4.022-18.521,4.995-37.298,3.012-56.182c-0.789-7.513-0.731-7.795,6.301-5.302 c16.384,5.809,11.972,1.267,17.601,17.649c7.123,20.727,9.437,42.234,7.839,63.966c-5.549,75.446-57.904,134.302-124.271,152.932 c-19.122,5.367-38.544,7.379-58.239,6.149C215.461,411.508,198.313,407.682,181.847,401.069z M199.756,433.217 c-4.777-2.969-6.886-7.574-10.005-12.317c71.108,18.087,134.587,4.716,186.627-47.227c52.133-52.035,65.604-115.531,47.62-186.565 c6.409,2.805,10.892,7.065,14.344,13.026c12.734,21.984,21.062,45.34,23.262,70.733c5.215,60.216-15.326,110.078-61.044,149.329 c-25.01,21.472-54.429,34-87.075,38.053C272.764,463.303,234.75,454.969,199.756,433.217z M472.699,441.006 c-60.644,77.343-173.98,87.615-247.388,22.925c74.306,23.563,141.947,12.052,197.704-43.543 c55.751-55.59,67.445-123.192,44.321-196.909C513.121,271.188,530.91,366.769,472.699,441.006z"/></svg>
+                <p class="new-home-v4-training-classes-details-list__title">Series</p>
+                <p class="new-home-v4-training-classes-details-list__text">4 × 10–12</p>
+              </div>
+            </li>
+
+            <li class="new-home-v4-training-classes-details-list__item">
+              <div class="list-desc">
+				<svg width="34" height="29" viewBox="0 0 34 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.375 6H3C1.89543 6 1 6.89543 1 8V22C1 23.1046 1.89543 24 3 24H11.0625M19.375 6H27C28.1046 6 29 6.89543 29 8V22C29 23.1046 28.1046 24 27 24H17.625" stroke="#8A8C8E" stroke-width="1.6" stroke-linecap="round"></path><path d="M29 9H31C32.1046 9 33 9.89543 33 11V19C33 20.1046 32.1046 21 31 21H29V9Z" stroke="#8A8C8E" stroke-width="1.6"></path></svg>
+                <p class="new-home-v4-training-classes-details-list__title">Intensidad</p>
+                <p class="new-home-v4-training-classes-details-list__text">Alta</p>
+              </div>
+            </li>
+			
+			<li class="new-home-v4-training-classes-details-list__item">
+              <div class="list-desc">
+				<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="29" height="29" viewBox="0 0 444 528" enable-background="new 0 0 444 528" xml:space="preserve"><path fill-rule="evenodd" clip-rule="evenodd" fill="#8A8C8E" d="M410.981,249.29c-10.634-33.007-29.856-60.719-55.706-83.796 c-1.922-1.715-2.225-2.7-0.227-4.55c3.909-3.621,7.699-7.389,11.312-11.306c1.726-1.87,2.8-1.535,4.401,0.015 c3.95,3.823,7.954,7.598,12.085,11.223c4.824,4.235,10.244,4.158,14.245,0.024c4.141-4.277,3.995-10.144-0.77-14.617 c-13.604-12.769-27.285-25.458-41.047-38.057c-4.868-4.458-10.648-4.227-14.621,0.155c-3.942,4.348-3.475,9.908,1.333,14.594 c2.861,2.791,5.741,5.58,8.804,8.142c2.352,1.966,3.08,3.366,0.322,5.789c-4.123,3.621-7.967,7.587-11.672,11.642 c-1.888,2.065-3.195,1.911-5.377,0.44c-23.758-16.026-49.759-26.513-78.072-31.123c-2.229-0.363-3.12-1.145-3.05-3.497 c0.159-5.328,0.235-10.673-0.021-15.994c-0.149-3.084,1.149-3.542,3.769-3.432c4.325,0.182,8.664,0.053,12.997,0.048 c10.021-0.009,13.291-3.211,13.304-13.047c0.009-7.333,0.002-14.666,0.001-21.999c-0.001-7.999,0.081-16-0.025-23.998 c-0.092-6.864-4.042-10.898-10.889-10.91c-35.996-0.062-71.994-0.059-107.991-0.004c-7.116,0.011-11.027,4.04-11.057,11.254 c-0.066,15.832-0.07,31.665,0.002,47.496c0.033,7.173,3.984,11.082,11.129,11.191c5.165,0.08,10.337,0.141,15.497-0.037 c2.542-0.088,3.517,0.543,3.414,3.28c-0.211,5.659-0.295,11.343,0.025,16.991c0.188,3.297-1.226,4.146-4.064,4.817 c-6.453,1.526-12.914,3.153-19.189,5.275C52.241,161.681-3.415,279.124,37.312,385.308 c35.256,91.92,130.752,143.545,227.218,123.295c44.067-9.251,81.418-31.123,110.01-66.004 C421.718,385.043,433.819,320.174,410.981,249.29z M177.045,75.084c-3.233,0.042-4.245-0.785-4.133-4.094 c0.254-7.484,0.207-14.985,0.016-22.473c-0.072-2.846,0.806-3.594,3.61-3.584c27.639,0.1,55.278,0.099,82.917,0 c2.794-0.01,3.688,0.721,3.617,3.577c-0.19,7.654-0.188,15.319,0,22.974c0.07,2.846-0.804,3.614-3.61,3.586 c-13.818-0.137-27.639-0.062-41.458-0.062C204.351,75.008,190.696,74.904,177.045,75.084z M226.098,115.033 c-1.664-0.015-3.329-0.002-4.993-0.002c-0.005-0.076-0.011-0.151-0.017-0.227c-4.976,0.357-9.959,0.636-14.924,1.107 c-2.301,0.218-3.578-0.29-3.174-2.871c0.025-0.163,0-0.333,0.002-0.499c0.076-5.64-1.977-13.014,0.816-16.441 c2.906-3.567,10.584-0.955,16.166-1.037c4.248-0.063,9.921-1.914,12.357,0.885c2.087,2.397,0.641,7.914,0.665,12.051 C233.038,115.095,233.008,115.093,226.098,115.033z M222.821,492.974c-98.917-0.052-178.901-80.171-178.865-179.166 c0.036-98.841,80.246-178.867,179.226-178.815c98.88,0.052,178.924,80.24,178.862,179.184 C401.982,413.057,321.823,493.026,222.821,492.974z"/> <path fill-rule="evenodd" clip-rule="evenodd" fill="#8A8C8E" d="M232.99,314.096c-0.175,3.5-1.758,6.464-4.982,8.437 c-3.662,2.239-7.279,1.88-10.766-0.442c-8.712-5.807-17.416-11.625-26.114-17.449c-23.889-15.996-47.76-32.018-71.67-47.981 c-4.142-2.766-7.241-6.07-6.229-11.447c1.424-7.568,9.399-10.388,16.396-5.756c13.029,8.625,25.965,17.39,38.947,26.087 c19.33,12.947,38.649,25.91,58.011,38.809C230.071,306.676,232.748,309.393,232.99,314.096z"/></svg>
+                <p class="new-home-v4-training-classes-details-list__title">Descanzo</p>
+                <p class="new-home-v4-training-classes-details-list__text">45–60 seg.</p>
+              </div>
+            </li>
+          </ul>
+          <hr class="new-home-v4-training-classes-card__divider">
+          <p class="new-home-v4-training-classes-card__text">Si haces HIIT, mantenlo 10–15 min máximo; evita añadir peso grande aquí.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="new-home-v4-training-classes-list__item">
+    <article class="new-home-v4-training-classes-list__item">
+      <div class="new-home-v4-training-classes-card">
+        <img src="assets/ejercicios/plancha.jpg" alt="Plancha" loading="lazy" class="new-home-v4-training-classes-card__image">
+        <div class="new-home-v4-training-classes-card__header"><h3 class="new-home-v4-training-classes-card__title">Plancha / Plancha lateral — 3×40–60s</h3></div>
+        <div class="new-home-v4-training-classes-card__content">
+          <ul class="new-home-v4-training-classes-details-list">
+            <li class="new-home-v4-training-classes-details-list__item">
+              <div class="list-desc">
+				<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="29" height="29" viewBox="0 0 535 528" enable-background="new 0 0 535 528" xml:space="preserve"> <path fill-rule="evenodd" clip-rule="evenodd" fill="#8A8C8D" d="M521.529,298.902c-9.99-47.875-34.661-86.416-74.125-115.4 c-1.744-1.281-3.215-2.756-4.484-4.522c-11.733-16.309-25.771-30.332-42.047-42.106c-1.755-1.27-3.283-2.672-4.555-4.443 c-11.795-16.433-25.911-30.563-42.33-42.375c-1.881-1.354-3.42-2.951-4.758-4.812C303.153,21.101,220.315-7.024,144.547,15.741 C52.073,43.526-3.982,135.833,14.46,230.883c8.344,43.006,29.832,78.657,63.186,107.16c4.966,4.244,11.151,7.14,15.042,12.504 c12.043,16.601,26.277,30.951,42.943,42.89c1.544,1.105,2.823,2.41,3.928,3.952c11.869,16.55,26.056,30.791,42.625,42.639 c1.772,1.269,3.209,2.798,4.468,4.546c44.583,61.942,122.931,90.512,196.899,71.807c83.347-21.076,141.474-95.553,141.446-181.232 C525.17,322.938,524.016,310.814,521.529,298.902z M392.599,156.041c-4.017-0.989-7.721-1.863-11.395-2.849 c-0.544-0.146-1.226-0.75-1.368-1.272c-1.007-3.679-1.888-7.393-2.939-11.613C384.683,143.455,389.709,148.371,392.599,156.041z M33.688,243.92c-7.125-23.736-9.627-48.117-5.459-72.5c12.162-71.155,52.498-119.496,121.6-140.58 c58.709-17.913,112.346-4.277,159.702,34.272c-74.361-22.496-141.791-10.622-197.165,45.094 c-55.271,55.612-66.729,122.972-43.345,197.459C52.445,288.847,40.801,267.618,33.688,243.92z M111.99,342.863 c-6.411-2.782-10.885-7.059-14.338-13.015c-12.743-21.982-20.663-45.383-23.342-70.729c-8.508-80.499,40.785-153.56,113.291-179.086 c22.628-7.966,45.919-11.017,69.731-9.28c28.397,2.071,54.697,10.875,78.909,25.995c4.767,2.977,6.88,7.588,9.988,12.323 c-71.086-18.065-134.564-4.717-186.615,47.228C107.471,208.337,94.019,271.829,111.99,342.863z M143.114,374.2 c4.214,0.134,8.084,1.97,12.161,2.798c0.384,0.078,0.813,0.727,0.932,1.186c0.96,3.684,1.851,7.385,2.823,11.324 C151.063,386.869,146.605,381.143,143.114,374.2z M152.55,360.004c-6.735-1.59-12.784-3.904-18.835-6.206 c-1.5-0.57-1.58-2.102-2.032-3.28c-5.597-14.624-9.287-29.686-10.737-45.319c-3.858-41.588,5.688-79.804,29.475-114.085 c26.721-38.508,63.502-62.303,109.474-71.166c31.743-6.12,62.944-3.023,93.244,8.508c2.295,0.873,3.811,2.019,4.558,4.427 c1.494,4.824,3.212,9.579,4.802,14.374c0.2,0.604,0.185,1.279,0.314,2.262c-60.654-6.249-113.705,10.388-156.892,53.647 C162.844,246.314,146.28,299.263,152.55,360.004z M168.453,360.267c-11.997-86.168,39.649-162.724,115.823-187.814 c24.604-8.104,49.735-10.66,75.444-7.216c0.661,0.089,1.338,0.184,1.999,0.144c4.232-0.257,5.629,1.858,5.964,5.924 c0.647,7.859,1.812,15.676,1.492,22.055c-0.033,78.972-51.961,146.947-126.596,167.037c-22.984,6.188-46.339,7.314-69.922,4.117 C170.003,364.152,168.816,362.876,168.453,360.267z M181.847,401.069c-1.621-0.65-2.507-1.481-3.159-3.166 c-2.16-5.579-4.167-11.188-5.733-17.535c11.733,1.019,22.78,1.746,33.884,1.189c40.286-2.018,76.296-15.498,107.724-40.699 c34.792-27.897,56.827-63.898,66.29-107.463c4.022-18.521,4.995-37.298,3.012-56.182c-0.789-7.513-0.731-7.795,6.301-5.302 c16.384,5.809,11.972,1.267,17.601,17.649c7.123,20.727,9.437,42.234,7.839,63.966c-5.549,75.446-57.904,134.302-124.271,152.932 c-19.122,5.367-38.544,7.379-58.239,6.149C215.461,411.508,198.313,407.682,181.847,401.069z M199.756,433.217 c-4.777-2.969-6.886-7.574-10.005-12.317c71.108,18.087,134.587,4.716,186.627-47.227c52.133-52.035,65.604-115.531,47.62-186.565 c6.409,2.805,10.892,7.065,14.344,13.026c12.734,21.984,21.062,45.34,23.262,70.733c5.215,60.216-15.326,110.078-61.044,149.329 c-25.01,21.472-54.429,34-87.075,38.053C272.764,463.303,234.75,454.969,199.756,433.217z M472.699,441.006 c-60.644,77.343-173.98,87.615-247.388,22.925c74.306,23.563,141.947,12.052,197.704-43.543 c55.751-55.59,67.445-123.192,44.321-196.909C513.121,271.188,530.91,366.769,472.699,441.006z"/></svg>
+                <p class="new-home-v4-training-classes-details-list__title">Series</p>
+                <p class="new-home-v4-training-classes-details-list__text">4 × 40–60 seg</p>
+              </div>
+            </li>
+
+            <li class="new-home-v4-training-classes-details-list__item">
+              <div class="list-desc">
+				<svg width="34" height="29" viewBox="0 0 34 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.375 6H3C1.89543 6 1 6.89543 1 8V22C1 23.1046 1.89543 24 3 24H11.0625M19.375 6H27C28.1046 6 29 6.89543 29 8V22C29 23.1046 28.1046 24 27 24H17.625" stroke="#8A8C8E" stroke-width="1.6" stroke-linecap="round"></path><path d="M29 9H31C32.1046 9 33 9.89543 33 11V19C33 20.1046 32.1046 21 31 21H29V9Z" stroke="#8A8C8E" stroke-width="1.6"></path></svg>
+                <p class="new-home-v4-training-classes-details-list__title">Intensidad</p>
+                <p class="new-home-v4-training-classes-details-list__text">Media</p>
+              </div>
+            </li>
+			
+			<li class="new-home-v4-training-classes-details-list__item">
+              <div class="list-desc">
+				<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="29" height="29" viewBox="0 0 444 528" enable-background="new 0 0 444 528" xml:space="preserve"><path fill-rule="evenodd" clip-rule="evenodd" fill="#8A8C8E" d="M410.981,249.29c-10.634-33.007-29.856-60.719-55.706-83.796 c-1.922-1.715-2.225-2.7-0.227-4.55c3.909-3.621,7.699-7.389,11.312-11.306c1.726-1.87,2.8-1.535,4.401,0.015 c3.95,3.823,7.954,7.598,12.085,11.223c4.824,4.235,10.244,4.158,14.245,0.024c4.141-4.277,3.995-10.144-0.77-14.617 c-13.604-12.769-27.285-25.458-41.047-38.057c-4.868-4.458-10.648-4.227-14.621,0.155c-3.942,4.348-3.475,9.908,1.333,14.594 c2.861,2.791,5.741,5.58,8.804,8.142c2.352,1.966,3.08,3.366,0.322,5.789c-4.123,3.621-7.967,7.587-11.672,11.642 c-1.888,2.065-3.195,1.911-5.377,0.44c-23.758-16.026-49.759-26.513-78.072-31.123c-2.229-0.363-3.12-1.145-3.05-3.497 c0.159-5.328,0.235-10.673-0.021-15.994c-0.149-3.084,1.149-3.542,3.769-3.432c4.325,0.182,8.664,0.053,12.997,0.048 c10.021-0.009,13.291-3.211,13.304-13.047c0.009-7.333,0.002-14.666,0.001-21.999c-0.001-7.999,0.081-16-0.025-23.998 c-0.092-6.864-4.042-10.898-10.889-10.91c-35.996-0.062-71.994-0.059-107.991-0.004c-7.116,0.011-11.027,4.04-11.057,11.254 c-0.066,15.832-0.07,31.665,0.002,47.496c0.033,7.173,3.984,11.082,11.129,11.191c5.165,0.08,10.337,0.141,15.497-0.037 c2.542-0.088,3.517,0.543,3.414,3.28c-0.211,5.659-0.295,11.343,0.025,16.991c0.188,3.297-1.226,4.146-4.064,4.817 c-6.453,1.526-12.914,3.153-19.189,5.275C52.241,161.681-3.415,279.124,37.312,385.308 c35.256,91.92,130.752,143.545,227.218,123.295c44.067-9.251,81.418-31.123,110.01-66.004 C421.718,385.043,433.819,320.174,410.981,249.29z M177.045,75.084c-3.233,0.042-4.245-0.785-4.133-4.094 c0.254-7.484,0.207-14.985,0.016-22.473c-0.072-2.846,0.806-3.594,3.61-3.584c27.639,0.1,55.278,0.099,82.917,0 c2.794-0.01,3.688,0.721,3.617,3.577c-0.19,7.654-0.188,15.319,0,22.974c0.07,2.846-0.804,3.614-3.61,3.586 c-13.818-0.137-27.639-0.062-41.458-0.062C204.351,75.008,190.696,74.904,177.045,75.084z M226.098,115.033 c-1.664-0.015-3.329-0.002-4.993-0.002c-0.005-0.076-0.011-0.151-0.017-0.227c-4.976,0.357-9.959,0.636-14.924,1.107 c-2.301,0.218-3.578-0.29-3.174-2.871c0.025-0.163,0-0.333,0.002-0.499c0.076-5.64-1.977-13.014,0.816-16.441 c2.906-3.567,10.584-0.955,16.166-1.037c4.248-0.063,9.921-1.914,12.357,0.885c2.087,2.397,0.641,7.914,0.665,12.051 C233.038,115.095,233.008,115.093,226.098,115.033z M222.821,492.974c-98.917-0.052-178.901-80.171-178.865-179.166 c0.036-98.841,80.246-178.867,179.226-178.815c98.88,0.052,178.924,80.24,178.862,179.184 C401.982,413.057,321.823,493.026,222.821,492.974z"/> <path fill-rule="evenodd" clip-rule="evenodd" fill="#8A8C8E" d="M232.99,314.096c-0.175,3.5-1.758,6.464-4.982,8.437 c-3.662,2.239-7.279,1.88-10.766-0.442c-8.712-5.807-17.416-11.625-26.114-17.449c-23.889-15.996-47.76-32.018-71.67-47.981 c-4.142-2.766-7.241-6.07-6.229-11.447c1.424-7.568,9.399-10.388,16.396-5.756c13.029,8.625,25.965,17.39,38.947,26.087 c19.33,12.947,38.649,25.91,58.011,38.809C230.071,306.676,232.748,309.393,232.99,314.096z"/></svg>
+                <p class="new-home-v4-training-classes-details-list__title">Descanzo</p>
+                <p class="new-home-v4-training-classes-details-list__text">45–60 seg.</p>
+              </div>
+            </li>
+          </ul>
+          <hr class="new-home-v4-training-classes-card__divider">
+          <p class="new-home-v4-training-classes-card__text">Descanso 45–60 s entre series.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="new-home-v4-training-classes-list__item">
+    <article class="new-home-v4-training-classes-list__item">
+      <div class="new-home-v4-training-classes-card">
+        <img src="assets/ejercicios/mountainclimber.jpg" alt="Mountain Climber" loading="lazy" class="new-home-v4-training-classes-card__image">
+        <div class="new-home-v4-training-classes-card__header"><h3 class="new-home-v4-training-classes-card__title">Mountain Climber — 3×45s</h3></div>
+        <div class="new-home-v4-training-classes-card__content">
+          <ul class="new-home-v4-training-classes-details-list">
+            <li class="new-home-v4-training-classes-details-list__item">
+              <div class="list-desc">
+				<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="29" height="29" viewBox="0 0 535 528" enable-background="new 0 0 535 528" xml:space="preserve"> <path fill-rule="evenodd" clip-rule="evenodd" fill="#8A8C8D" d="M521.529,298.902c-9.99-47.875-34.661-86.416-74.125-115.4 c-1.744-1.281-3.215-2.756-4.484-4.522c-11.733-16.309-25.771-30.332-42.047-42.106c-1.755-1.27-3.283-2.672-4.555-4.443 c-11.795-16.433-25.911-30.563-42.33-42.375c-1.881-1.354-3.42-2.951-4.758-4.812C303.153,21.101,220.315-7.024,144.547,15.741 C52.073,43.526-3.982,135.833,14.46,230.883c8.344,43.006,29.832,78.657,63.186,107.16c4.966,4.244,11.151,7.14,15.042,12.504 c12.043,16.601,26.277,30.951,42.943,42.89c1.544,1.105,2.823,2.41,3.928,3.952c11.869,16.55,26.056,30.791,42.625,42.639 c1.772,1.269,3.209,2.798,4.468,4.546c44.583,61.942,122.931,90.512,196.899,71.807c83.347-21.076,141.474-95.553,141.446-181.232 C525.17,322.938,524.016,310.814,521.529,298.902z M392.599,156.041c-4.017-0.989-7.721-1.863-11.395-2.849 c-0.544-0.146-1.226-0.75-1.368-1.272c-1.007-3.679-1.888-7.393-2.939-11.613C384.683,143.455,389.709,148.371,392.599,156.041z M33.688,243.92c-7.125-23.736-9.627-48.117-5.459-72.5c12.162-71.155,52.498-119.496,121.6-140.58 c58.709-17.913,112.346-4.277,159.702,34.272c-74.361-22.496-141.791-10.622-197.165,45.094 c-55.271,55.612-66.729,122.972-43.345,197.459C52.445,288.847,40.801,267.618,33.688,243.92z M111.99,342.863 c-6.411-2.782-10.885-7.059-14.338-13.015c-12.743-21.982-20.663-45.383-23.342-70.729c-8.508-80.499,40.785-153.56,113.291-179.086 c22.628-7.966,45.919-11.017,69.731-9.28c28.397,2.071,54.697,10.875,78.909,25.995c4.767,2.977,6.88,7.588,9.988,12.323 c-71.086-18.065-134.564-4.717-186.615,47.228C107.471,208.337,94.019,271.829,111.99,342.863z M143.114,374.2 c4.214,0.134,8.084,1.97,12.161,2.798c0.384,0.078,0.813,0.727,0.932,1.186c0.96,3.684,1.851,7.385,2.823,11.324 C151.063,386.869,146.605,381.143,143.114,374.2z M152.55,360.004c-6.735-1.59-12.784-3.904-18.835-6.206 c-1.5-0.57-1.58-2.102-2.032-3.28c-5.597-14.624-9.287-29.686-10.737-45.319c-3.858-41.588,5.688-79.804,29.475-114.085 c26.721-38.508,63.502-62.303,109.474-71.166c31.743-6.12,62.944-3.023,93.244,8.508c2.295,0.873,3.811,2.019,4.558,4.427 c1.494,4.824,3.212,9.579,4.802,14.374c0.2,0.604,0.185,1.279,0.314,2.262c-60.654-6.249-113.705,10.388-156.892,53.647 C162.844,246.314,146.28,299.263,152.55,360.004z M168.453,360.267c-11.997-86.168,39.649-162.724,115.823-187.814 c24.604-8.104,49.735-10.66,75.444-7.216c0.661,0.089,1.338,0.184,1.999,0.144c4.232-0.257,5.629,1.858,5.964,5.924 c0.647,7.859,1.812,15.676,1.492,22.055c-0.033,78.972-51.961,146.947-126.596,167.037c-22.984,6.188-46.339,7.314-69.922,4.117 C170.003,364.152,168.816,362.876,168.453,360.267z M181.847,401.069c-1.621-0.65-2.507-1.481-3.159-3.166 c-2.16-5.579-4.167-11.188-5.733-17.535c11.733,1.019,22.78,1.746,33.884,1.189c40.286-2.018,76.296-15.498,107.724-40.699 c34.792-27.897,56.827-63.898,66.29-107.463c4.022-18.521,4.995-37.298,3.012-56.182c-0.789-7.513-0.731-7.795,6.301-5.302 c16.384,5.809,11.972,1.267,17.601,17.649c7.123,20.727,9.437,42.234,7.839,63.966c-5.549,75.446-57.904,134.302-124.271,152.932 c-19.122,5.367-38.544,7.379-58.239,6.149C215.461,411.508,198.313,407.682,181.847,401.069z M199.756,433.217 c-4.777-2.969-6.886-7.574-10.005-12.317c71.108,18.087,134.587,4.716,186.627-47.227c52.133-52.035,65.604-115.531,47.62-186.565 c6.409,2.805,10.892,7.065,14.344,13.026c12.734,21.984,21.062,45.34,23.262,70.733c5.215,60.216-15.326,110.078-61.044,149.329 c-25.01,21.472-54.429,34-87.075,38.053C272.764,463.303,234.75,454.969,199.756,433.217z M472.699,441.006 c-60.644,77.343-173.98,87.615-247.388,22.925c74.306,23.563,141.947,12.052,197.704-43.543 c55.751-55.59,67.445-123.192,44.321-196.909C513.121,271.188,530.91,366.769,472.699,441.006z"/></svg>
+                <p class="new-home-v4-training-classes-details-list__title">Series</p>
+                <p class="new-home-v4-training-classes-details-list__text">3 × 45–60 seg</p>
+              </div>
+            </li>
+
+            <li class="new-home-v4-training-classes-details-list__item">
+              <div class="list-desc">
+				<svg width="34" height="29" viewBox="0 0 34 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.375 6H3C1.89543 6 1 6.89543 1 8V22C1 23.1046 1.89543 24 3 24H11.0625M19.375 6H27C28.1046 6 29 6.89543 29 8V22C29 23.1046 28.1046 24 27 24H17.625" stroke="#8A8C8E" stroke-width="1.6" stroke-linecap="round"></path><path d="M29 9H31C32.1046 9 33 9.89543 33 11V19C33 20.1046 32.1046 21 31 21H29V9Z" stroke="#8A8C8E" stroke-width="1.6"></path></svg>
+                <p class="new-home-v4-training-classes-details-list__title">Intensidad</p>
+                <p class="new-home-v4-training-classes-details-list__text">Media</p>
+              </div>
+            </li>
+			
+			<li class="new-home-v4-training-classes-details-list__item">
+              <div class="list-desc">
+				<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="29" height="29" viewBox="0 0 444 528" enable-background="new 0 0 444 528" xml:space="preserve"><path fill-rule="evenodd" clip-rule="evenodd" fill="#8A8C8E" d="M410.981,249.29c-10.634-33.007-29.856-60.719-55.706-83.796 c-1.922-1.715-2.225-2.7-0.227-4.55c3.909-3.621,7.699-7.389,11.312-11.306c1.726-1.87,2.8-1.535,4.401,0.015 c3.95,3.823,7.954,7.598,12.085,11.223c4.824,4.235,10.244,4.158,14.245,0.024c4.141-4.277,3.995-10.144-0.77-14.617 c-13.604-12.769-27.285-25.458-41.047-38.057c-4.868-4.458-10.648-4.227-14.621,0.155c-3.942,4.348-3.475,9.908,1.333,14.594 c2.861,2.791,5.741,5.58,8.804,8.142c2.352,1.966,3.08,3.366,0.322,5.789c-4.123,3.621-7.967,7.587-11.672,11.642 c-1.888,2.065-3.195,1.911-5.377,0.44c-23.758-16.026-49.759-26.513-78.072-31.123c-2.229-0.363-3.12-1.145-3.05-3.497 c0.159-5.328,0.235-10.673-0.021-15.994c-0.149-3.084,1.149-3.542,3.769-3.432c4.325,0.182,8.664,0.053,12.997,0.048 c10.021-0.009,13.291-3.211,13.304-13.047c0.009-7.333,0.002-14.666,0.001-21.999c-0.001-7.999,0.081-16-0.025-23.998 c-0.092-6.864-4.042-10.898-10.889-10.91c-35.996-0.062-71.994-0.059-107.991-0.004c-7.116,0.011-11.027,4.04-11.057,11.254 c-0.066,15.832-0.07,31.665,0.002,47.496c0.033,7.173,3.984,11.082,11.129,11.191c5.165,0.08,10.337,0.141,15.497-0.037 c2.542-0.088,3.517,0.543,3.414,3.28c-0.211,5.659-0.295,11.343,0.025,16.991c0.188,3.297-1.226,4.146-4.064,4.817 c-6.453,1.526-12.914,3.153-19.189,5.275C52.241,161.681-3.415,279.124,37.312,385.308 c35.256,91.92,130.752,143.545,227.218,123.295c44.067-9.251,81.418-31.123,110.01-66.004 C421.718,385.043,433.819,320.174,410.981,249.29z M177.045,75.084c-3.233,0.042-4.245-0.785-4.133-4.094 c0.254-7.484,0.207-14.985,0.016-22.473c-0.072-2.846,0.806-3.594,3.61-3.584c27.639,0.1,55.278,0.099,82.917,0 c2.794-0.01,3.688,0.721,3.617,3.577c-0.19,7.654-0.188,15.319,0,22.974c0.07,2.846-0.804,3.614-3.61,3.586 c-13.818-0.137-27.639-0.062-41.458-0.062C204.351,75.008,190.696,74.904,177.045,75.084z M226.098,115.033 c-1.664-0.015-3.329-0.002-4.993-0.002c-0.005-0.076-0.011-0.151-0.017-0.227c-4.976,0.357-9.959,0.636-14.924,1.107 c-2.301,0.218-3.578-0.29-3.174-2.871c0.025-0.163,0-0.333,0.002-0.499c0.076-5.64-1.977-13.014,0.816-16.441 c2.906-3.567,10.584-0.955,16.166-1.037c4.248-0.063,9.921-1.914,12.357,0.885c2.087,2.397,0.641,7.914,0.665,12.051 C233.038,115.095,233.008,115.093,226.098,115.033z M222.821,492.974c-98.917-0.052-178.901-80.171-178.865-179.166 c0.036-98.841,80.246-178.867,179.226-178.815c98.88,0.052,178.924,80.24,178.862,179.184 C401.982,413.057,321.823,493.026,222.821,492.974z"/> <path fill-rule="evenodd" clip-rule="evenodd" fill="#8A8C8E" d="M232.99,314.096c-0.175,3.5-1.758,6.464-4.982,8.437 c-3.662,2.239-7.279,1.88-10.766-0.442c-8.712-5.807-17.416-11.625-26.114-17.449c-23.889-15.996-47.76-32.018-71.67-47.981 c-4.142-2.766-7.241-6.07-6.229-11.447c1.424-7.568,9.399-10.388,16.396-5.756c13.029,8.625,25.965,17.39,38.947,26.087 c19.33,12.947,38.649,25.91,58.011,38.809C230.071,306.676,232.748,309.393,232.99,314.096z"/></svg>
+                <p class="new-home-v4-training-classes-details-list__title">Descanzo</p>
+                <p class="new-home-v4-training-classes-details-list__text">45–60 seg.</p>
+              </div>
+            </li>
+          </ul>
+          <hr class="new-home-v4-training-classes-card__divider">
+          <p class="new-home-v4-training-classes-card__text">Activa el abdomen y mejora la resistencia cardiovascular.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ===== Bottom sections (abajo) ===== -->
+<div class="bottom-sections container">
+  <div class="guide">
+    <div class="section-title">Cómo leer la rutina</div>
+    <p style="color:var(--muted) !important; margin:0">
+		Cuando veas una línea como: <strong>Flexión de brazos — 3×12–15</strong> significa: 
+		<br> <strong>3</strong> = series • <strong>12–15</strong> = repeticiones por serie. Ajusta descansos y carga según RPE.
+		<ul style="color:var(--muted) !important; margin-top:8px;">
+		  <li><strong>3</strong> = series (veces que repetirás el bloque completo).</li>
+		  <li><strong>12–15</strong> = repeticiones por serie (intenta llegar al rango, la última rep debe sentirse difícil pero técnica correcta).</li>
+		</ul>
+		<span style="color:var(--muted) !important; margin-top:6px;">
+		  Ejemplo: haz la <em>Serie 1</em> de 12–15 rep → <strong>descansa</strong> (ver tabla). Repite Serie 2 y Serie 3. Después de completar las 3 series, pasa al siguiente ejercicio.
+		</span>
+	</p>
+	<div class="table-guide">
+      <table class="table table-sm" style="background:transparent; margin-top:8px;">
+        <thead>
+          <tr>
+            <th>Momento</th>
+            <th>Descanso</th>
+            <th>Propósito</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Entre series del mismo ejercicio</td>
+            <td>45–60 s</td>
+            <td>Recuperación parcial para mantener intensidad y técnica.</td>
+          </tr>
+          <tr>
+            <td>Entre ejercicios distintos (tras terminar todas las series)</td>
+            <td>60–90 s</td>
+            <td>Recuperación para iniciar el siguiente movimiento con buena técnica.</td>
+          </tr>
+          <tr>
+            <td>Entre bloques o grupos musculares (p. ej. push → pull)</td>
+            <td>2 min</td>
+            <td>Recuperación completa antes de cambiar el enfoque (si alta intensidad).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+	
+	<p style="margin-top:50px; color:var(--muted) !important;"><strong>Nota:</strong> Si haces superseries (dos ejercicios seguidos sin descanso), el descanso entre series del par será el indicado (ej. 60–90 s) al terminar ambas. Ajusta descansos si buscas más potencia (más descanso) o más densidad metabólica (menos descanso).</p>
+  </div>
+
+  <div class="resumen">
+    <div class="section-title">Resumen rápido</div>
+    <p style="color:var(--muted); margin:0">Bloques: Sem 1–3 (adaptación) • Sem 4–6 (intensidad) • Sem 7–9 (máximo). Nivel sugerido: Intermedio.</p>
+	<b style="color:var(--muted); margin:0">Entrenamiento:</b> 5×/sem • <b style="color:var(--muted); margin:0">Hora recomendada:</b> 9:00 AM (en ayuno)
+  </div>
+
+  <div class="progresion">
+    <div class="section-title">Tabla de progresión - resumen</div>
+	<p style="color:var(--muted); margin:0">Aumenta peso <b>(0.5–2 kg)</b> cuando completes el tope del rango (ej. 12 en 8–12) en todas las series en 2 sesiones seguidas sin perder técnica.</p>
+    <div style="overflow:auto">
+		<table class="table">
+			<thead>
+			  <tr><th>Ejercicio</th><th class="text-center">Sem 1–3</th><th class="text-center">Sem 4–6</th><th class="text-center">Sem 7–9</th></tr>
+			</thead>
+			<tbody>
+			  <tr><td><strong>Press con mancuerna</strong></td><td class="text-center">6–8 kg</td><td class="text-center">8–10 kg</td><td class="text-center">10 kg (+tempo)</td></tr>
+			  <tr><td><strong>Remo inclinado</strong></td><td class="text-center">6–8 kg</td><td class="text-center">8–10 kg</td><td class="text-center">10 kg</td></tr>
+			  <tr><td><strong>Sentadilla goblet</strong></td><td class="text-center">8–10 kg</td><td class="text-center">10 kg</td><td class="text-center">10 kg + mochila</td></tr>
+			  <tr><td><strong>Elevaciones laterales</strong></td><td class="text-center">1–3 kg</td><td class="text-center">2–4 kg</td><td class="text-center">3–5 kg</td></tr>
+			  <tr><td><strong>Curl bíceps</strong></td><td class="text-center">4–6 kg</td><td class="text-center">6–8 kg</td><td class="text-center">8–10 kg</td></tr>
+			</tbody>
+		</table>
+    </div>
+	<p style="color:var(--muted); margin:0">Si no tienes más peso disponible: <b>aumenta repeticiones</b>, <b>añade series</b>, reduce descanso o usa <b>tempo lento</b> en la fase excéntrica (ej. 3s).</p>
+  </div>
+
+  <div class="registro">
+    <div class="section-title">Registro</div>
+    <p style="color:var(--muted); margin:0 0 8px 0">Sugerencia: crea una nota en el móvil o libreta con: <b>fecha • ejercicio • kg por mancuerna • series×reps</b> • banda (color) 
+	<br>• RPE (1–10). Revisa semanalmente y aplica la regla de aumento.</p>
+    <textarea class="form-control" rows="4" placeholder="Tu registro..."></textarea>
+  </div>
+</div>
+
+<!-- Modal Descanso -->
+<div class="modal fade" id="modalDescanso" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center">
+      <h4 style="margin:0 0 12px 0">⏱️ Tiempo de descanso</h4>
+      <p id="timer">60</p>
+      <div class="d-flex justify-content-center gap-2 mt-3">
+        <button class="btn btn-sm btn-dark" id="startTimer">Iniciar</button>
+        <button class="btn btn-sm btn-outline-secondary" id="resetTimer">Reiniciar</button>
+        <input type="number" id="customTime" min="10" max="600" value="60" class="form-control w-25 text-center">
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer style="margin-top:28px; padding:18px; text-align:center; background:#111; color:#ddd">
+  © Plan de entrenamiento — Ajusta según sensación y técnica.
+</footer>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+
+
+  // temporizador modal
+  let tiempo = 60, intervalo = null;
+  const timerEl = document.getElementById('timer');
+  const customTime = document.getElementById('customTime');
+  function actualizarDisplay(t){ timerEl.textContent = t; }
+  document.getElementById('startTimer').addEventListener('click', ()=>{
+    clearInterval(intervalo);
+    tiempo = parseInt(customTime.value) || 60;
+    actualizarDisplay(tiempo);
+    intervalo = setInterval(()=>{
+      tiempo--;
+      actualizarDisplay(tiempo);
+      if(tiempo <= 0){ clearInterval(intervalo); /* opcional aviso */ }
+    }, 1000);
+  });
+  document.getElementById('resetTimer').addEventListener('click', ()=>{
+    clearInterval(intervalo);
+    tiempo = parseInt(customTime.value) || 60;
+    actualizarDisplay(tiempo);
+  });
+  // limpiar al cerrar modal
+  const modalEl = document.getElementById('modalDescanso');
+  modalEl.addEventListener('hidden.bs.modal', ()=>{
+    clearInterval(intervalo);
+    tiempo = parseInt(customTime.value) || 60;
+    actualizarDisplay(tiempo);
+  });
+  
+  $(document).ready(function(){
+
+	  const dias = ["domingo","lunes","martes","miercoles","jueves","viernes","sabado"];
+	  const hoy = dias[new Date().getDay()];
+	  const diaActual = hoy === "sabado" || hoy === "domingo" ? "lunes" : hoy;
+
+	  $(".btn-dia").removeClass("active");
+	  $(`.btn-dia[data-dia='${diaActual}']`).addClass("active");
+
+	  $(".cards-dia").removeClass("active");
+	  $(`#${diaActual}`).addClass("active");
+
+	  // Evento: Cambio de día manual
+	  $(".btn-dia").on("click", function(){
+		const dia = $(this).data("dia");
+		$(".btn-dia").removeClass("active");
+		$(this).addClass("active");
+		$(".cards-dia").removeClass("active");
+		$("#" + dia).addClass("active");
+	  });
+  });
+</script>
+</body>
+</html>
