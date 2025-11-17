@@ -158,7 +158,7 @@
     <div class="modal-content">
       <div class="modal-body">
         <h5>Modo edición</h5>
-        <p class="muted-italic">Ingresa tu PIN para habilitar guardado test1</p>
+        <p class="muted-italic">Ingresa tu PIN para habilitar guardado v2</p>
         <input id="modalPin" type="password" class="form-control" maxlength="8" placeholder="PIN">
         <div class="d-flex gap-2 mt-3">
           <button id="modalOk" class="btn btn-primary">Entrar</button>
@@ -179,7 +179,7 @@
   Reemplaza aquí con la URL de tu Apps Script WebApp (GET/POST).
   Ejemplo: https://script.google.com/macros/s/AKfycbx.../exec
 */
-const API = "https://script.google.com/macros/s/AKfycbzTTgEifvo_HSpKK2BXAeJVDkN0i1Zm-XgkHC3t5_nwqlIfa6czbOJs_lQd0dAMVBxj/exec"; // <-- reemplaza
+const API = "https://script.google.com/macros/s/AKfycbyU67AycN651CiKdbpuWq85m7jdYzt_TGIUqQGbk3cVAqYi84Xyle7g4mGpzPlpqwZk/exec"; // <-- reemplaza
 let PIN = sessionStorage.getItem('training_pin') || null;
 let DATA = null;
 
@@ -312,26 +312,40 @@ function resetContador(){
 // save peso/descanso (attempt full-replace POST). If server doesn't accept, fallback to download
 async function saveFields(){
   if(!PIN){ $('#pinModal').modal('show'); return; }
+
   const d = $selDia.val(), e = $selEj.val(), s = $selSem.val();
-  DATA.dias[d][e][s].peso = Number($peso.val()) || 0;
-  DATA.dias[d][e][s].descanso = Number($desc.val()) || 60;
+  const peso = Number($peso.val()) || 0;
+  const descanso = Number($desc.val()) || 60;
 
   try {
-    // attempt full JSON POST; apps script must accept body replacement (optional)
-    const url = API + '?pin=' + encodeURIComponent(PIN);
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(DATA)
-    });
-    const j = await res.json();
-    if(j.error){ throw new Error(j.error); }
-    showToast('Campos guardados en servidor', 'success');
+    // ---- guardar peso ----
+    let p1 = new URLSearchParams();
+    p1.append('pin', PIN);
+    p1.append('dia', d);
+    p1.append('ejercicio', e);
+    p1.append('semana', s);
+    p1.append('campo', 'peso');
+    p1.append('valor', peso);
+
+    await fetch(API + "?" + p1.toString(), { method:"POST" });
+
+    // ---- guardar descanso ----
+    let p2 = new URLSearchParams();
+    p2.append('pin', PIN);
+    p2.append('dia', d);
+    p2.append('ejercicio', e);
+    p2.append('semana', s);
+    p2.append('campo', 'descanso');
+    p2.append('valor', descanso);
+
+    await fetch(API + "?" + p2.toString(), { method:"POST" });
+
+    showToast("Peso y descanso guardados", "success");
     await loadData();
-  } catch(err) {
-    console.warn('Full POST failed:', err);
-    if(confirm('No se pudo guardar automaticamente. ¿Descargar JSON para subir manualmente a Drive?')) exportJSON();
-    showToast('No se pudo guardar en servidor', 'error');
+
+  } catch(err){
+    console.error(err);
+    showToast("Error guardando: " + err.message, "error");
   }
 }
 
