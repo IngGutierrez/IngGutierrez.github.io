@@ -1,403 +1,137 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Entrenamiento — Premium (Claro)</title>
-
-<!-- Bootstrap 5 -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-<!-- Bootstrap JS (for toasts, modal) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rutinas</title>
 
 <style>
-  :root{
-    --bg:#f7f9fb; --card:#ffffff; --muted:#6b7280; --accent:#0ea5a4; --glass: rgba(14,165,164,0.06);
-  }
-  body{background: linear-gradient(180deg,#ffffff 0%, #f1f6f9 100%); font-family: Inter, system-ui, -apple-system, "Helvetica Neue", Arial; color:#0b1720; margin:0; padding:18px}
-  .wrap{max-width:980px;margin:0 auto}
-  header{display:flex;justify-content:space-between;align-items:center;gap:12px}
-  h1{font-size:20px;margin:0}
-  .meta{color:var(--muted);font-size:13px}
-  .card{border-radius:14px;box-shadow:0 6px 18px rgba(12,38,63,0.06)}
-  .controls .btn{min-width:110px}
-  .pill{font-size:12px;padding:6px 8px;border-radius:999px;background:var(--glass);color:var(--muted)}
-  .big{font-size:26px;font-weight:700}
-  .small{font-size:13px;color:var(--muted)}
-  label{font-size:13px;color:var(--muted);margin-bottom:6px;display:block}
-  select,input[type=number],input[type=text]{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(15,23,42,0.06);background:transparent}
-  .list{max-height:320px;overflow:auto;padding-right:6px}
-  .hist-item{padding:8px;border-radius:10px;margin-bottom:8px;background:linear-gradient(180deg,#fff,#fbfdfe);border:1px solid rgba(14,165,164,0.06)}
-  .muted-italic{color:var(--muted);font-style:italic;font-size:13px}
-  @media (max-width:880px){ .grid-2{grid-template-columns:1fr} }
+body {
+    background: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: #111;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 90px;
+    background: #222;
+    color: #fff;
+    border: 1px solid #555;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    background: #222;
+    border: 1px solid #555;
+    color: #fff;
+    border-radius: 6px;
+    margin-bottom: 12px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #28a745;
+    border: 0;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 6px;
+    margin-top: 10px;
+}
 </style>
+
 </head>
 <body>
 
-<div class="wrap">
+<div class="container">
 
-  <header>
-    <div>
-      <h1>Entrenamiento · Premium (Claro)</h1>
-      <div class="meta">9 semanas · Lunes–Viernes · 3 ejercicios/día</div>
-    </div>
+<h2>Actualizar Rutina</h2>
 
-    <div class="d-flex align-items-center gap-2">
-      <button id="refreshBtn" class="btn btn-outline-secondary">🔄 Recargar</button>
-      <button id="loginBtn" class="btn btn-primary">🔐 Entrar (PIN)</button>
-    </div>
-  </header>
+<label>PIN</label>
+<input type="text" id="pin">
 
-  <main style="margin-top:16px">
-    <div class="row g-3">
-      <div class="col-md-7">
-        <div class="card p-3">
-          <div class="row gx-2">
-            <div class="col-12 col-sm-4">
-              <label>Día</label>
-              <select id="selDia" class="form-select"></select>
-            </div>
-            <div class="col-12 col-sm-4">
-              <label>Ejercicio</label>
-              <select id="selEj" class="form-select"></select>
-            </div>
-            <div class="col-12 col-sm-4">
-              <label>Semana</label>
-              <select id="selSem" class="form-select"></select>
-            </div>
-          </div>
+<label>Semana</label>
+<input type="number" id="semana">
 
-          <div class="row gx-2 mt-3">
-            <div class="col-4">
-              <div class="small">Series</div>
-              <div id="series" class="big">—</div>
-            </div>
-            <div class="col-4">
-              <div class="small">Repeticiones</div>
-              <div id="reps" class="big">—</div>
-            </div>
-            <div class="col-4">
-              <div class="small">Contador</div>
-              <div id="contador" class="big">0</div>
-            </div>
-          </div>
+<label>Día</label>
+<input type="text" id="dia">
 
-          <div class="row gx-2 mt-3">
-            <div class="col-sm-6">
-              <label for="peso">Peso (kg)</label>
-              <input id="peso" type="number" class="form-control" min="0" step="0.5">
-            </div>
-            <div class="col-sm-6">
-              <label for="desc">Descanso (s)</label>
-              <input id="desc" type="number" class="form-control" min="0">
-            </div>
-          </div>
+<label>Ejercicio</label>
+<input type="text" id="ejercicio">
 
-          <div class="d-flex gap-2 controls mt-3">
-            <button id="incBtn" class="btn btn-success">+1 Contador</button>
-            <button id="decBtn" class="btn btn-outline-secondary">-1 Contador</button>
-            <button id="resetBtn" class="btn btn-outline-danger">Reset</button>
-            <button id="saveFields" class="btn btn-primary ms-auto">Guardar peso/descanso</button>
-          </div>
+<label>Campo</label>
+<select id="campo">
+  <option value="series">Series</option>
+  <option value="peso">Peso</option>
+  <option value="reps">Repeticiones</option>
+  <option value="notas">Notas</option>
+</select>
 
-          <div class="mt-3">
-            <div id="feedback" class="muted-italic">Estado: <span id="status">Offline</span></div>
-          </div>
-        </div>
+<label>Valor</label>
+<textarea id="valor"></textarea>
 
-        <div class="card p-3 mt-3">
-          <div class="d-flex justify-content-between align-items-center">
-            <div><strong>Vista rápida</strong><div class="small">Detalle del nodo actual</div></div>
-            <div class="pill" id="lastSaved">Último guardado: —</div>
-          </div>
+<button onclick="saveFields()">Guardar</button>
 
-          <hr>
-
-          <pre id="detail" style="white-space:pre-wrap;background:transparent;border-radius:8px;padding:6px;color:#334155"></pre>
-        </div>
-      </div>
-
-      <div class="col-md-5">
-        <div class="card p-3">
-          <div class="d-flex justify-content-between align-items-center">
-            <div>
-              <strong>Historial</strong>
-              <div class="small">Últimos cambios guardados</div>
-            </div>
-            <div class="pill" id="histCount">0</div>
-          </div>
-
-          <hr>
-
-          <div class="list" id="histList">No hay historial</div>
-
-          <div class="d-flex gap-2 mt-3">
-            <button id="exportBtn" class="btn btn-outline-secondary w-50">📁 Exportar JSON</button>
-            <button id="clearHist" class="btn btn-outline-danger w-50">Limpiar historial</button>
-          </div>
-        </div>
-
-        <div class="card p-3 mt-3 text-center">
-          <div class="small">¿Necesitas ayuda?</div>
-          <div class="mt-2"><button id="helpBtn" class="btn btn-outline-primary">Ver instrucciones</button></div>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <footer style="text-align:center;margin-top:18px;color:var(--muted)">Hecho para Daniel · Reemplaza la URL del API en el código</footer>
-</div>
-
-<!-- Modal PIN -->
-<div class="modal fade" id="pinModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-sm modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-body">
-        <h5>Modo edición</h5>
-        <p class="muted-italic">Ingresa tu PIN para habilitar guardado v4</p>
-        <input id="modalPin" type="password" class="form-control" maxlength="8" placeholder="PIN">
-        <div class="d-flex gap-2 mt-3">
-          <button id="modalOk" class="btn btn-primary">Entrar</button>
-          <button id="modalCancel" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Toasts -->
-<div class="position-fixed bottom-0 end-0 p-3" style="z-index:1100">
-  <div id="toastArea"></div>
 </div>
 
 <script>
-/* ---------- CONFIG ---------- */
-const API = "https://script.google.com/macros/s/AKfycbwJeznpxphpyEqiJKVwroleSOgk7Bc9t5DSCa8NJwDDahCCaQQUL9Ki4nJahxlHRuZsBw/exec";
-let PIN = sessionStorage.getItem('training_pin') || null;
-let DATA = null;
+const API = "https://script.google.com/macros/s/AKfycbzK5oh0BfoB6JuzbO3H2asbTCSOTMan3k5syOUYyDChPGqH9d8mWAP-5ONo9ir4PBjO3w/exec"; // <-- CAMBIAR AQUÍ
 
-// Element refs
-const $selDia = $('#selDia'), $selEj = $('#selEj'), $selSem = $('#selSem');
-const $series = $('#series'), $reps = $('#reps'), $contador = $('#contador');
-const $peso = $('#peso'), $desc = $('#desc'), $detail = $('#detail');
-const $histList = $('#histList'), $histCount = $('#histCount'), $lastSaved = $('#lastSaved');
-const $status = $('#status');
+//--------------------------------------------------
+// GUARDAR CAMPOS EN GSHEET (POST + JSON)
+//--------------------------------------------------
+async function saveFields() {
+    const data = {
+        pin: document.getElementById("pin").value.trim(),
+        semana: document.getElementById("semana").value.trim(),
+        dia: document.getElementById("dia").value.trim(),
+        ejercicio: document.getElementById("ejercicio").value.trim(),
+        campo: document.getElementById("campo").value.trim(),
+        valor: document.getElementById("valor").value.trim()
+    };
 
-// Helper: toast
-function showToast(msg, type='info') {
-  const id = 't' + Date.now();
-  const cls = type === 'error' ? 'bg-danger text-white' : type === 'success' ? 'bg-success text-white' : 'bg-light';
-  const html = `<div id="${id}" class="toast ${cls} border-0" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-body">${msg}</div>
-  </div>`;
-  $('#toastArea').append(html);
-  const $t = $('#' + id);
-  const toast = new bootstrap.Toast($t[0], { delay: 3000 });
-  toast.show();
-  setTimeout(()=> $t.remove(), 3500);
+    if (!data.pin || !data.semana || !data.dia || !data.ejercicio) {
+        alert("Completa todos los campos obligatorios.");
+        return;
+    }
+
+    try {
+        const response = await fetch(API, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        console.log("Respuesta backend:", result);
+
+        if (result.status === "success") {
+            alert("Guardado correctamente");
+        } else {
+            alert("Error: " + result.message);
+        }
+
+    } catch (err) {
+        console.error("Error:", err);
+        alert("No se pudo conectar con el servidor");
+    }
 }
-
-// Load JSON from API
-async function loadData(){
-  try {
-    $status.text('Cargando...');
-    const res = await fetch(API);
-    if(!res.ok) throw new Error('Error ' + res.status);
-    DATA = await res.json();
-
-    ['Martes','Miercoles','Jueves','Viernes'].forEach(d=>{
-      if(!DATA.dias[d] || Object.keys(DATA.dias[d]).length===0) DATA.dias[d] = JSON.parse(JSON.stringify(DATA.dias['Lunes']));
-    });
-
-    populateDias();
-    renderDetail();
-    renderHist();
-    $status.text('Conectado');
-  } catch(err) {
-    console.error(err);
-    $status.text('Error');
-    showToast('No se pudo cargar datos: ' + err.message, 'error');
-  }
-}
-
-// populate days
-function populateDias(){
-  $selDia.empty();
-  Object.keys(DATA.dias).forEach(d => $selDia.append(new Option(d,d)));
-  $selDia.off('change').on('change', ()=>{ populateEj(); });
-  populateEj();
-}
-
-function populateEj(){
-  const d = $selDia.val();
-  $selEj.empty();
-  Object.keys(DATA.dias[d]).forEach(e => $selEj.append(new Option(e,e)));
-  $selEj.off('change').on('change', ()=> populateSem());
-  populateSem();
-}
-
-function populateSem(){
-  const d = $selDia.val(), e = $selEj.val();
-  $selSem.empty();
-  Object.keys(DATA.dias[d][e]).forEach(s => $selSem.append(new Option(s,s)));
-  $selSem.off('change').on('change', ()=> renderDetail());
-  renderDetail();
-}
-
-function renderDetail(){
-  const d = $selDia.val(), e = $selEj.val(), s = $selSem.val();
-  const nodo = DATA.dias[d][e][s];
-  $series.text(nodo.series ?? '—');
-  $reps.text(nodo.repeticiones ?? '—');
-  $contador.text(nodo.contador ?? 0);
-  $peso.val(nodo.peso ?? 0);
-  $desc.val(nodo.descanso ?? 60);
-  $detail.text(JSON.stringify(nodo, null, 2));
-  if(DATA.historial && DATA.historial.length>0){
-    const last = DATA.historial[DATA.historial.length - 1];
-    $lastSaved.text(`${last.fecha} · ${last.dia} ${last.ejercicio} ${last.semana} = ${last.contador}`);
-    $histCount.text(DATA.historial.length);
-  } else {
-    $lastSaved.text('Sin guardado');
-    $histCount.text('0');
-  }
-}
-
-// change contador by delta
-async function changeContador(delta){
-  if(!PIN){ $('#pinModal').modal('show'); return; }
-  const d = $selDia.val(), e = $selEj.val(), s = $selSem.val();
-  let current = Number(DATA.dias[d][e][s].contador || 0);
-  let nuevo = current + delta;
-  if(nuevo < 0) nuevo = 0;
-
-  const params = new URLSearchParams();
-  params.append('pin', PIN);
-  params.append('dia', d);
-  params.append('ejercicio', e);
-  params.append('semana', s);
-  params.append('campo', 'contador');
-  params.append('valor', nuevo);
-
-  try {
-    const res = await fetch(API + '?' + params.toString(), { method: 'POST' });
-    const json = await res.json();
-    if(json.error){ showToast('Error: ' + json.error, 'error'); return; }
-    DATA.dias[d][e][s].contador = nuevo;
-    await loadData();
-    showToast('Contador actualizado', 'success');
-  } catch(err) {
-    console.error(err);
-    showToast('Error guardando: ' + err.message, 'error');
-  }
-}
-
-// reset contador
-function resetContador(){
-  if(!confirm('Resetear contador a 0?')) return;
-  changeContador(- (Number(DATA.dias[$selDia.val()][$selEj.val()][$selSem.val()].contador || 0)));
-}
-
-// save peso/descanso
-async function saveFields(){
-  if(!PIN){ $('#pinModal').modal('show'); return; }
-
-  const d = $selDia.val(), e = $selEj.val(), s = $selSem.val();
-  const peso = Number($peso.val()) || 0;
-  const descanso = Number($desc.val()) || 60;
-
-  try {
-    let p1 = new URLSearchParams();
-    p1.append('pin', PIN);
-    p1.append('dia', d);
-    p1.append('ejercicio', e);
-    p1.append('semana', s);
-    p1.append('campo', 'peso');
-    p1.append('valor', peso);
-    await fetch(API + "?" + p1.toString(), { method:"POST" });
-
-    let p2 = new URLSearchParams();
-    p2.append('pin', PIN);
-    p2.append('dia', d);
-    p2.append('ejercicio', e);
-    p2.append('semana', s);
-    p2.append('campo', 'descanso');
-    p2.append('valor', descanso);
-    await fetch(API + "?" + p2.toString(), { method:"POST" });
-
-    showToast("Peso y descanso guardados", "success");
-    await loadData();
-
-  } catch(err){
-    console.error(err);
-    showToast("Error guardando: " + err.message, "error");
-  }
-}
-
-// export JSON
-function exportJSON(){
-  const blob = new Blob([JSON.stringify(DATA, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a'); a.href = url; a.download = 'entrenamiento.json'; document.body.appendChild(a); a.click(); a.remove();
-  URL.revokeObjectURL(url);
-  showToast('JSON descargado', 'info');
-}
-
-// clear historial local
-function clearHistLocal(){
-  if(!confirm('Limpiar historial local (no afecta servidor)?')) return;
-  DATA.historial = [];
-  renderHist();
-  showToast('Historial limpiado (local)', 'info');
-}
-
-function renderHist(){
-  $histList.empty();
-  const h = (DATA.historial || []).slice(-50).reverse();
-  if(h.length === 0){ $histList.text('Sin historial'); return; }
-  h.forEach(item => {
-    const el = $(`
-      <div class="hist-item">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div><strong>${item.dia} • ${item.ejercicio}</strong><div class="small">${item.semana}</div></div>
-          <div class="small">${item.fecha}</div>
-        </div>
-        <div style="margin-top:6px;color:#0b1720">contador: <strong>${item.contador}</strong></div>
-      </div>
-    `);
-    $histList.append(el);
-  });
-}
-
-// modal events
-$('#modalOk').on('click', function(){
-  const val = $('#modalPin').val().trim();
-  if(!val){ alert('Ingresa PIN'); return; }
-  PIN = val;
-  sessionStorage.setItem('training_pin', PIN);
-  $('#pinModal').modal('hide');
-  showToast('Modo edición activado', 'success');
-});
-
-// button events
-$('#refreshBtn').on('click', loadData);
-$('#loginBtn').on('click', ()=> $('#pinModal').modal('show'));
-$('#incBtn').on('click', ()=> changeContador(1));
-$('#decBtn').on('click', ()=> changeContador(-1));
-$('#resetBtn').on('click', resetContador);
-$('#saveFields').on('click', saveFields);
-$('#exportBtn').on('click', exportJSON);
-$('#clearHist').on('click', clearHistLocal);
-$('#helpBtn').on('click', ()=> {
-  alert('Instrucciones:\n\n1) Pulsa Entrar e introduce tu PIN.\n2) Selecciona Día → Ejercicio → Semana.\n3) Usa +1 para aumentar el contador.\n4) Pulsa Guardar peso/descanso para guardar cambios.\n\nSi el servidor no acepta reemplazo completo, usa Exportar y sube manualmente a Drive.');
-});
-
-// initialize
-loadData();
 </script>
 
 </body>
