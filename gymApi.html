@@ -175,11 +175,8 @@
 </div>
 
 <script>
-/* ---------- CONFIG ---------- 
-  Reemplaza aquí con la URL de tu Apps Script WebApp (GET/POST).
-  Ejemplo: https://script.google.com/macros/s/AKfycbx.../exec
-*/
-const API = "https://script.google.com/macros/s/AKfycbzLf2OcMwx9RNU8IshZU6X-pZPg58Gjkm_JKDjJ4eK0RlWeuBLlxpfFnPAcA_9rX6S9/exec"; // <-- reemplaza
+/* ---------- CONFIG ---------- */
+const API = "https://script.google.com/macros/s/AKfycbxf4JHY2vTfqmKSEd-UFnNKfczxo_Ik08BvlSoRJVITQLN3Ij7YBUcn6Pjx3_jMBrtogQ/exec";
 let PIN = sessionStorage.getItem('training_pin') || null;
 let DATA = null;
 
@@ -212,7 +209,6 @@ async function loadData(){
     if(!res.ok) throw new Error('Error ' + res.status);
     DATA = await res.json();
 
-    // if some weekdays empty, clone Lunes
     ['Martes','Miercoles','Jueves','Viernes'].forEach(d=>{
       if(!DATA.dias[d] || Object.keys(DATA.dias[d]).length===0) DATA.dias[d] = JSON.parse(JSON.stringify(DATA.dias['Lunes']));
     });
@@ -261,7 +257,6 @@ function renderDetail(){
   $peso.val(nodo.peso ?? 0);
   $desc.val(nodo.descanso ?? 60);
   $detail.text(JSON.stringify(nodo, null, 2));
-  // last saved
   if(DATA.historial && DATA.historial.length>0){
     const last = DATA.historial[DATA.historial.length - 1];
     $lastSaved.text(`${last.fecha} · ${last.dia} ${last.ejercicio} ${last.semana} = ${last.contador}`);
@@ -272,7 +267,7 @@ function renderDetail(){
   }
 }
 
-// change contador by delta (uses per-field POST)
+// change contador by delta
 async function changeContador(delta){
   if(!PIN){ $('#pinModal').modal('show'); return; }
   const d = $selDia.val(), e = $selEj.val(), s = $selSem.val();
@@ -280,7 +275,6 @@ async function changeContador(delta){
   let nuevo = current + delta;
   if(nuevo < 0) nuevo = 0;
 
-  // build params
   const params = new URLSearchParams();
   params.append('pin', PIN);
   params.append('dia', d);
@@ -294,7 +288,6 @@ async function changeContador(delta){
     const json = await res.json();
     if(json.error){ showToast('Error: ' + json.error, 'error'); return; }
     DATA.dias[d][e][s].contador = nuevo;
-    // server also adds to historial; we re-load to sync
     await loadData();
     showToast('Contador actualizado', 'success');
   } catch(err) {
@@ -309,7 +302,7 @@ function resetContador(){
   changeContador(- (Number(DATA.dias[$selDia.val()][$selEj.val()][$selSem.val()].contador || 0)));
 }
 
-// save peso/descanso (attempt full-replace POST). If server doesn't accept, fallback to download
+// save peso/descanso
 async function saveFields(){
   if(!PIN){ $('#pinModal').modal('show'); return; }
 
@@ -318,7 +311,6 @@ async function saveFields(){
   const descanso = Number($desc.val()) || 60;
 
   try {
-    // ---- guardar peso ----
     let p1 = new URLSearchParams();
     p1.append('pin', PIN);
     p1.append('dia', d);
@@ -326,10 +318,8 @@ async function saveFields(){
     p1.append('semana', s);
     p1.append('campo', 'peso');
     p1.append('valor', peso);
-
     await fetch(API + "?" + p1.toString(), { method:"POST" });
 
-    // ---- guardar descanso ----
     let p2 = new URLSearchParams();
     p2.append('pin', PIN);
     p2.append('dia', d);
@@ -337,7 +327,6 @@ async function saveFields(){
     p2.append('semana', s);
     p2.append('campo', 'descanso');
     p2.append('valor', descanso);
-
     await fetch(API + "?" + p2.toString(), { method:"POST" });
 
     showToast("Peso y descanso guardados", "success");
@@ -358,7 +347,7 @@ function exportJSON(){
   showToast('JSON descargado', 'info');
 }
 
-// clear historial local view (does not change server)
+// clear historial local
 function clearHistLocal(){
   if(!confirm('Limpiar historial local (no afecta servidor)?')) return;
   DATA.historial = [];
