@@ -54,7 +54,7 @@
   .ex-card.type-maxTime::before{background:var(--accent-teal)}
   .ex-card.type-timeChallenge::before{background:var(--accent-red)}
   .ex-card:hover{border-color:var(--ring-active);transform:translateY(-2px)}
-  .ex-card-img{width:100%;height:140px;background:var(--bg3);border-radius:8px;margin-bottom:.9rem;display:flex;align-items:center;justify-content:center}
+  .ex-card-img{width:100%;height:280px;background:var(--bg3);border-radius:8px;margin-bottom:.9rem;display:flex;align-items:center;justify-content:center}
   .ex-card-img .img-placeholder{font-size:2.5rem;color:var(--ring-active)}
   .ex-card h5{font-family:'Orbitron',monospace;font-size:.8rem;letter-spacing:.1em;color:var(--text-white);margin-bottom:.4rem;font-weight:700}
   .ex-display{font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:900;color:var(--accent-gold);margin-bottom:.4rem}
@@ -331,19 +331,26 @@ function phaseClass(phase){
 function typeLabel(t){
   return{reps:'Repeticiones',time:'Tiempo',maxReps:'Máx. Reps',maxTime:'Máx. Tiempo',timeChallenge:'Reto de Tiempo'}[t]||t;
 }
-function exerciseIcon(name){
+function exerciseImg(name){
   const n=name.toLowerCase();
-  if(n.includes('flexion')||n.includes('push'))return'💪';
-  if(n.includes('sentadill')||n.includes('squat'))return'🦵';
-  if(n.includes('plancha')||n.includes('plank'))return'🧱';
-  if(n.includes('burpee'))return'⚡';
-  if(n.includes('mountain')||n.includes('escalador'))return'🏔️';
-  if(n.includes('zancad')||n.includes('lunge'))return'🚶';
-  if(n.includes('jump'))return'🦘';
-  if(n.includes('caminata'))return'🚶';
-  if(n.includes('estira')||n.includes('movilidad'))return'🧘';
-  if(n.includes('respira'))return'🌬️';
-  return'🔥';
+  let file='burpees'; // default
+  if(n.includes('diamante'))file='flexiones-diamante';
+  else if(n.includes('explosiv')&&n.includes('flex'))file='flexiones-explosivas';
+  else if(n.includes('flexion')||n.includes('push'))file='flexiones';
+  else if(n.includes('salto')&&n.includes('sentad'))file='sentadillas-salto';
+  else if(n.includes('jump squat'))file='sentadillas-salto';
+  else if(n.includes('sentadill')||n.includes('squat'))file='sentadillas';
+  else if(n.includes('toque de hombro'))file='plancha-toque-hombro';
+  else if(n.includes('lateral')&&n.includes('plancha'))file='plancha-lateral';
+  else if(n.includes('plancha')||n.includes('plank'))file='plancha';
+  else if(n.includes('burpee'))file='burpees';
+  else if(n.includes('mountain')||n.includes('escalador'))file='mountain-climbers';
+  else if(n.includes('zancad')||n.includes('lunge'))file='zancadas';
+  else if(n.includes('jump'))file='sentadillas-salto';
+  else if(n.includes('caminata'))file='caminata';
+  else if(n.includes('estira')||n.includes('movilidad'))file='estiramientos';
+  else if(n.includes('respira'))file='respiracion';
+  return`<img src="assets/calistenia/${file}.webp" alt="${name}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="img-placeholder" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:2.5rem">🔥</span>`;
 }
 
 function renderExercises(dayData,d,m,y){
@@ -359,7 +366,7 @@ function renderExercises(dayData,d,m,y){
   if(dayData.isRestDay){
     html+=`<div class="rest-day-panel"><h3>DESCANSO ACTIVO</h3><div class="row g-3 justify-content-center">`;
     dayData.exercises.forEach(ex=>{
-      html+=`<div class="col-12 col-sm-6 col-md-4"><div class="ex-card type-time"><div class="ex-card-img"><span class="img-placeholder">${exerciseIcon(ex.name)}</span></div><span class="ex-tag time">${typeLabel('time')}</span><h5>${ex.name}</h5><div class="ex-display type-time">${ex.display}</div><p class="ex-desc">${ex.description}</p></div></div>`;
+      html+=`<div class="col-12 col-sm-6 col-md-6"><div class="ex-card type-time"><div class="ex-card-img">${exerciseImg(ex.name)}</div><span class="ex-tag time">${typeLabel('time')}</span><h5>${ex.name}</h5><div class="ex-display type-time">${ex.display}</div><p class="ex-desc">${ex.description}</p></div></div>`;
     });
     html+=`</div></div>`;panel.innerHTML=html;return;
   }
@@ -367,7 +374,7 @@ function renderExercises(dayData,d,m,y){
   html+=`<div class="row g-3">`;
   dayData.exercises.forEach(ex=>{
     const t=ex.type||'reps';
-    html+=`<div class="col-12 col-sm-6 col-md-4 col-lg-3"><div class="ex-card type-${t}"><div class="ex-card-img"><span class="img-placeholder">${exerciseIcon(ex.name)}</span></div><span class="ex-tag ${t}">${typeLabel(t)}</span><h5>${ex.name}</h5><div class="ex-display type-${t}">${ex.display}</div><p class="ex-desc">${ex.description}</p>${ex.perSide?'<p class="ex-desc" style="margin-top:4px;color:#4be8c8;font-size:.75rem">↔ Por cada lado</p>':''}${ex.sets?`<p class="ex-desc" style="margin-top:4px;color:#555566;font-size:.72rem">${ex.sets} series</p>`:''}</div></div>`;
+    html+=`<div class="col-12 col-sm-6 col-md-6 col-lg-6"><div class="ex-card type-${t}"><div class="ex-card-img">${exerciseImg(ex.name)}</div><span class="ex-tag ${t}">${typeLabel(t)}</span><h5>${ex.name}</h5><div class="ex-display type-${t}">${ex.display}</div><p class="ex-desc">${ex.description}</p>${ex.perSide?'<p class="ex-desc" style="margin-top:4px;color:#4be8c8;font-size:.75rem">↔ Por cada lado</p>':''}${ex.sets?`<p class="ex-desc" style="margin-top:4px;color:#555566;font-size:.72rem">${ex.sets} series</p>`:''}</div></div>`;
   });
   html+=`</div>`;
   if(dayData.finisher)html+=`<div class="finisher-block"><h6>🔥 FINISHER</h6><p>${dayData.finisher.description}</p>${dayData.finisher.exercises.map(ex=>`<div class="finisher-display">${ex.display}</div>`).join('')}</div>`;
