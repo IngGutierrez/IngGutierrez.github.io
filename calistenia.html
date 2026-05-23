@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programa 21 Días – Calistenia Militar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<style>
+  :root {
+    --bg:#111113;--bg2:#1a1a1e;--bg3:#222228;
+    --ring:#2a2a32;--ring-active:#3a3a48;
+    --accent-gold:#e8b84b;--accent-red:#e84b4b;
+    --accent-blue:#4ba8e8;--accent-green:#4be87a;--accent-teal:#4be8c8;
+    --text-dim:#555566;--text-mid:#888899;--text-bright:#ccccdd;--text-white:#eeeeff;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text-bright);font-family:'Rajdhani',sans-serif;min-height:100vh;overflow-x:hidden}
+  h1,h2,h3,h4,h5,h6{font-family:'Orbitron',monospace}
+  .app-header{text-align:center;padding:2rem 1rem 0.5rem;letter-spacing:.15em}
+  .app-header h1{font-size:clamp(.9rem,2.5vw,1.3rem);color:var(--accent-gold);font-weight:700}
+  .app-header p{font-size:.8rem;color:var(--text-mid);letter-spacing:.3em;text-transform:uppercase}
+  .cal-section{display:flex;align-items:center;justify-content:center;padding:1.5rem 1rem 1rem;gap:1.5rem;flex-wrap:wrap}
+  .side-bubble{width:120px;height:120px;border-radius:50%;background:var(--bg3);border:1px solid var(--ring);display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .side-bubble .bubble-label{font-size:.7rem;letter-spacing:.2em;color:var(--text-mid);font-family:'Orbitron',monospace}
+  .side-bubble .bubble-value{font-family:'Orbitron',monospace;font-size:2.8rem;font-weight:900;line-height:1}
+  .bubble-dia .bubble-value{color:var(--accent-gold)}
+  .bubble-sem .bubble-value{color:var(--accent-red)}
+  .clock-wrap{position:relative;width:480px;height:480px;flex-shrink:0}
+  #calSvg{width:100%;height:100%;overflow:visible}
+  .month-nav{display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-bottom:.5rem}
+  .month-nav button{background:var(--bg3);border:1px solid var(--ring);color:var(--text-mid);width:32px;height:32px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s}
+  .month-nav button:hover{border-color:var(--accent-gold);color:var(--accent-gold)}
+  .month-nav span{font-family:'Orbitron',monospace;font-size:.9rem;color:var(--accent-blue);letter-spacing:.2em;min-width:180px;text-align:center}
+  .sep{border-color:var(--ring)}
+  .exercises-section{max-width:1100px;margin:0 auto;padding:0 1rem 3rem}
+  .day-banner{text-align:center;padding:1.5rem 0 1rem;border-bottom:1px solid var(--ring);margin-bottom:1.5rem}
+  .day-banner h2{font-size:clamp(1rem,3vw,1.5rem);color:var(--accent-gold);letter-spacing:.2em}
+  .day-banner .phase-badge{display:inline-block;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;padding:3px 12px;border-radius:20px;margin:.4rem .2rem 0;font-family:'Orbitron',monospace}
+  .phase-adaptacion{background:rgba(75,168,232,.15);color:var(--accent-blue);border:1px solid rgba(75,168,232,.3)}
+  .phase-intensidad{background:rgba(232,184,75,.15);color:var(--accent-gold);border:1px solid rgba(232,184,75,.3)}
+  .phase-dominio{background:rgba(232,75,75,.15);color:var(--accent-red);border:1px solid rgba(232,75,75,.3)}
+  .phase-descanso{background:rgba(75,232,122,.15);color:var(--accent-green);border:1px solid rgba(75,232,122,.3)}
+  .phase-prueba{background:rgba(75,232,200,.15);color:var(--accent-teal);border:1px solid rgba(75,232,200,.3)}
+  .level-badge{display:inline-block;font-size:.65rem;letter-spacing:.15em;padding:2px 10px;border-radius:20px;margin:0 .2rem;border:1px solid var(--ring-active);color:var(--text-mid)}
+  .mental-quote{margin-top:.6rem;font-size:.85rem;color:var(--text-mid);font-style:italic}
+  .mental-quote::before{content:'"'}.mental-quote::after{content:'"'}
+  .ex-card{background:var(--bg2);border:1px solid var(--ring);border-radius:12px;padding:1.2rem 1.4rem;transition:border-color .25s,transform .2s;height:100%;position:relative;overflow:hidden}
+  .ex-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;border-radius:12px 0 0 12px}
+  .ex-card.type-reps::before{background:var(--accent-gold)}
+  .ex-card.type-time::before{background:var(--accent-blue)}
+  .ex-card.type-maxReps::before{background:var(--accent-red)}
+  .ex-card.type-maxTime::before{background:var(--accent-teal)}
+  .ex-card.type-timeChallenge::before{background:var(--accent-red)}
+  .ex-card:hover{border-color:var(--ring-active);transform:translateY(-2px)}
+  .ex-card-img{width:100%;height:140px;background:var(--bg3);border-radius:8px;margin-bottom:.9rem;display:flex;align-items:center;justify-content:center}
+  .ex-card-img .img-placeholder{font-size:2.5rem;color:var(--ring-active)}
+  .ex-card h5{font-family:'Orbitron',monospace;font-size:.8rem;letter-spacing:.1em;color:var(--text-white);margin-bottom:.4rem;font-weight:700}
+  .ex-display{font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:900;color:var(--accent-gold);margin-bottom:.4rem}
+  .ex-display.type-time{color:var(--accent-blue)}
+  .ex-display.type-maxReps{color:var(--accent-red)}
+  .ex-display.type-maxTime{color:var(--accent-teal)}
+  .ex-display.type-timeChallenge{color:var(--accent-red)}
+  .ex-desc{font-size:.82rem;color:var(--text-mid);line-height:1.45}
+  .ex-tag{display:inline-block;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:2px 8px;border-radius:20px;margin-bottom:.5rem;border:1px solid}
+  .ex-tag.reps{color:var(--accent-gold);border-color:rgba(232,184,75,.4)}
+  .ex-tag.time{color:var(--accent-blue);border-color:rgba(75,168,232,.4)}
+  .ex-tag.maxReps{color:var(--accent-red);border-color:rgba(232,75,75,.4)}
+  .ex-tag.maxTime{color:var(--accent-teal);border-color:rgba(75,232,200,.4)}
+  .ex-tag.timeChallenge{color:var(--accent-red);border-color:rgba(232,75,75,.4)}
+  .finisher-block{background:rgba(232,75,75,.07);border:1px solid rgba(232,75,75,.3);border-radius:10px;padding:1rem 1.2rem;margin-top:1.5rem}
+  .finisher-block h6{font-family:'Orbitron',monospace;font-size:.75rem;color:var(--accent-red);letter-spacing:.2em;margin-bottom:.5rem}
+  .finisher-block p{font-size:.85rem;color:var(--text-mid);margin-bottom:.3rem}
+  .finisher-display{font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:900;color:var(--accent-red)}
+  .circuit-info{background:rgba(75,232,200,.07);border:1px solid rgba(75,232,200,.3);border-radius:10px;padding:.8rem 1.2rem;margin-bottom:1.2rem;font-family:'Orbitron',monospace;font-size:.75rem;color:var(--accent-teal);letter-spacing:.15em}
+  .rest-day-panel{text-align:center;padding:3rem 1rem}
+  .rest-day-panel h3{font-family:'Orbitron',monospace;color:var(--accent-green);font-size:1.2rem;letter-spacing:.2em;margin-bottom:1rem}
+  .empty-state{text-align:center;padding:3rem 1rem;color:var(--text-dim)}
+  .empty-state h3{font-family:'Orbitron',monospace;font-size:1rem;letter-spacing:.2em;color:var(--text-dim);margin-bottom:.5rem}
+  .empty-state p{font-size:.85rem}
+  @media(max-width:600px){.clock-wrap{width:340px;height:340px}.side-bubble{width:80px;height:80px}.side-bubble .bubble-value{font-size:2rem}.cal-section{gap:.8rem}}
+</style>
+</head>
+<body>
+
+<div class="app-header">
+  <h1>PROGRAMA 21 DÍAS — CALISTENIA MILITAR</h1>
+  <p>Estilo David Prince &nbsp;|&nbsp; Inicio: 31 Mayo 2026</p>
+</div>
+
+<div class="month-nav" style="margin-top:1.2rem">
+  <button id="prevMonth">&#8592;</button>
+  <span id="monthLabel">Mayo 2026</span>
+  <button id="nextMonth">&#8594;</button>
+</div>
+
+<div class="cal-section">
+  <div class="side-bubble bubble-dia">
+    <span class="bubble-label">DÍA</span>
+    <span class="bubble-value" id="bubbleDia">—</span>
+  </div>
+  <div class="clock-wrap">
+    <svg id="calSvg" viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg"></svg>
+  </div>
+  <div class="side-bubble bubble-sem">
+    <span class="bubble-label">SEM</span>
+    <span class="bubble-value" id="bubbleSem">—</span>
+  </div>
+</div>
+
+<hr class="sep" style="max-width:700px;margin:0 auto">
+
+<div class="exercises-section" id="exercisesPanel">
+  <div class="empty-state">
+    <h3>SELECCIONA UN DÍA</h3>
+    <p>Toca cualquier fecha del calendario para ver los ejercicios del día</p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const PROGRAM_DATA = {"program":{"name":"Programa 21 Dias Calistenia Militar","coach":"Estilo David Prince","startDate":"2026-05-31","durationDays":21,"sessionsPerWeek":6,"restDayType":"Descanso Activo"},"days":[{"day":1,"date":"2026-05-31","week":1,"phase":"Adaptacion","level":"Medio","isRestDay":false,"title":"Dia 1","mentalFocus":"Termina aunque bajes ritmo","exercises":[{"name":"Flexiones","type":"reps","sets":4,"repetitions":10,"display":"4x10","description":"Cuerpo recto, baja controlado y empuja sin arquear la espalda."},{"name":"Sentadillas","type":"reps","sets":4,"repetitions":15,"display":"4x15","description":"Espalda recta, baja como si te sentaras."},{"name":"Plancha","type":"time","sets":3,"durationSeconds":30,"display":"3x30seg","description":"Mantén el cuerpo alineado y abdomen firme."},{"name":"Mountain Climbers","type":"reps","sets":3,"repetitions":20,"display":"3x20","description":"Alterna rodillas al pecho rápidamente."},{"name":"Burpees","type":"reps","sets":2,"repetitions":8,"display":"2x8","description":"Movimiento explosivo completo."}]},{"day":2,"date":"2026-06-01","week":1,"phase":"Adaptacion","level":"Medio","isRestDay":false,"title":"Dia 2","mentalFocus":"Termina aunque bajes ritmo","exercises":[{"name":"Flexiones","type":"reps","sets":4,"repetitions":10,"display":"4x10","description":"Cuerpo recto, baja controlado y empuja sin arquear la espalda."},{"name":"Sentadillas","type":"reps","sets":4,"repetitions":15,"display":"4x15","description":"Espalda recta, baja como si te sentaras."},{"name":"Plancha","type":"time","sets":3,"durationSeconds":30,"display":"3x30seg","description":"Mantén el cuerpo alineado y abdomen firme."},{"name":"Mountain Climbers","type":"reps","sets":3,"repetitions":20,"display":"3x20","description":"Alterna rodillas al pecho rápidamente."},{"name":"Burpees","type":"reps","sets":2,"repetitions":8,"display":"2x8","description":"Movimiento explosivo completo."}]},{"day":3,"date":"2026-06-02","week":1,"phase":"Adaptacion","level":"Medio","isRestDay":false,"title":"Dia 3","mentalFocus":"Termina aunque bajes ritmo","exercises":[{"name":"Flexiones","type":"reps","sets":4,"repetitions":10,"display":"4x10","description":"Cuerpo recto, baja controlado y empuja sin arquear la espalda."},{"name":"Sentadillas","type":"reps","sets":4,"repetitions":15,"display":"4x15","description":"Espalda recta, baja como si te sentaras."},{"name":"Plancha","type":"time","sets":3,"durationSeconds":30,"display":"3x30seg","description":"Mantén el cuerpo alineado y abdomen firme."},{"name":"Mountain Climbers","type":"reps","sets":3,"repetitions":20,"display":"3x20","description":"Alterna rodillas al pecho rápidamente."},{"name":"Burpees","type":"reps","sets":2,"repetitions":8,"display":"2x8","description":"Movimiento explosivo completo."}]},{"day":4,"date":"2026-06-03","week":1,"phase":"Adaptacion","level":"Medio","isRestDay":false,"title":"Dia 4","mentalFocus":"Controla respiracion","exercises":[{"name":"Flexiones","type":"reps","sets":4,"repetitions":12,"display":"4x12","description":"Flexiones con control y postura firme."},{"name":"Zancadas","type":"reps","sets":3,"repetitions":12,"perSide":true,"display":"3x12 por pierna","description":"Paso largo al frente y baja controlado."},{"name":"Plancha lateral","type":"time","sets":3,"durationSeconds":20,"perSide":true,"display":"3x20seg/lado","description":"Mantén cuerpo recto apoyado en un brazo."},{"name":"Jump Squats","type":"reps","sets":3,"repetitions":10,"display":"3x10","description":"Sentadilla con salto explosivo."},{"name":"Burpees","type":"reps","sets":3,"repetitions":10,"display":"3x10","description":"Movimiento completo sin pausas largas."}]},{"day":5,"date":"2026-06-04","week":1,"phase":"Adaptacion","level":"Medio","isRestDay":false,"title":"Dia 5","mentalFocus":"Controla respiracion","exercises":[{"name":"Flexiones","type":"reps","sets":4,"repetitions":12,"display":"4x12","description":"Flexiones con control y postura firme."},{"name":"Zancadas","type":"reps","sets":3,"repetitions":12,"perSide":true,"display":"3x12 por pierna","description":"Paso largo al frente y baja controlado."},{"name":"Plancha lateral","type":"time","sets":3,"durationSeconds":20,"perSide":true,"display":"3x20seg/lado","description":"Mantén cuerpo recto apoyado en un brazo."},{"name":"Jump Squats","type":"reps","sets":3,"repetitions":10,"display":"3x10","description":"Sentadilla con salto explosivo."},{"name":"Burpees","type":"reps","sets":3,"repetitions":10,"display":"3x10","description":"Movimiento completo sin pausas largas."}]},{"day":6,"date":"2026-06-05","week":1,"phase":"Adaptacion","level":"Medio","isRestDay":false,"title":"Dia 6","mentalFocus":"Controla respiracion","exercises":[{"name":"Flexiones","type":"reps","sets":4,"repetitions":12,"display":"4x12","description":"Flexiones con control y postura firme."},{"name":"Zancadas","type":"reps","sets":3,"repetitions":12,"perSide":true,"display":"3x12 por pierna","description":"Paso largo al frente y baja controlado."},{"name":"Plancha lateral","type":"time","sets":3,"durationSeconds":20,"perSide":true,"display":"3x20seg/lado","description":"Mantén cuerpo recto apoyado en un brazo."},{"name":"Jump Squats","type":"reps","sets":3,"repetitions":10,"display":"3x10","description":"Sentadilla con salto explosivo."},{"name":"Burpees","type":"reps","sets":3,"repetitions":10,"display":"3x10","description":"Movimiento completo sin pausas largas."}]},{"day":7,"date":"2026-06-06","week":1,"phase":"Adaptacion","level":"Recuperacion","isRestDay":true,"title":"Descanso Activo","mentalFocus":"Recuperacion y movilidad","exercises":[{"name":"Caminata","type":"time","durationMinutes":20,"display":"20min","description":"Caminata ligera para recuperacion."},{"name":"Estiramientos","type":"time","durationMinutes":10,"display":"10min","description":"Movilidad y relajacion muscular."}]},{"day":8,"date":"2026-06-07","week":2,"phase":"Intensidad","level":"Medio-Alto","isRestDay":false,"title":"Dia 8","mentalFocus":"No negocio con mi disciplina","exercises":[{"name":"Flexiones","type":"reps","sets":5,"repetitions":15,"display":"5x15","description":"Cuerpo recto, baja controlado y empuja sin arquear la espalda."},{"name":"Sentadillas","type":"reps","sets":5,"repetitions":20,"display":"5x20","description":"Espalda recta, baja como si te sentaras. Ritmo constante."},{"name":"Plancha","type":"time","sets":4,"durationSeconds":40,"display":"4x40seg","description":"Mantén el cuerpo alineado y abdomen firme."},{"name":"Burpees","type":"reps","sets":4,"repetitions":12,"display":"4x12","description":"Movimiento explosivo completo sin pausas."},{"name":"Escaladores","type":"reps","sets":4,"repetitions":30,"display":"4x30","description":"Alterna rodillas al pecho rápido y con control."}],"finisher":{"description":"1 minuto de burpees continuo sin parar.","exercises":[{"name":"Burpees","type":"time","durationSeconds":60,"display":"1min continuo"}]}},{"day":9,"date":"2026-06-08","week":2,"phase":"Intensidad","level":"Medio-Alto","isRestDay":false,"title":"Dia 9","mentalFocus":"No negocio con mi disciplina","exercises":[{"name":"Flexiones","type":"reps","sets":5,"repetitions":15,"display":"5x15","description":"Cuerpo recto, baja controlado y empuja sin arquear la espalda."},{"name":"Sentadillas","type":"reps","sets":5,"repetitions":20,"display":"5x20","description":"Espalda recta, baja como si te sentaras. Ritmo constante."},{"name":"Plancha","type":"time","sets":4,"durationSeconds":40,"display":"4x40seg","description":"Mantén el cuerpo alineado y abdomen firme."},{"name":"Burpees","type":"reps","sets":4,"repetitions":12,"display":"4x12","description":"Movimiento explosivo completo sin pausas."},{"name":"Escaladores","type":"reps","sets":4,"repetitions":30,"display":"4x30","description":"Alterna rodillas al pecho rápido y con control."}],"finisher":{"description":"1 minuto de burpees continuo sin parar.","exercises":[{"name":"Burpees","type":"time","durationSeconds":60,"display":"1min continuo"}]}},{"day":10,"date":"2026-06-09","week":2,"phase":"Intensidad","level":"Medio-Alto","isRestDay":false,"title":"Dia 10","mentalFocus":"No negocio con mi disciplina","exercises":[{"name":"Flexiones","type":"reps","sets":5,"repetitions":15,"display":"5x15","description":"Cuerpo recto, baja controlado y empuja sin arquear la espalda."},{"name":"Sentadillas","type":"reps","sets":5,"repetitions":20,"display":"5x20","description":"Espalda recta, baja como si te sentaras. Ritmo constante."},{"name":"Plancha","type":"time","sets":4,"durationSeconds":40,"display":"4x40seg","description":"Mantén el cuerpo alineado y abdomen firme."},{"name":"Burpees","type":"reps","sets":4,"repetitions":12,"display":"4x12","description":"Movimiento explosivo completo sin pausas."},{"name":"Escaladores","type":"reps","sets":4,"repetitions":30,"display":"4x30","description":"Alterna rodillas al pecho rápido y con control."}],"finisher":{"description":"1 minuto de burpees continuo sin parar.","exercises":[{"name":"Burpees","type":"time","durationSeconds":60,"display":"1min continuo"}]}},{"day":11,"date":"2026-06-10","week":2,"phase":"Intensidad","level":"Alto","isRestDay":false,"title":"Dia 11","mentalFocus":"No negocio con mi disciplina","exercises":[{"name":"Flexiones diamante","type":"reps","sets":4,"repetitions":10,"display":"4x10","description":"Manos juntas formando un diamante, trabaja triceps y pecho interno."},{"name":"Sentadilla con salto","type":"reps","sets":4,"repetitions":15,"display":"4x15","description":"Baja en sentadilla y explota hacia arriba con salto."},{"name":"Plancha con toque de hombro","type":"reps","sets":4,"repetitions":20,"display":"4x20","description":"En plancha alta, toca el hombro opuesto alternando. Caderas estables."},{"name":"Burpees","type":"reps","sets":5,"repetitions":10,"display":"5x10","description":"Movimiento explosivo completo. Mantén ritmo constante."}],"finisher":{"description":"100 repeticiones totales combinando sentadillas y flexiones a tu ritmo.","exercises":[{"name":"Sentadillas + Flexiones","type":"reps","repetitions":100,"display":"100 reps totales"}]}},{"day":12,"date":"2026-06-11","week":2,"phase":"Intensidad","level":"Alto","isRestDay":false,"title":"Dia 12","mentalFocus":"No negocio con mi disciplina","exercises":[{"name":"Flexiones diamante","type":"reps","sets":4,"repetitions":10,"display":"4x10","description":"Manos juntas formando un diamante, trabaja triceps y pecho interno."},{"name":"Sentadilla con salto","type":"reps","sets":4,"repetitions":15,"display":"4x15","description":"Baja en sentadilla y explota hacia arriba con salto."},{"name":"Plancha con toque de hombro","type":"reps","sets":4,"repetitions":20,"display":"4x20","description":"En plancha alta, toca el hombro opuesto alternando. Caderas estables."},{"name":"Burpees","type":"reps","sets":5,"repetitions":10,"display":"5x10","description":"Movimiento explosivo completo. Mantén ritmo constante."}],"finisher":{"description":"100 repeticiones totales combinando sentadillas y flexiones a tu ritmo.","exercises":[{"name":"Sentadillas + Flexiones","type":"reps","repetitions":100,"display":"100 reps totales"}]}},{"day":13,"date":"2026-06-12","week":2,"phase":"Intensidad","level":"Alto","isRestDay":false,"title":"Dia 13","mentalFocus":"No negocio con mi disciplina","exercises":[{"name":"Flexiones diamante","type":"reps","sets":4,"repetitions":10,"display":"4x10","description":"Manos juntas formando un diamante, trabaja triceps y pecho interno."},{"name":"Sentadilla con salto","type":"reps","sets":4,"repetitions":15,"display":"4x15","description":"Baja en sentadilla y explota hacia arriba con salto."},{"name":"Plancha con toque de hombro","type":"reps","sets":4,"repetitions":20,"display":"4x20","description":"En plancha alta, toca el hombro opuesto alternando. Caderas estables."},{"name":"Burpees","type":"reps","sets":5,"repetitions":10,"display":"5x10","description":"Movimiento explosivo completo. Mantén ritmo constante."}],"finisher":{"description":"100 repeticiones totales combinando sentadillas y flexiones a tu ritmo.","exercises":[{"name":"Sentadillas + Flexiones","type":"reps","repetitions":100,"display":"100 reps totales"}]}},{"day":14,"date":"2026-06-13","week":2,"phase":"Intensidad","level":"Recuperacion","isRestDay":true,"title":"Descanso Activo","mentalFocus":"Respiracion y movilidad","exercises":[{"name":"Respiracion profunda","type":"time","durationMinutes":10,"display":"10min","description":"Inhala 4 seg, sostén 4 seg, exhala 4 seg. Repite."},{"name":"Movilidad articular","type":"time","durationMinutes":15,"display":"15min","description":"Circulos de hombros, cadera, rodillas y tobillos. Sin forzar."}]},{"day":15,"date":"2026-06-14","week":3,"phase":"Dominio","level":"Alto","isRestDay":false,"title":"Dia 15","mentalFocus":"No negocio con mi disciplina","exercises":[{"name":"Flexiones explosivas","type":"reps","sets":5,"repetitions":10,"display":"5x10","description":"Empuja con tanta fuerza que las manos despeguen del suelo."},{"name":"Sentadillas","type":"reps","sets":5,"repetitions":25,"display":"5x25","description":"Espalda recta, baja profundo, sube fuerte."},{"name":"Plancha","type":"time","sets":5,"durationSeconds":60,"display":"5x1min","description":"Mantén posicion perfecta. Sin ceder."},{"name":"Burpees","type":"reps","sets":5,"repetitions":15,"display":"5x15","description":"Ritmo constante, no pares entre repeticiones."}],"finisher":{"description":"2 minutos continuos sin parar: burpees o jumping jacks a tu eleccion.","exercises":[{"name":"Burpees o Jumping Jacks","type":"time","durationSeconds":120,"display":"2min continuo"}]}},{"day":16,"date":"2026-06-15","week":3,"phase":"Dominio","level":"Alto","isRestDay":false,"title":"Dia 16","mentalFocus":"No negocio con mi disciplina","exercises":[{"name":"Flexiones explosivas","type":"reps","sets":5,"repetitions":10,"display":"5x10","description":"Empuja con tanta fuerza que las manos despeguen del suelo."},{"name":"Sentadillas","type":"reps","sets":5,"repetitions":25,"display":"5x25","description":"Espalda recta, baja profundo, sube fuerte."},{"name":"Plancha","type":"time","sets":5,"durationSeconds":60,"display":"5x1min","description":"Mantén posicion perfecta. Sin ceder."},{"name":"Burpees","type":"reps","sets":5,"repetitions":15,"display":"5x15","description":"Ritmo constante, no pares entre repeticiones."}],"finisher":{"description":"2 minutos continuos sin parar: burpees o jumping jacks a tu eleccion.","exercises":[{"name":"Burpees o Jumping Jacks","type":"time","durationSeconds":120,"display":"2min continuo"}]}},{"day":17,"date":"2026-06-16","week":3,"phase":"Dominio","level":"Alto","isRestDay":false,"title":"Dia 17","mentalFocus":"No negocio con mi disciplina","exercises":[{"name":"Flexiones explosivas","type":"reps","sets":5,"repetitions":10,"display":"5x10","description":"Empuja con tanta fuerza que las manos despeguen del suelo."},{"name":"Sentadillas","type":"reps","sets":5,"repetitions":25,"display":"5x25","description":"Espalda recta, baja profundo, sube fuerte."},{"name":"Plancha","type":"time","sets":5,"durationSeconds":60,"display":"5x1min","description":"Mantén posicion perfecta. Sin ceder."},{"name":"Burpees","type":"reps","sets":5,"repetitions":15,"display":"5x15","description":"Ritmo constante, no pares entre repeticiones."}],"finisher":{"description":"2 minutos continuos sin parar: burpees o jumping jacks a tu eleccion.","exercises":[{"name":"Burpees o Jumping Jacks","type":"time","durationSeconds":120,"display":"2min continuo"}]}},{"day":18,"date":"2026-06-17","week":3,"phase":"Dominio","level":"Muy Alto","isRestDay":false,"title":"Dia 18","mentalFocus":"Aqui defines quien eres","circuitRounds":4,"restBetweenRounds":"1min","exercises":[{"name":"Flexiones","type":"reps","repetitions":20,"display":"20 reps","description":"Cuerpo recto. Cada rep cuenta."},{"name":"Sentadillas","type":"reps","repetitions":30,"display":"30 reps","description":"Profundo y explosivo."},{"name":"Escaladores","type":"reps","repetitions":20,"display":"20 reps","description":"Alterna rodillas al pecho sin parar."},{"name":"Burpees","type":"reps","repetitions":15,"display":"15 reps","description":"Completo y explosivo. Cierra la ronda fuerte."}]},{"day":19,"date":"2026-06-18","week":3,"phase":"Dominio","level":"Muy Alto","isRestDay":false,"title":"Dia 19","mentalFocus":"Aqui defines quien eres","circuitRounds":4,"restBetweenRounds":"1min","exercises":[{"name":"Flexiones","type":"reps","repetitions":20,"display":"20 reps","description":"Cuerpo recto. Cada rep cuenta."},{"name":"Sentadillas","type":"reps","repetitions":30,"display":"30 reps","description":"Profundo y explosivo."},{"name":"Escaladores","type":"reps","repetitions":20,"display":"20 reps","description":"Alterna rodillas al pecho sin parar."},{"name":"Burpees","type":"reps","repetitions":15,"display":"15 reps","description":"Completo y explosivo. Cierra la ronda fuerte."}]},{"day":20,"date":"2026-06-19","week":3,"phase":"Dominio","level":"Muy Alto","isRestDay":false,"title":"Dia 20","mentalFocus":"Aqui defines quien eres","circuitRounds":4,"restBetweenRounds":"1min","exercises":[{"name":"Flexiones","type":"reps","repetitions":20,"display":"20 reps","description":"Cuerpo recto. Cada rep cuenta."},{"name":"Sentadillas","type":"reps","repetitions":30,"display":"30 reps","description":"Profundo y explosivo."},{"name":"Escaladores","type":"reps","repetitions":20,"display":"20 reps","description":"Alterna rodillas al pecho sin parar."},{"name":"Burpees","type":"reps","repetitions":15,"display":"15 reps","description":"Completo y explosivo. Cierra la ronda fuerte."}]},{"day":21,"date":"2026-06-20","week":3,"phase":"Dominio","level":"Prueba Final","isRestDay":false,"title":"Dia 21 - Prueba Final","mentalFocus":"Aqui defines quien eres","isFinalTest":true,"exercises":[{"name":"Flexiones maximas","type":"maxReps","timeLimitSeconds":120,"display":"Max en 2min","description":"Da todo lo que tienes. Este es tu maximo real."},{"name":"Sentadillas maximas","type":"maxReps","timeLimitSeconds":120,"display":"Max en 2min","description":"Profundo y sin parar. Cuenta cada una."},{"name":"Plancha maxima","type":"maxTime","display":"Duracion maxima","description":"Aguanta hasta que el cuerpo no pueda mas. Registra el tiempo."},{"name":"50 Burpees","type":"timeChallenge","repetitions":50,"display":"50 burpees - tiempo total","description":"Completa los 50 burpees lo mas rapido posible. Registra el tiempo."}]}]};
+
+const svg = document.getElementById('calSvg');
+const CX = 240, CY = 240;
+const MESES_ES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const DIAS_SEMANA_ES = ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
+
+let currentMonth = 4, currentYear = 2026;
+let selectedDay = null, selectedMonth = null, selectedYear = null;
+let clockTimer;
+
+function polarToCart(cx,cy,r,angleDeg){
+  const rad=(angleDeg-90)*Math.PI/180;
+  return{x:cx+r*Math.cos(rad),y:cy+r*Math.sin(rad)};
+}
+function svgEl(tag,attrs){
+  const el=document.createElementNS('http://www.w3.org/2000/svg',tag);
+  for(const[k,v]of Object.entries(attrs))el.setAttribute(k,v);
+  return el;
+}
+function getDayData(y,m,d){
+  const ds=`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+  return PROGRAM_DATA.days.find(x=>x.date===ds)||null;
+}
+function isProgramDate(y,m,d){return getDayData(y,m,d)!==null}
+
+function buildCalendar(){
+  while(svg.firstChild)svg.removeChild(svg.firstChild);
+  const daysInMonth=new Date(currentYear,currentMonth+1,0).getDate();
+  const today=new Date();
+  const todayDow=(new Date().getDay()+6)%7; // 0=Lun
+
+  // Radii — más espacio entre anillos
+  const R_CLOCK = 68;   // reloj
+  const R_DOW   = 105;  // días de semana (más separado del reloj)
+  const R_DAYS  = 158;  // números de día (anillo grande)
+  const R_MON   = 210;  // meses (anillo exterior)
+
+  // Fondo circular por anillo
+  [R_CLOCK+2, R_DOW+18, R_DAYS+18, R_MON+16].forEach(r=>{
+    svg.appendChild(svgEl('circle',{cx:CX,cy:CY,r,fill:'none',stroke:'#2a2a32','stroke-width':'1'}));
+  });
+  svg.appendChild(svgEl('circle',{cx:CX,cy:CY,r:R_CLOCK+2,fill:'#1a1a1e'}));
+
+  // ── DÍAS DE SEMANA ──
+  const dowStep=360/7;
+  DIAS_SEMANA_ES.forEach((d,i)=>{
+    const angle=i*dowStep;
+    const pos=polarToCart(CX,CY,R_DOW,angle);
+    const isToday=(i===todayDow);
+    const g=svgEl('g',{style:'cursor:default'});
+
+    // Hit area
+    const hit=svgEl('circle',{cx:pos.x,cy:pos.y,r:16,fill:'transparent'});
+    g.appendChild(hit);
+
+    const t=svgEl('text',{x:pos.x,y:pos.y,
+      'font-size':'11','font-family':'Orbitron,monospace',
+      fill:isToday?'#4be87a':'#555566',
+      'dominant-baseline':'middle','text-anchor':'middle',
+      'font-weight':isToday?'700':'400'});
+    t.textContent=d;
+    g.appendChild(t);
+    svg.appendChild(g);
+  });
+
+  // ── NÚMEROS DE DÍA ──
+  const dayStep=360/daysInMonth;
+  for(let d=1;d<=daysInMonth;d++){
+    const angle=(d-1)*dayStep;
+    const pos=polarToCart(CX,CY,R_DAYS,angle);
+    const isToday=(d===today.getDate()&&currentMonth===today.getMonth()&&currentYear===today.getFullYear());
+    const isProg=isProgramDate(currentYear,currentMonth,d);
+
+    const g=svgEl('g',{style:'cursor:pointer'});
+
+    // Área de click grande (invisible)
+    const hit=svgEl('circle',{cx:pos.x,cy:pos.y,r:18,fill:'transparent'});
+    g.appendChild(hit);
+
+    // Dot indicador de día de programa
+    if(isProg){
+      const dot=polarToCart(CX,CY,R_DAYS+22,angle);
+      g.appendChild(svgEl('circle',{cx:dot.x,cy:dot.y,r:3,fill:'#4be8c8',opacity:'0.8'}));
+    }
+
+    // Número
+    const fill=isToday?'#e84b4b':isProg?'#4be8c8':'#555566';
+    const t=svgEl('text',{x:pos.x,y:pos.y,
+      'font-size':'13','font-family':'Orbitron,monospace',
+      fill,
+      'dominant-baseline':'middle','text-anchor':'middle',
+      'font-weight':isToday||isProg?'700':'400'});
+    t.textContent=String(d).padStart(2,'0');
+    g.appendChild(t);
+
+    g.addEventListener('click',()=>selectDay(d,currentMonth,currentYear));
+    svg.appendChild(g);
+  }
+
+  // ── MESES ──
+  const monStep=360/12;
+  MESES_ES.forEach((m,i)=>{
+    const angle=i*monStep;
+    const pos=polarToCart(CX,CY,R_MON,angle);
+    const abr=m.substring(0,3).toUpperCase();
+    const isCurrent=(i===currentMonth);
+    const g=svgEl('g',{style:'cursor:pointer'});
+
+    // Área de click generosa
+    const hit=svgEl('circle',{cx:pos.x,cy:pos.y,r:18,fill:'transparent'});
+    g.appendChild(hit);
+
+    // Fondo resaltado para mes actual
+    if(isCurrent){
+      g.appendChild(svgEl('circle',{cx:pos.x,cy:pos.y,r:16,fill:'rgba(232,184,75,0.15)',stroke:'#e8b84b','stroke-width':'1'}));
+    }
+
+    const t=svgEl('text',{x:pos.x,y:pos.y,
+      'font-size':'11','font-family':'Orbitron,monospace',
+      fill:isCurrent?'#e8b84b':'#555566',
+      'dominant-baseline':'middle','text-anchor':'middle',
+      'font-weight':isCurrent?'700':'400'});
+    t.textContent=abr;
+    g.appendChild(t);
+
+    g.addEventListener('click',()=>{
+      currentMonth=i;
+      document.getElementById('monthLabel').textContent=`${MESES_ES[currentMonth]} ${currentYear}`;
+      buildCalendar();
+    });
+    svg.appendChild(g);
+  });
+
+  // ── RELOJ ──
+  buildClock(R_CLOCK);
+
+  // Highlight si ya hay día seleccionado en este mes
+  if(selectedDay&&selectedMonth===currentMonth&&selectedYear===currentYear){
+    highlightDay(selectedDay);
+  }
+}
+
+function buildClock(R){
+  for(let i=0;i<60;i++){
+    const angle=i*6;
+    const isHour=i%5===0;
+    const r1=isHour?R-9:R-5;
+    const p1=polarToCart(CX,CY,r1,angle);
+    const p2=polarToCart(CX,CY,R-1,angle);
+    svg.appendChild(svgEl('line',{x1:p1.x,y1:p1.y,x2:p2.x,y2:p2.y,stroke:isHour?'#3a3a48':'#262630','stroke-width':isHour?'1.5':'0.7'}));
+  }
+  svg.appendChild(svgEl('line',{id:'hHand',x1:CX,y1:CY,x2:CX,y2:CY-38,stroke:'#ccccdd','stroke-width':'3.5','stroke-linecap':'round'}));
+  svg.appendChild(svgEl('line',{id:'mHand',x1:CX,y1:CY,x2:CX,y2:CY-54,stroke:'#ccccdd','stroke-width':'2.5','stroke-linecap':'round'}));
+  svg.appendChild(svgEl('line',{id:'sHand',x1:CX,y1:CY,x2:CX,y2:CY-62,stroke:'#e84b4b','stroke-width':'1.5','stroke-linecap':'round'}));
+  svg.appendChild(svgEl('circle',{cx:CX,cy:CY,r:4,fill:'#888899'}));
+  svg.appendChild(svgEl('circle',{cx:CX,cy:CY,r:2,fill:'#e84b4b'}));
+  clearInterval(clockTimer);
+  clockTimer=setInterval(tickClock,1000);
+  tickClock();
+}
+
+function tickClock(){
+  const now=new Date();
+  const h=now.getHours()%12,m=now.getMinutes(),s=now.getSeconds();
+  const hA=(h+m/60)*30,mA=(m+s/60)*6,sA=s*6;
+  const rot=(hand,angle,len)=>{
+    const p=polarToCart(CX,CY,len,angle);
+    hand.setAttribute('x2',p.x);hand.setAttribute('y2',p.y);
+  };
+  const hh=document.getElementById('hHand');
+  const mh=document.getElementById('mHand');
+  const sh=document.getElementById('sHand');
+  if(hh)rot(hh,hA,38);
+  if(mh)rot(mh,mA,54);
+  if(sh)rot(sh,sA,62);
+}
+
+function highlightDay(d){
+  const daysInMonth=new Date(currentYear,currentMonth+1,0).getDate();
+  const angle=(d-1)*(360/daysInMonth);
+  const pos=polarToCart(CX,CY,158,angle);
+  const ex=document.getElementById('selHL');
+  if(ex)ex.remove();
+  const c=svgEl('circle',{id:'selHL',cx:pos.x,cy:pos.y,r:17,fill:'rgba(232,184,75,0.2)',stroke:'#e8b84b','stroke-width':'1.5'});
+  svg.insertBefore(c,svg.children[3]);
+}
+
+function selectDay(d,m,y){
+  selectedDay=d;selectedMonth=m;selectedYear=y;
+  highlightDay(d);
+  const dd=getDayData(y,m,d);
+  document.getElementById('bubbleDia').textContent=dd?dd.day:'—';
+  document.getElementById('bubbleSem').textContent=dd?dd.week:'—';
+  renderExercises(dd,d,m,y);
+  document.getElementById('exercisesPanel').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function phaseClass(phase){
+  if(!phase)return'';
+  const p=phase.toLowerCase();
+  if(p.includes('adapt'))return'phase-adaptacion';
+  if(p.includes('intens'))return'phase-intensidad';
+  if(p.includes('domin'))return'phase-dominio';
+  if(p.includes('recup')||p.includes('descanso'))return'phase-descanso';
+  if(p.includes('prueba'))return'phase-prueba';
+  return'phase-adaptacion';
+}
+function typeLabel(t){
+  return{reps:'Repeticiones',time:'Tiempo',maxReps:'Máx. Reps',maxTime:'Máx. Tiempo',timeChallenge:'Reto de Tiempo'}[t]||t;
+}
+function exerciseIcon(name){
+  const n=name.toLowerCase();
+  if(n.includes('flexion')||n.includes('push'))return'💪';
+  if(n.includes('sentadill')||n.includes('squat'))return'🦵';
+  if(n.includes('plancha')||n.includes('plank'))return'🧱';
+  if(n.includes('burpee'))return'⚡';
+  if(n.includes('mountain')||n.includes('escalador'))return'🏔️';
+  if(n.includes('zancad')||n.includes('lunge'))return'🚶';
+  if(n.includes('jump'))return'🦘';
+  if(n.includes('caminata'))return'🚶';
+  if(n.includes('estira')||n.includes('movilidad'))return'🧘';
+  if(n.includes('respira'))return'🌬️';
+  return'🔥';
+}
+
+function renderExercises(dayData,d,m,y){
+  const panel=document.getElementById('exercisesPanel');
+  const dowNames=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+  const dateLabel=`${dowNames[new Date(y,m,d).getDay()]} ${d} de ${MESES_ES[m]} ${y}`;
+  if(!dayData){
+    panel.innerHTML=`<div class="empty-state"><h3>${dateLabel}</h3><p>Este día no pertenece al programa de 21 días.</p><p style="color:#555566;margin-top:.5rem;font-size:.75rem">El programa va del 31 de Mayo al 20 de Junio de 2026.</p></div>`;
+    return;
+  }
+  const pClass=phaseClass(dayData.phase);
+  let html=`<div class="day-banner"><h2>${dayData.title.toUpperCase()} &nbsp;—&nbsp; ${dateLabel}</h2><div><span class="phase-badge ${pClass}">${dayData.phase}</span><span class="level-badge">${dayData.level}</span></div><div class="mental-quote">${dayData.mentalFocus}</div></div>`;
+  if(dayData.isRestDay){
+    html+=`<div class="rest-day-panel"><h3>DESCANSO ACTIVO</h3><div class="row g-3 justify-content-center">`;
+    dayData.exercises.forEach(ex=>{
+      html+=`<div class="col-12 col-sm-6 col-md-4"><div class="ex-card type-time"><div class="ex-card-img"><span class="img-placeholder">${exerciseIcon(ex.name)}</span></div><span class="ex-tag time">${typeLabel('time')}</span><h5>${ex.name}</h5><div class="ex-display type-time">${ex.display}</div><p class="ex-desc">${ex.description}</p></div></div>`;
+    });
+    html+=`</div></div>`;panel.innerHTML=html;return;
+  }
+  if(dayData.circuitRounds)html+=`<div class="circuit-info">⚡ CIRCUITO &nbsp;|&nbsp; ${dayData.circuitRounds} RONDAS &nbsp;|&nbsp; DESCANSO ${dayData.restBetweenRounds} ENTRE RONDAS</div>`;
+  html+=`<div class="row g-3">`;
+  dayData.exercises.forEach(ex=>{
+    const t=ex.type||'reps';
+    html+=`<div class="col-12 col-sm-6 col-md-4 col-lg-3"><div class="ex-card type-${t}"><div class="ex-card-img"><span class="img-placeholder">${exerciseIcon(ex.name)}</span></div><span class="ex-tag ${t}">${typeLabel(t)}</span><h5>${ex.name}</h5><div class="ex-display type-${t}">${ex.display}</div><p class="ex-desc">${ex.description}</p>${ex.perSide?'<p class="ex-desc" style="margin-top:4px;color:#4be8c8;font-size:.75rem">↔ Por cada lado</p>':''}${ex.sets?`<p class="ex-desc" style="margin-top:4px;color:#555566;font-size:.72rem">${ex.sets} series</p>`:''}</div></div>`;
+  });
+  html+=`</div>`;
+  if(dayData.finisher)html+=`<div class="finisher-block"><h6>🔥 FINISHER</h6><p>${dayData.finisher.description}</p>${dayData.finisher.exercises.map(ex=>`<div class="finisher-display">${ex.display}</div>`).join('')}</div>`;
+  if(dayData.isFinalTest)html+=`<div class="finisher-block" style="background:rgba(75,232,200,.07);border-color:rgba(75,232,200,.3);margin-top:1.5rem"><h6 style="color:var(--accent-teal)">⚔️ PRUEBA FINAL — DÍA 21</h6><p style="color:var(--text-bright)">Registra tu resultado. Aquí defines quién eres.</p></div>`;
+  panel.innerHTML=html;
+}
+
+document.getElementById('prevMonth').addEventListener('click',()=>{
+  currentMonth--;if(currentMonth<0){currentMonth=11;currentYear--;}
+  document.getElementById('monthLabel').textContent=`${MESES_ES[currentMonth]} ${currentYear}`;
+  buildCalendar();
+});
+document.getElementById('nextMonth').addEventListener('click',()=>{
+  currentMonth++;if(currentMonth>11){currentMonth=0;currentYear++;}
+  document.getElementById('monthLabel').textContent=`${MESES_ES[currentMonth]} ${currentYear}`;
+  buildCalendar();
+});
+
+document.getElementById('monthLabel').textContent=`${MESES_ES[currentMonth]} ${currentYear}`;
+buildCalendar();
+</script>
+</body>
+</html>
